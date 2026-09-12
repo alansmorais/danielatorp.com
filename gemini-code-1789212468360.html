@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Personal Consultations – Daniela Torp</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', Arial, sans-serif; color: #080808; font-weight: 300; background: #fff; line-height: 1.6; }
+    a, button { color: inherit; text-decoration: none; font-family: inherit; }
+    button { background: none; border: none; cursor: pointer; }
+    .wrap { max-width: 1344px; margin: auto; }
+
+    /* Header */
+    header { height: 100px; background: #fff; display: flex; align-items: center; padding: 0 4.3%; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    header .wrap { width: 100%; display: flex; align-items: center; }
+    .logo { width: 325px; height: 100px; object-fit: contain; margin-right: auto; }
+    .nav { display: flex; align-items: center; gap: 21px; font-size: 12px; font-weight: 400; }
+    .nav a:hover, .nav .drop:hover { color: #ee5a7a; }
+    .nav .drop { position: relative; cursor: pointer; padding: 10px 0; }
+    .nav .drop:after { content: '▼'; font-size: 7px; margin-left: 7px; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; border-radius: 8px; padding: 8px 0; min-width: 240px; z-index: 100; }
+    .nav .drop:hover .dropdown-menu { display: block; }
+    .dropdown-menu button { display: block; width: 100%; text-align: left; padding: 8px 16px; font-size: 12px; color: #333; }
+    .dropdown-menu button:hover { background: #fff5f7; color: #e9476b; }
+    .flag { font-size: 16px; margin-left: 30px; cursor: default; }
+    .mobile-menu-btn { display: none; font-size: 20px; padding: 5px; }
+
+    /* Hero */
+    .page-hero { position: relative; text-align: center; padding: 100px 15px 120px; background: url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; }
+    .page-hero:before { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.90); pointer-events: none; }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; margin: auto; }
+    .page-hero-content h1 { font-size: 38px; font-weight: 300; margin-bottom: 15px; color: #111; }
+    .page-hero-content p { font-size: 16px; line-height: 1.6; color: #555; }
+    .button { display: inline-block; border: 1px solid #111; border-radius: 22px; padding: 10px 24px; background: #fff; font-size: 12px; font-weight: 400; color: #111; cursor: pointer; transition: all 0.2s; }
+    .button:hover { background: #111; color: #fff; }
+
+    /* Main Details */
+    .consultation-main { padding: 90px 6%; background: #fff; }
+    .consultation-grid { max-width: 1170px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .consultation-col h2 { font-size: 28px; font-weight: 300; margin-bottom: 20px; color: #111; }
+    .consultation-col h5 { font-size: 18px; font-weight: 500; margin: 25px 0 10px; }
+    .consultation-col p { font-size: 15px; color: #555; margin-bottom: 15px; }
+    .consultation-col ul { margin: 15px 0 20px 20px; color: #555; font-size: 15px; }
+    .consultation-col ul li { margin-bottom: 8px; }
+
+    .pricing-box { background: #fafafa; border: 1px solid #eee; border-radius: 8px; padding: 24px; margin-top: 20px; }
+    .pricing-box h3 { font-size: 18px; font-weight: 400; margin-bottom: 15px; color: #ee5a7a; }
+    .pricing-item { font-size: 14px; line-height: 1.8; color: #333; margin-bottom: 10px; border-bottom: 1px dashed #e5e5e5; padding-bottom: 8px; }
+    .pricing-item:last-child { border-bottom: none; }
+
+    /* Gallery Strip */
+    .gallery-strip { display: grid; grid-template-columns: repeat(3, 1fr); background: #fafafa; }
+    .gallery-strip img { width: 100%; height: 350px; object-fit: cover; display: block; }
+
+    /* About Mini */
+    .about-mini { padding: 100px 6%; background: #fdf8f9; display: grid; grid-template-columns: 350px 1fr; gap: 50px; align-items: center; max-width: 1200px; margin: auto; }
+    .about-mini img { width: 100%; max-width: 300px; border-radius: 50%; display: block; margin: auto; }
+    .about-mini h2 { font-size: 28px; font-weight: 300; margin-bottom: 20px; }
+    .about-mini p { font-size: 15px; color: #555; margin-bottom: 15px; }
+
+    /* Contact */
+    .contact { padding: 130px 7% 100px; text-align: center; background: radial-gradient(ellipse at 76% 50%, rgba(218,173,229,.74), transparent 49%), #fafafa; }
+    .contact h2 { font-size: 32px; font-weight: 300; margin: 0 0 17px; }
+    .contact > p { font-size: 16px; }
+    .form { max-width: 640px; margin: 58px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 23px 20px; text-align: left; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 9px; }
+    .required { color: #e7485e; }
+    .field input, .field textarea { width: 100%; border: 1px solid #bbb; border-radius: 4px; padding: 13px 15px; font: 300 16px 'Roboto', sans-serif; background: #fff; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: #ee5a7a; }
+    .field textarea { height: 112px; resize: vertical; }
+    .form-bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .captcha { height: 56px; width: 230px; background: #2777dc; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin: 2px 0 14px; user-select: none; border-radius: 2px; }
+    .notice { font-size: 12px; color: #999; line-height: 1.9; }
+    .notice a { text-decoration: underline; color: #555; cursor: pointer; }
+    .send { background: #000; color: #fff; border: 0; border-radius: 24px; padding: 14px 40px; font-weight: 500; font-size: 14px; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .send:hover { background: #333; }
+    .success-box { display: none; padding: 30px; background: #fff; border: 1px solid #2ecc71; border-radius: 8px; margin-top: 30px; color: #27ae60; font-size: 16px; }
+
+    /* Footer */
+    footer { padding: 65px 8% 30px; text-align: center; border-top: 1px solid #f0f0f0; background: #fff; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 55px; max-width: 1050px; margin: auto; text-align: left; }
+    .footer-grid h4 { font-size: 14px; font-weight: 400; margin: 0 0 15px; }
+    .footer-grid a, .footer-grid button { display: block; color: #a69c9b; font-size: 13px; line-height: 1.85; text-align: left; cursor: pointer; }
+    .footer-grid a:hover, .footer-grid button:hover { color: #080808; }
+    .social { display: flex; justify-content: center; gap: 22px; font-size: 19px; color: #999; margin: 85px 0 16px; }
+    .copyright { font-size: 12px; color: #aaa; }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .consultation-grid, .about-mini, .footer-grid, .gallery-strip { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .form { grid-template-columns: 1fr; }
+      .form-bottom { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="index.html">
+        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+      </a>
+      
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <div class="drop" onclick="location.href='6-piliru-intimity/index.html'">
+          6 Pillars of Intimacy
+          <div class="dropdown-menu">
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-3'">3. Intimacy with Baby</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
+          </div>
+        </div>
+        <a href="index.html#om-daniela">Who is Daniela</a>
+        <div class="drop" onclick="location.href='workshops.html'">
+          Workshops
+          <div class="dropdown-menu">
+            <button onclick="location.href='workshops.html'">The Art of Pleasing a Woman</button>
+            <button onclick="location.href='workshops.html'">The Art of Pleasing a Man</button>
+            <button onclick="location.href='workshops.html'">The Art of Pleasing (For Couples)</button>
+            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">View All 9 Workshops ➜</button>
+          </div>
+        </div>
+        <a href="konsultasjon.html" style="color:#ee5a7a; font-weight:500;">Personal Consultation</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+        <span class="flag">🇬🇧</span>
+      </nav>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Personal Consultations</h1>
+      <p>When you seek private one-on-one or couples guidance in a trusted, confidential space. Some conversations simply deserve to happen face to face. I am here for you.</p>
+    </div>
+  </section>
+
+  <section class="consultation-main">
+    <div class="consultation-grid">
+      
+      <div class="consultation-col">
+        <h2>Private Sessions</h2>
+        <p>I offer specialized personal consultations for both couples and individuals. I partner with you to discover authentic resolutions to intimate struggles. I do not "fix" problems for you; rather, I hold space and gently walk beside you to your chosen destination. The true transformative journey is yours to claim.</p>
+        
+        <h5>How Do We Meet?</h5>
+        <p>Sessions are held either in person or worldwide via online video (Skype / Zoom). Please write to me through the contact form below to coordinate our first session.</p>
+
+        <h5>Areas of Focus & Support</h5>
+        <ul>
+          <li>Resolving partnership impasses across all dimensions of intimacy (refer to the <a href="6-piliru-intimity/index.html" style="color:#ee5a7a; text-decoration:underline;">6 Pillars of Intimacy</a>).</li>
+          <li>Pain or physical discomfort during sexual intercourse.</li>
+          <li>Hypoactive or mismatched libido / loss of sexual desire.</li>
+          <li>Post-operative rehabilitation – cesarean section recovery, episiotomy scar tissue release, and somatic pelvic healing.</li>
+          <li>Emotional and sexual trauma integration.</li>
+          <li>De-tabooing vulnerable intimate desires and honest communication.</li>
+          <li>Erectile dysfunction and performance stress.</li>
+          <li>Premature or delayed ejaculation challenges.</li>
+          <li>Self-acceptance, body dysmorphia, and cultivating embodied self-love.</li>
+        </ul>
+      </div>
+
+      <div class="consultation-col">
+        <h2>Suitable For</h2>
+        <p>Adult men, women, and couples seeking respectful somatic and emotional growth.</p>
+
+        <div class="pricing-box">
+          <h3>Services & Investment</h3>
+          <div class="pricing-item"><strong>1x Somatic Bodywork / Healing Touch (2–4 hrs):</strong> €160 / $175</div>
+          <div class="pricing-item"><strong>Package of 5x (Somatic Bodywork):</strong> €720 / $790</div>
+          <div class="pricing-item"><strong>Intimacy Mentoring & Deep Coaching (4–6 hrs):</strong> €260 / $285</div>
+          <div class="pricing-item"><strong>Package of 5x (Intensive Mentoring):</strong> €1,200 / $1,300</div>
+          <div class="pricing-item"><strong>Online Video Consultation (60–90 min):</strong> €95 / $105</div>
+          <div class="pricing-item"><strong>Package of 5x (Online Sessions):</strong> €420 / $460</div>
+        </div>
+
+        <p style="margin-top: 15px; font-size: 13px; color: #777;"><strong>Multi-Session Packages:</strong> Prepaid discounted packages may also be shared between partners across the duration of your counseling arc.</p>
+
+        <h2 style="margin-top: 30px;">Locations</h2>
+        <p>Norway, Czech Republic, or Worldwide Online</p>
+
+        <div style="margin-top: 25px;">
+          <a class="button" href="#contact" style="background:#111; color:#fff; padding: 12px 28px;">Book a Consultation</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="gallery-strip">
+    <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/2.jpg" alt="Consultation Space 1">
+    <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/3.jpg" alt="Consultation Space 2">
+    <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/1.jpg" alt="Consultation Space 3">
+  </section>
+
+  <section class="about-mini">
+    <div>
+      <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/daniela-torp.png" alt="Daniela Torp">
+    </div>
+    <div>
+      <h2>Who is Daniela Torp</h2>
+      <p>I am a human being. I perceive, struggle, celebrate, and reflect just as you do. I honor the rhythms of nature and bow with humility to its laws and infinite creativity.</p>
+      <p>There are hundreds of thousands of islands across our oceans—each possessing its own delicate equilibrium. When you discover your own true nature, self-acceptance blossoms.</p>
+      <p>The bedrock of every lasting transformation is love: love for yourself.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Schedule a Consultation</h2>
+    <p>Share a few words about your journey and schedule a private appointment.</p>
+    
+    <form class="form" id="contactForm" onsubmit="handleFormSubmit(event)">
+      <div class="field">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" required placeholder="Jane Doe" id="formName">
+      </div>
+      <div class="field">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" required placeholder="jane.doe@example.com" id="formEmail">
+      </div>
+      <div class="field full">
+        <label>Subject <span class="required">*</span></label>
+        <input type="text" required placeholder="Personal Consultation" id="formSubject" value="Personal Consultation">
+      </div>
+      <div class="field full">
+        <label>Message <span class="required">*</span></label>
+        <textarea required placeholder="Please describe what you would like support with..." id="formMessage"></textarea>
+      </div>
+      
+      <div class="form-bottom">
+        <div>
+          <div class="captcha">Protected by reCAPTCHA ✓</div>
+          <div class="notice">
+            Fields marked with an asterisk are required.<br>
+            By submitting, I consent to the confidential processing of my details.
+          </div>
+        </div>
+        <button class="send" type="submit">Submit ➜</button>
+      </div>
+    </form>
+
+    <div class="success-box" id="successBox">
+      <h3>Thank you for your inquiry!</h3>
+      <p>Your message has reached Daniela. She will connect with you via email shortly to coordinate your consultation.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Contact</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#om-daniela">Who is Daniela</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Workshops</h4>
+        <a href="workshops.html">The Art of Pleasing a Woman</a>
+        <a href="workshops.html">The Art of Pleasing a Man</a>
+        <a href="workshops.html">The Art of Pleasing (For Couples)</a>
+        <a href="workshops.html">Secrets of the Pelvic Floor</a>
+        <a href="workshops.html">I Was Pregnant, But …</a>
+        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">View All 9 Workshops ➜</a>
+      </div>
+      <div>
+        <h4>Consultations / 6 Pillars</h4>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
+        <a href="6-piliru-intimity/index.html#pilar-3">3. Intimacy with Baby</a>
+        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+      </div>
+    </div>
+    <div class="copyright" style="margin-top: 40px;">© 2026 All rights reserved | Daniela Torp</div>
+  </footer>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec';
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const sendBtn = document.querySelector('.send');
+      if (sendBtn) { sendBtn.disabled = true; sendBtn.innerHTML = 'Sending...'; }
+      const payload = {
+        type: 'consultation',
+        name: document.getElementById('formName').value.trim(),
+        email: document.getElementById('formEmail').value.trim(),
+        message: `[Subject: ${document.getElementById('formSubject').value.trim()}]\n\n${document.getElementById('formMessage').value.trim()}`
+      };
+      try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        alert('There was an error sending your message. Please try again.');
+        if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = 'Submit ➜'; }
+      }
+    }
+    function toggleMobileNav() {
+      const nav = document.querySelector('.nav');
+      nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+      if (nav.style.display === 'flex') {
+        nav.style.flexDirection = 'column'; nav.style.position = 'absolute'; nav.style.top = '47px'; nav.style.left = '0'; nav.style.right = '0'; nav.style.background = '#fff'; nav.style.padding = '20px'; nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Daniela Torp – Intimacy in Context</title>
+  <meta name="description" content="Intimacy coaching, workshops, and somatic guidance by Daniela Torp. Discover the 6 pillars of intimacy.">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', Arial, sans-serif; color: #080808; font-weight: 300; background: #fff; line-height: 1.6; }
+    a, button { color: inherit; text-decoration: none; font-family: inherit; }
+    button { background: none; border: none; cursor: pointer; }
+    .wrap { max-width: 1344px; margin: auto; }
+
+    /* Header */
+    header { height: 100px; background: #fff; display: flex; align-items: center; padding: 0 4.3%; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    header .wrap { width: 100%; display: flex; align-items: center; }
+    .logo { width: 325px; height: 100px; object-fit: contain; margin-right: auto; }
+    .nav { display: flex; align-items: center; gap: 21px; font-size: 12px; font-weight: 400; }
+    .nav a:hover, .nav .drop:hover { color: #ee5a7a; }
+    .nav .drop { position: relative; cursor: pointer; padding: 10px 0; }
+    .nav .drop:after { content: '▼'; font-size: 7px; margin-left: 7px; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid #eee; border-radius: 8px; padding: 8px 0; min-width: 260px; z-index: 100; }
+    .nav .drop:hover .dropdown-menu { display: block; }
+    .dropdown-menu button, .dropdown-menu a { display: block; width: 100%; text-align: left; padding: 8px 16px; font-size: 12px; color: #333; }
+    .dropdown-menu button:hover, .dropdown-menu a:hover { background: #fff5f7; color: #e9476b; }
+    .flag { font-size: 16px; margin-left: 30px; cursor: default; }
+    .mobile-menu-btn { display: none; font-size: 20px; padding: 5px; }
+
+    /* Hero */
+    .hero { position: relative; text-align: center; padding: 24px 15px 100px; background: linear-gradient(90deg, #f9dbe3 0%, #f8d7e1 31%, #fff 49%, #d7f0f3 71%, #d5eff2 100%); }
+    .hero:before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 33% 75% at 25% 40%, rgba(246,174,194,.68), transparent 70%), radial-gradient(ellipse 30% 75% at 80% 45%, rgba(113,210,226,.55), transparent 73%), radial-gradient(ellipse 38% 90% at 50% 48%, #fff 3%, rgba(255,255,255,.75) 37%, transparent 69%); pointer-events: none; }
+    .intro { position: relative; z-index: 1; max-width: 555px; margin: auto; }
+    .intro h1 { font-size: 25px; font-weight: 700; margin: 0 0 13px; }
+    .intro p { font-size: 13px; line-height: 1.7; margin: 0 0 12px; }
+    .dates { margin: 29px auto 30px; border: 1px solid #ee5a7a; width: 100%; max-width: 530px; min-height: 194px; padding: 10px 14px; font-size: 13px; line-height: 2.25; font-weight: 500; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(2px); }
+    .dates h2 { font-size: 22px; margin: 0 0 4px; font-weight: 700; }
+    .dates button { color: #e9476b; font-weight: 700; cursor: pointer; text-align: center; }
+    .dates button:hover { text-decoration: underline; }
+    .button { display: inline-block; border: 1px solid #111; border-radius: 22px; padding: 10px 24px; background: #fff; font-size: 12px; font-weight: 400; color: #111; cursor: pointer; transition: all 0.2s; }
+    .button:hover { background: #111; color: #fff; }
+
+    /* Pillars */
+    .pillars { margin-top: -48px; position: relative; z-index: 10; padding: 0 3.2% 58px; background: linear-gradient(90deg, #f8dce4 0%, #fff 50%, #d8f0f2 100%); }
+    .pillar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+    .pillar { height: 230px; background: #fff; text-align: center; padding: 28px 10px 15px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+    .pillar:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+    .pillar img { height: 108px; width: 130px; object-fit: contain; transition: transform 0.3s; }
+    .pillar:hover img { transform: scale(1.05); }
+    .pillar h3 { font-size: 14px; font-weight: 300; line-height: 1.25; margin: 10px 5px 0; }
+
+    /* About */
+    .about { min-height: 590px; padding: 124px 6.1% 90px; position: relative; background: #fff; }
+    .about:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 47px; background: linear-gradient(100deg, #f9dbe3 0 32%, #fff 49%, #d8f1f4 68%); }
+    .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 55px; max-width: 1170px; margin: auto; align-items: start; }
+    .portrait { width: 320px; height: 320px; object-fit: cover; border-radius: 50%; object-position: center; background: #fcf0f2; display: block; }
+    .photo-buttons { display: flex; gap: 12px; margin: 23px 19px; justify-content: center; }
+    .photo-buttons .button { min-width: 112px; text-align: center; padding: 9px 14px; }
+    .about h2 { font-size: 31px; font-weight: 300; margin: 4px 0 42px; }
+    .about-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; color: #9b9291; font-size: 16px; line-height: 1.5; }
+    .about-copy p { margin: 0 0 16px; }
+    .about-copy strong { font-weight: 400; color: #8d8584; }
+
+    /* Workshops */
+    .workshops { padding: 120px 4% 80px; background: radial-gradient(ellipse at 12% 10%, rgba(241,200,130,.73), transparent 30%), radial-gradient(ellipse at 74% 15%, #e9e9e9, transparent 35%), #fff; }
+    .section-title { text-align: center; }
+    .section-title h2 { font-size: 32px; font-weight: 300; margin: 0 0 17px; }
+    .section-title p { font-size: 16px; line-height: 1.5; margin: 0 auto 55px; max-width: 720px; }
+    .cards { max-width: 1120px; margin: 0 auto 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: #fafafa; text-align: center; border: 1px solid #f0f0f0; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .card-body { min-height: 185px; padding: 21px 14px; display: flex; flex-direction: column; justify-content: space-between; }
+    .card h3 { margin: 11px 0 14px; font-weight: 300; font-size: 22px; line-height: 1.2; }
+    .card p { color: #a49a9a; margin: 0 0 18px; font-size: 16px; }
+
+    /* Contact */
+    .contact { padding: 130px 7% 100px; text-align: center; background: radial-gradient(ellipse at 76% 50%, rgba(218,173,229,.74), transparent 49%), #fafafa; }
+    .contact h2 { font-size: 32px; font-weight: 300; margin: 0 0 17px; }
+    .contact > p { font-size: 16px; }
+    .form { max-width: 640px; margin: 58px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 23px 20px; text-align: left; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 9px; }
+    .required { color: #e7485e; }
+    .field input, .field textarea { width: 100%; border: 1px solid #bbb; border-radius: 4px; padding: 13px 15px; font: 300 16px 'Roboto', sans-serif; background: #fff; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: #ee5a7a; }
+    .field textarea { height: 112px; resize: vertical; }
+    .form-bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .captcha { height: 56px; width: 230px; background: #2777dc; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin: 2px 0 14px; user-select: none; border-radius: 2px; }
+    .notice { font-size: 12px; color: #999; line-height: 1.9; }
+    .notice a { text-decoration: underline; color: #555; cursor: pointer; }
+    .send { background: #000; color: #fff; border: 0; border-radius: 24px; padding: 14px 40px; font-weight: 500; font-size: 14px; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .send:hover { background: #333; }
+    .success-box { display: none; padding: 30px; background: #fff; border: 1px solid #2ecc71; border-radius: 8px; margin-top: 30px; color: #27ae60; font-size: 16px; }
+
+    /* Footer */
+    footer { padding: 65px 8% 30px; text-align: center; border-top: 1px solid #f0f0f0; background: #fff; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 55px; max-width: 1050px; margin: auto; text-align: left; }
+    .footer-grid h4 { font-size: 14px; font-weight: 400; margin: 0 0 15px; }
+    .footer-grid a, .footer-grid button { display: block; color: #a69c9b; font-size: 13px; line-height: 1.85; text-align: left; cursor: pointer; }
+    .footer-grid a:hover, .footer-grid button:hover { color: #080808; }
+    .social { display: flex; justify-content: center; gap: 22px; font-size: 19px; color: #999; margin: 85px 0 16px; }
+    .copyright { font-size: 12px; color: #aaa; }
+
+    /* Modal */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(3px); }
+    .modal-card { background: #fff; max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; border-radius: 12px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); text-align: left; }
+    .modal-close { position: absolute; top: 15px; right: 15px; font-size: 24px; color: #999; cursor: pointer; line-height: 1; }
+    .modal-title { font-size: 24px; font-weight: 400; margin-bottom: 12px; color: #111; }
+    .modal-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #ee5a7a; font-weight: 500; margin-bottom: 6px; display: block; }
+    .modal-body { font-size: 15px; color: #444; line-height: 1.7; }
+    .modal-btn-row { margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 16px; }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .pillar-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .portrait { margin: auto; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .pillar-grid, .cards, .footer-grid, .about-copy, .form { grid-template-columns: 1fr; }
+      .form-bottom { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="index.html">
+        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+      </a>
+      
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <div class="drop" onclick="location.href='6-piliru-intimity/index.html'">
+          6 Pillars of Intimacy
+          <div class="dropdown-menu">
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-3'">3. Intimacy with Baby</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
+            <button onclick="location.href='6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
+          </div>
+        </div>
+        <a href="#about-daniela">Who is Daniela</a>
+        <div class="drop" onclick="location.href='workshops.html'">
+          Workshops
+          <div class="dropdown-menu">
+            <button onclick="location.href='workshops.html'">The Art of Pleasing a Woman</button>
+            <button onclick="location.href='workshops.html'">The Art of Pleasing a Man</button>
+            <button onclick="location.href='workshops.html'">The Art of Pleasing (For Couples)</button>
+            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">View All 9 Workshops ➜</button>
+          </div>
+        </div>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+        <span class="flag">🇬🇧</span>
+      </nav>
+
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="intro">
+      <h1>Intimacy in Context</h1>
+      <p>Intimacy is not merely sex. It is about establishing a deeply trusting connection with yourself and those dearest to you. That soothing feeling of safety, oneness, and wordless understanding rests upon 6 core pillars. It begins within. Take a step alongside me on the path toward self-trust and compassionate presence.</p>
+      <p>I will help you find the way back to your authentic self and to your loved ones.</p>
+      
+      <div class="dates">
+        <h2>Upcoming Dates:</h2>
+        <div>June 20, 2026: Grand Opening of Center Presence</div>
+        <div><button onclick="openDateModal('Lughnasadh – Feminine Essence & Vital Energy', 'July 4–5, 2026')">July 4–5, 2026: Lughnasadh – Feminine Essence & Vital Energy</button></div>
+        <div><button onclick="openWorkshopModal('w1')">October 3, 2026: The Art of Pleasing a Woman</button></div>
+        <div><button onclick="openWorkshopModal('w2')">October 4, 2026: The Art of Pleasing a Man</button></div>
+        <div><button onclick="openDateModal('Samhain – Feminine Essence & Vital Energy', 'October 16–18, 2026')">October 16–18, 2026: Samhain – Feminine Essence & Vital Energy</button></div>
+      </div>
+      
+      <a class="button" href="#workshops">View Workshops</a>
+    </div>
+  </section>
+
+  <section class="pillars" id="pillars">
+    <div class="pillar-grid wrap">
+      <div class="pillar" onclick="openPillarModal(1)">
+        <img src="images/1male_komplet_na_web.png" alt="Couple Intimacy">
+        <h3>Couple Intimacy<br>Relationship with Own Body</h3>
+      </div>
+      <div class="pillar" onclick="openPillarModal(2)">
+        <img src="images/2malé_komplet_na_web.png" alt="Pregnancy">
+        <h3>Intimacy in Pregnancy<br>& Childbirth</h3>
+      </div>
+      <div class="pillar" onclick="openPillarModal(3)">
+        <img src="images/3malé_komplet_na_web.png" alt="Baby">
+        <h3>Intimacy with Baby,<br>Family Intimacy</h3>
+      </div>
+      <div class="pillar" onclick="openPillarModal(4)">
+        <img src="images/4malé_komplet_na_web.png" alt="Children and Youth">
+        <h3>Intimacy in Children<br>& Adolescents</h3>
+      </div>
+      <div class="pillar" onclick="openPillarModal(5)">
+        <img src="images/5malé_komplet_na_web.png" alt="Mature Age">
+        <h3>Intimacy<br>in Mature Age</h3>
+      </div>
+      <div class="pillar" onclick="openPillarModal(6)">
+        <img src="images/6malé_komplet_na_web.png" alt="Dying">
+        <h3>Intimacy<br>in Dying</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about-daniela">
+    <div class="about-grid">
+      <div>
+        <img class="portrait" src="https://www.danielatorp.cz/wp-content/uploads/2020/05/untitled-design-7.jpg" alt="Daniela">
+        <div class="photo-buttons">
+          <button class="button" onclick="openGenericModal('About Daniela', 'Daniela has over 15 years of professional experience in somatic bodywork, relational therapy, and intimacy coaching. Through her 6 pillars methodology, she supports individuals and couples in restoring vitality, safety, and deep emotional resonance.')">About Daniela</button>
+          <button class="button" onclick="openGenericModal('Daniela in Media', 'Featured Interviews & Articles:\n\n• Life Journey Podcast: “Intimacy Begins in the Mirror”\n• Harmony Magazine: “6 Pillars Transforming Modern Couples”\n• Culture & Connection: “The Sacred Art of Listening Without Words”')">Media</button>
+        </div>
+      </div>
+      <div>
+        <h2>Who is Daniela</h2>
+        <div class="about-copy">
+          <div>
+            <p>I am human. I feel, perceive, and hurt just like you. I experience equivalent crossroads, struggles, joys, and heartaches. I nurture myself, my family, and my community. I revere the natural world, bowing humbly before its laws, its rich biodiversity, and its playful humor.</p>
+            <p><strong>Did you know there are more than 180,000 islands on Earth?</strong></p>
+            <p>Countless islands appear identical from afar, yet each nurtures an irreplaceable, self-contained ecosystem.</p>
+          </div>
+          <div>
+            <p>Can you imagine forcing plum trees to fruit amidst coconut palms? You might coax a bitter harvest through exhaustion, but you are fighting nature.</p>
+            <p>We routinely subject ourselves to the exact same violence—compelling our bodies and spirits to satisfy external molds.</p>
+            <p>I explored thousands of islands before finding my own shores.</p>
+            <p>The sovereign key to fulfillment is love: beginning unconditionally with yourself.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="workshops" id="workshops">
+    <div class="section-title">
+      <h2>Workshops</h2>
+      <p>We all encounter intimate dilemmas that feel overwhelming to navigate in isolation. In my workshops, you will find grounded clarity and heartfelt answers within a safe, judgment-free space.</p>
+    </div>
+    
+    <div class="cards">
+      <article class="card">
+        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/2-1024x1024.jpg" alt="The Art of Pleasing a Woman">
+        <div class="card-body">
+          <h3>The Art of Pleasing a Woman</h3>
+          <p>Become an attentive, confident lover.</p>
+          <div>
+            <button class="button" onclick="openWorkshopModal('w1')">Workshop Details</button>
+          </div>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/9-1024x1024.jpg" alt="The Art of Pleasing a Man">
+        <div class="card-body">
+          <h3>The Art of Pleasing a Man</h3>
+          <p>Awaken deep devotion and sensual passion.</p>
+          <div>
+            <button class="button" onclick="openWorkshopModal('w2')">Workshop Details</button>
+          </div>
+        </div>
+      </article>
+      
+      <article class="card">
+        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/6-1024x1024.jpg" alt="The Art of Pleasing">
+        <div class="card-body">
+          <h3>The Art of Pleasing</h3>
+          <p>Experiential workshop for couples and singles.</p>
+          <div>
+            <button class="button" onclick="openWorkshopModal('w3')">Workshop Details</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <div style="text-align: center; margin-top: 35px;">
+      <a class="button" href="workshops.html" style="background:#111; color:#fff; padding: 12px 30px; font-size: 13px;">View All 9 Workshops ➜</a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Get in Touch</h2>
+    <p>Have a question or looking to schedule? I am here for you.</p>
+    
+    <form class="form" id="contactForm" onsubmit="handleFormSubmit(event)">
+      <div class="field">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" required placeholder="Jane Doe" id="formName">
+      </div>
+      <div class="field">
+        <label>Email Address <span class="required">*</span></label>
+        <input type="email" required placeholder="jane.doe@example.com" id="formEmail">
+      </div>
+      <div class="field full">
+        <label>Subject <span class="required">*</span></label>
+        <input type="text" required placeholder="Consultation, Workshop inquiry" id="formSubject">
+      </div>
+      <div class="field full">
+        <label>Message <span class="required">*</span></label>
+        <textarea required placeholder="Write your message here..." id="formMessage"></textarea>
+      </div>
+      
+      <div class="form-bottom">
+        <div>
+          <div class="captcha">Protected by reCAPTCHA ✓</div>
+          <div class="notice">
+            Fields marked with an asterisk are mandatory.<br>
+            By submitting, I accept the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are handled in strict professional confidence under GDPR standards. Your data is never sold or shared.')">processing of personal data</a>.
+          </div>
+        </div>
+        <button class="send" type="submit">Submit ➜</button>
+      </div>
+    </form>
+
+    <div class="success-box" id="successBox">
+      <h3>Thank you for reaching out!</h3>
+      <p>Your message has been sent. Daniela will respond to you personally shortly.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Contact</h4>
+        <a href="#home">Home</a>
+        <a href="#about-daniela">Who is Daniela</a>
+        <button onclick="openGenericModal('Daniela in Media', 'Press packets and podcast invitations are available upon request.')">Daniela in Media</button>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Workshops</h4>
+        <a href="workshops.html">The Art of Pleasing a Woman</a>
+        <a href="workshops.html">The Art of Pleasing a Man</a>
+        <a href="workshops.html">The Art of Pleasing (For Couples)</a>
+        <a href="workshops.html">Secrets of the Pelvic Floor</a>
+        <a href="workshops.html">I Was Pregnant, But …</a>
+        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">View All 9 Workshops ➜</a>
+      </div>
+      <div>
+        <h4>Consultations / 6 Pillars of Intimacy</h4>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
+        <a href="6-piliru-intimity/index.html#pilar-3">3. Intimacy with Baby</a>
+        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+      </div>
+    </div>
+    
+    <div class="social">
+      <a href="https://facebook.com" target="_blank">◉</a>
+      <a href="https://facebook.com" target="_blank">f</a>
+      <a href="https://instagram.com" target="_blank">◎</a>
+    </div>
+    <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal-card">
+      <span class="modal-close" onclick="closeModalDirect()">&times;</span>
+      <span class="modal-tag" id="modalTag">Details</span>
+      <h3 class="modal-title" id="modalTitle">Title</h3>
+      <div class="modal-body" id="modalContent">Content</div>
+      <div class="modal-btn-row">
+        <button class="button" onclick="closeModalDirect()">Close</button>
+        <button class="button" id="modalActionBtn" style="background:#000;color:#fff;border-color:#000;">Book / Inquire</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const pillarsData = {
+      1: { title: "1. Couple Intimacy & Relationship with Own Body", text: "Our capacity for intimacy with a partner begins with how we accept and understand our own physical self. Without an honest, loving relationship with our own anatomy and sensuality, finding true safety with someone else is impossible. This pillar centers on body image, boundaries, sensual pleasure, and communicating authentic desire." },
+      2: { title: "2. Intimacy During Pregnancy & Childbirth", text: "Pregnancy and birth open doorways to profound vulnerability and immense inner power. We work to preserve deep bonding between partners, prepare the body emotionally and physically, and process birthing anxieties with grounded tranquility." },
+      3: { title: "3. Intimacy with Baby & Family Intimacy", text: "Skin-to-skin touch, intuitive nurturing, and establishing a secure attachment pattern form the bedrock of a child's future capacity for trust. Simultaneously, parents learn to cultivate romantic space for each other in this transformed family dynamic." },
+      4: { title: "4. Intimacy in Children & Adolescents", text: "How we guide children's natural curiosity and adolescents' exploration forms their lifelong approach to relationships. We focus on open dialogues around bodily autonomy, consent, emotional respect, and navigating modern influences safely." },
+      5: { title: "5. Intimacy in Mature Age", text: "Intimacy never ceases; it deepens and matures. In later decades, intimacy becomes more subtle, liberating, and soul-centered—free from performance pressure, enriched by deep gratitude, sensual presence, and tender companionship." },
+      6: { title: "6. Intimacy in Dying", text: "The final phase of earthly life demands the purest form of human presence. Sitting courageously by a dying loved one's bedside, holding their hand without fear, speaking unspoken truths, and creating a peaceful space for departure represents intimacy's highest expression." }
+    };
+
+    const workshopsData = {
+      w1: { tag: "Workshop for Men", title: "The Art of Pleasing a Woman", text: "A respectful, hands-on workshop teaching the nuances of female anatomy, arousal, energy flow, slow touch, and how to cultivate the emotional safety in which a woman can fully surrender and open.<br><br><strong>Date:</strong> October 3, 2026<br><strong>Duration:</strong> 1 Day (10:00 – 18:00)" },
+      w2: { tag: "Workshop for Women", title: "The Art of Pleasing a Man", text: "Understand the male emotional world, his hidden vulnerabilities, and touch techniques that go far beyond surface pleasure to awaken both his passionate drive and his deepest devotion.<br><br><strong>Date:</strong> October 4, 2026<br><strong>Duration:</strong> 1 Day (10:00 – 18:00)" },
+      w3: { tag: "Workshop for Couples", title: "The Art of Pleasing (For Couples)", text: "A shared exploration into masculine and feminine polarity, sacred touch, conscious communication, and rituals to keep romantic passion alive over decades.<br><br><strong>Dates:</strong> July 4–5, 2026 / October 16–18, 2026<br><strong>Duration:</strong> Weekend" }
+    };
+
+    function openPillarModal(num) { const d = pillarsData[num]; showModal("6 Pillars of Intimacy", d.title, d.text, () => prefillSubject("Pillar: " + d.title)); }
+    function openWorkshopModal(id) { const d = workshopsData[id]; showModal(d.tag, d.title, d.text, () => prefillSubject("Workshop Inquiry: " + d.title)); }
+    function openDateModal(title, dateStr) { showModal("Upcoming Event", title, "This event will take place on " + dateStr + ". Would you like more details or to reserve your spot?", () => prefillSubject("Date Inquiry: " + title + " (" + dateStr + ")")); }
+    function openGenericModal(title, text) { showModal("Information", title, text.replace(/\n/g, "<br>"), () => prefillSubject("Inquiry: " + title)); }
+
+    function showModal(tag, title, contentHtml, onAction) {
+      document.getElementById('modalTag').innerText = tag;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalContent').innerHTML = contentHtml;
+      document.getElementById('modalActionBtn').onclick = () => { closeModalDirect(); if (onAction) onAction(); };
+      document.getElementById('modalOverlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(e) { if (e.target.id === 'modalOverlay') closeModalDirect(); }
+    function closeModalDirect() { document.getElementById('modalOverlay').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    function prefillSubject(s) { const i = document.getElementById('formSubject'); i.value = s; document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); i.focus(); }
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec';
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const sendBtn = document.querySelector('.send');
+      if (sendBtn) { sendBtn.disabled = true; sendBtn.innerHTML = 'Sending...'; }
+      const payload = {
+        type: 'contact',
+        name: document.getElementById('formName').value.trim(),
+        email: document.getElementById('formEmail').value.trim(),
+        message: `[Subject: ${document.getElementById('formSubject').value.trim()}]\n\n${document.getElementById('formMessage').value.trim()}`
+      };
+      try {
+        await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        alert('There was an error sending your message. Please try again.');
+        if (sendBtn) { sendBtn.disabled = false; sendBtn.innerHTML = 'Submit ➜'; }
+      }
+    }
+    function toggleMobileNav() {
+      const nav = document.querySelector('.nav');
+      nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+      if (nav.style.display === 'flex') {
+        nav.style.flexDirection = 'column'; nav.style.position = 'absolute'; nav.style.top = '47px'; nav.style.left = '0'; nav.style.right = '0'; nav.style.background = '#fff'; nav.style.padding = '20px'; nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+      }
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModalDirect(); });
+  </script>
+</body>
+</html>
