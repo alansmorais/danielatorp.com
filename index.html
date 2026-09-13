@@ -830,12 +830,15 @@
       <p id="cms-hero-subtitle-2">I will help you find the way to your true self and to those closest to you.</p>
       
       <div class="dates">
-        <h2 id="cms-dates-title">Upcoming Dates:</h2>
-        <div id="cms-date-1">20.6.2026: Opening of Center Presence (Tilstedeværelse)</div>
-        <div><button id="cms-date-2" onclick="openDateModal('Lughnasadh – Feminine Essence & Vital Energy', '4.–5.7.2026')">4.–5.7.2026: Lughnasadh – Feminine Essence & Vital Energy</button></div>
-        <div><button id="cms-date-3" onclick="openWorkshopModal('w1')">3.10.2026: The Art of Pleasing a Woman</button></div>
-        <div><button id="cms-date-4" onclick="openWorkshopModal('w2')">4.10.2026: The Art of Pleasing a Man</button></div>
-        <div><button id="cms-date-5" onclick="openDateModal('Samhain – Feminine Essence & Vital Energy', '16.–18.10.2026')">16.–18.10.2026: Samhain – Feminine Essence & Vital Energy</button></div>
+  <h2 id="cms-dates-title">Upcoming Dates:</h2>
+  <div id="dynamic-dates-list">
+    <!-- These act as a fallback and will be updated by the script -->
+    <div>20.6.2026: Opening of Center Presence (Tilstedeværelse)</div>
+    <div><button onclick="openDateModal('Lughnasadh – Feminine Essence & Vital Energy', '4.–5.7.2026')">4.–5.7.2026: Lughnasadh – Feminine Essence & Vital Energy</button></div>
+    <div><button onclick="openWorkshopModal('w1')">3.10.2026: The Art of Pleasing a Woman</button></div>
+    <div><button onclick="openWorkshopModal('w2')">4.10.2026: The Art of Pleasing a Man</button></div>
+    <div><button onclick="openDateModal('Samhain – Feminine Essence & Vital Energy', '16.–18.10.2026')">16.–18.10.2026: Samhain – Feminine Essence & Vital Energy</button></div>
+  </div>
       </div>
       
       <a class="button" href="#workshops">View Workshops</a>
