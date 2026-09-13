@@ -1063,199 +1063,44 @@
   <!-- =========================================
        JAVASCRIPT FUNCTIONALITY
        ========================================= -->
-  <script>
-    const pillarsData = {
-      1: {
-        title: "1. Couple Intimacy & Relationship with Own Body",
-        text: "Our capacity for intimacy with a partner begins with how we accept and understand our own physical self. Without an honest, loving relationship with our own anatomy and sensuality, experiencing true safety with another person is impossible. This pillar centers on body image, boundaries, sensual pleasure, and communicating authentic desire."
-      },
-      2: {
-        title: "2. Intimacy During Pregnancy and Childbirth",
-        text: "Pregnancy and birth open doorways to profound vulnerability and immense inner power. We work to preserve deep bonding between partners, prepare the body emotionally and physically, and process birthing anxieties with grounded tranquility."
-      },
-      3: {
-        title: "3. Intimacy with Baby & Family Intimacy",
-        text: "Skin-to-skin touch, intuitive nurturing, and establishing a secure attachment pattern form the bedrock of a child's future capacity for trust. Simultaneously, parents learn to cultivate romantic space for each other in this transformed family dynamic."
-      },
-      4: {
-        title: "4. Intimacy in Children and Adolescents",
-        text: "How we respond to children's natural curiosity and adolescents' sexual exploration shapes their lifelong relational attitudes. We address conversations regarding anatomy, consent, boundary setting, mutual respect, and emotional resilience."
-      },
-      5: {
-        title: "5. Intimacy in Mature Age",
-        text: "Intimacy never ceases; it deepens and matures. In later decades, intimacy becomes more subtle, liberating, and soul-centered—free from performance pressure, enriched by deep gratitude, sensual presence, and tender companionship."
-      },
-      6: {
-        title: "6. Intimacy in Dying",
-        text: "The final phase of earthly life demands the purest form of human presence. Sitting courageously by a dying loved one's bedside, holding their hand without fear, speaking unspoken truths, and creating a peaceful space for departure represents intimacy's highest expression."
-      }
-    };
-
-    const workshopsData = {
-      w1: {
-        tag: "Workshop for Men",
-        title: "The Art of Pleasing a Woman",
-        text: "A respectful, hands-on workshop teaching the nuances of female anatomy, arousal, energy flow, slow touch, and how to cultivate the emotional safety in which a woman can fully surrender and open.<br><br><strong>Date:</strong> October 3, 2026<br><strong>Duration:</strong> 1 Day (10:00 – 18:00)"
-      },
-      w2: {
-        tag: "Workshop for Women",
-        title: "The Art of Pleasing a Man",
-        text: "Understand the male emotional world, his hidden vulnerabilities, and touch techniques that go far beyond surface pleasure to awaken both his passionate drive and his deepest devotion.<br><br><strong>Date:</strong> October 4, 2026<br><strong>Duration:</strong> 1 Day (10:00 – 18:00)"
-      },
-      w3: {
-        tag: "Workshop for Couples",
-        title: "The Art of Pleasing (For Couples)",
-        text: "A shared exploration into masculine and feminine polarity, sacred touch, conscious communication, and rituals to keep romantic passion alive over decades.<br><br><strong>Dates:</strong> 4.–5.7.2026 / 16.–18.10.2026<br><strong>Duration:</strong> Weekend Workshop"
-      }
-    };
-
-    function openPillarModal(num) {
-      const data = pillarsData[num];
-      showModal("6 Pillars of Intimacy", data.title, data.text, function() {
-        prefillSubject("Pillar: " + data.title);
-      });
-    }
-
-    function openWorkshopModal(id) {
-      const data = workshopsData[id];
-      showModal(data.tag, data.title, data.text, function() {
-        prefillSubject("Inquiry: " + data.title);
-      });
-    }
-
-    function openDateModal(title, dateStr) {
-      showModal("Upcoming Event", title, "This event will take place " + dateStr + ". Would you like to register or request more details?", function() {
-        prefillSubject("Event Registration: " + title + " (" + dateStr + ")");
-      });
-    }
-
-    function openGenericModal(title, text) {
-      showModal("Information", title, text.replace(/\n/g, "<br>"), function() {
-        prefillSubject("Inquiry: " + title);
-      });
-    }
-
-    function showModal(tag, title, contentHtml, onAction) {
-      document.getElementById('modalTag').innerText = tag;
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalContent').innerHTML = contentHtml;
-      
-      const actionBtn = document.getElementById('modalActionBtn');
-      actionBtn.onclick = function() {
-        closeModalDirect();
-        if (onAction) onAction();
-      };
-
-      document.getElementById('modalOverlay').style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(e) {
-      if (e.target.id === 'modalOverlay') {
-        closeModalDirect();
-      }
-    }
-
-    function closeModalDirect() {
-      document.getElementById('modalOverlay').style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    function prefillSubject(subject) {
-      const subInput = document.getElementById('formSubject');
-      subInput.value = subject;
-      document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
-      subInput.focus();
-    }
-
-    // Your live Google Apps Script URL with '?api=json' appended to return the data
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrA4qfZdmzOWaRdbIgtDqL0VO5NpURvNBU-5GdnmJ__3cBPbK4Hy-b5vkn1P0FJo0F/exec?api=json";
+<script>
+  // Insert your live Google Apps Script URL here
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrA4qfZdmzOWaRdbIgtDqL0VO5NpURvNBU-5GdnmJ__3cBPbK4Hy-b5vkn1P0FJo0F/exec?api=json";
   
-    // Identifies this as the English domain so it pulls the "EN" row from your sheet
-    const PAGE_LANG = "EN"; 
+  // Set to 'EN' for .com, 'NO' for .no, or 'CZ' for .cz
+  const PAGE_LANG = "EN"; // CHANGE THIS ON EACH SITE
 
-    fetch(WEB_APP_URL)
-      .then(response => response.json())
-      .then(data => {
-        const langData = data[PAGE_LANG];
-        if (langData) {
-          // Updates the text on the page automatically if you've entered data in the dashboard
-          if (langData.date_1 && document.getElementById('cms-date-1')) document.getElementById('cms-date-1').innerText = langData.date_1;
-          if (langData.date_2 && document.getElementById('cms-date-2')) document.getElementById('cms-date-2').innerText = langData.date_2;
-          if (langData.date_3 && document.getElementById('cms-date-3')) document.getElementById('cms-date-3').innerText = langData.date_3;
-          if (langData.date_4 && document.getElementById('cms-date-4')) document.getElementById('cms-date-4').innerText = langData.date_4;
-          if (langData.date_5 && document.getElementById('cms-date-5')) document.getElementById('cms-date-5').innerText = langData.date_5;
-        }
-      })
-      .catch(error => console.error("Error fetching live dates from Dashboard:", error));
-
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      const sendBtn = document.querySelector('.send') || e.target.querySelector('button[type="submit"]');
-      const originalText = sendBtn ? sendBtn.innerHTML : 'Send Message ➜';
+  fetch(WEB_APP_URL)
+    .then(response => response.json())
+    .then(data => {
+      const langData = data[PAGE_LANG];
+      const listContainer = document.getElementById('dynamic-dates-list');
       
-      if (sendBtn) {
-        sendBtn.disabled = true;
-        sendBtn.innerHTML = 'Sending...';
-      }
-
-      const name = document.getElementById('formName').value.trim();
-      const email = document.getElementById('formEmail').value.trim();
-      const subject = document.getElementById('formSubject') ? document.getElementById('formSubject').value.trim() : '';
-      const message = document.getElementById('formMessage').value.trim();
-
-      const formattedMessage = subject ? `[Subject: ${subject}]\n\n${message}` : message;
-
-      const payload = {
-        type: 'contact',
-        name: name,
-        email: email,
-        message: formattedMessage
-      };
-
-      try {
-        await fetch('https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
+      // Only overwrite the existing dates IF we successfully fetched an array with at least 1 date
+      if (langData && Array.isArray(langData) && langData.length > 0 && listContainer) {
+        listContainer.innerHTML = ""; // Clear the fallback dates
+        
+        langData.forEach(dateText => {
+          if (dateText.trim() === "") return; 
+          
+          const div = document.createElement('div');
+          
+          // The first date in your current list is not a button, so we can make them all buttons now 
+          // to ensure visitors can easily open the contact modal.
+          const btn = document.createElement('button');
+          btn.innerText = dateText;
+          
+          btn.onclick = function() {
+            openGenericModal("Event Inquiry", "Would you like more information or to reserve your spot for this event?\n\n" + dateText);
+          };
+          
+          div.appendChild(btn);
+          listContainer.appendChild(div);
         });
-
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      } catch (err) {
-        console.error('Error submitting form:', err);
-        alert('There was an error sending your message. Please try again.');
-        if (sendBtn) {
-          sendBtn.disabled = false;
-          sendBtn.innerHTML = originalText;
-        }
       }
-    }
+    })
+    .catch(error => console.error("Error fetching live dates (falling back to hardcoded):", error));
+</script>
 
-    function toggleMobileNav() {
-      const nav = document.querySelector('.nav');
-      if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-      } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '47px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = '#fff';
-        nav.style.padding = '20px';
-        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-      }
-    }
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeModalDirect();
-    });
-  </script>
 </body>
 </html>
