@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Daniela Torp – Intimacy in Context</title>
+  <title>Intimacy in Context</title>
+  <meta name="description" content="Intimacy coaching, workshops, and somatic guidance by Daniela Torp. Discover the 6 pillars of intimacy.">
 
   <style>
     /* =========================================
@@ -83,7 +84,7 @@
     }
 
     .nav a:first-child {
-      color: #948f8f;
+      color: #ee5a7a;
     }
 
     .nav a:hover, .nav .drop:hover {
@@ -1166,7 +1167,26 @@
       subInput.focus();
     }
 
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec';
+    // Your live Google Apps Script URL with '?api=json' appended to return the data
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrA4qfZdmzOWaRdbIgtDqL0VO5NpURvNBU-5GdnmJ__3cBPbK4Hy-b5vkn1P0FJo0F/exec?api=json";
+  
+    // Identifies this as the English domain so it pulls the "EN" row from your sheet
+    const PAGE_LANG = "EN"; 
+
+    fetch(WEB_APP_URL)
+      .then(response => response.json())
+      .then(data => {
+        const langData = data[PAGE_LANG];
+        if (langData) {
+          // Updates the text on the page automatically if you've entered data in the dashboard
+          if (langData.date_1 && document.getElementById('cms-date-1')) document.getElementById('cms-date-1').innerText = langData.date_1;
+          if (langData.date_2 && document.getElementById('cms-date-2')) document.getElementById('cms-date-2').innerText = langData.date_2;
+          if (langData.date_3 && document.getElementById('cms-date-3')) document.getElementById('cms-date-3').innerText = langData.date_3;
+          if (langData.date_4 && document.getElementById('cms-date-4')) document.getElementById('cms-date-4').innerText = langData.date_4;
+          if (langData.date_5 && document.getElementById('cms-date-5')) document.getElementById('cms-date-5').innerText = langData.date_5;
+        }
+      })
+      .catch(error => console.error("Error fetching live dates from Dashboard:", error));
 
     async function handleFormSubmit(e) {
       e.preventDefault();
@@ -1193,7 +1213,7 @@
       };
 
       try {
-        await fetch(SCRIPT_URL, {
+        await fetch('https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec', {
           method: 'POST',
           mode: 'no-cors',
           headers: {
@@ -1236,43 +1256,5 @@
       if (e.key === 'Escape') closeModalDirect();
     });
   </script>
-
-<script>
-  fetch('admin/data.json')
-    .then(response => response.json())
-    .then(data => {
-      if (data.hero_title && document.getElementById('cms-hero-title')) document.getElementById('cms-hero-title').innerText = data.hero_title;
-      if (data.hero_subtitle && document.getElementById('cms-hero-subtitle')) document.getElementById('cms-hero-subtitle').innerText = data.hero_subtitle;
-      if (data.hero_subtitle_2 && document.getElementById('cms-hero-subtitle-2')) document.getElementById('cms-hero-subtitle-2').innerText = data.hero_subtitle_2;
-      
-      if (data.dates_title && document.getElementById('cms-dates-title')) document.getElementById('cms-dates-title').innerText = data.dates_title;
-      if (data.date_1 && document.getElementById('cms-date-1')) document.getElementById('cms-date-1').innerText = data.date_1;
-      if (data.date_2 && document.getElementById('cms-date-2')) document.getElementById('cms-date-2').innerText = data.date_2;
-      if (data.date_3 && document.getElementById('cms-date-3')) document.getElementById('cms-date-3').innerText = data.date_3;
-      if (data.date_4 && document.getElementById('cms-date-4')) document.getElementById('cms-date-4').innerText = data.date_4;
-      if (data.date_5 && document.getElementById('cms-date-5')) document.getElementById('cms-date-5').innerText = data.date_5;
-
-      if (data.pillar_1 && document.getElementById('cms-pillar-1')) document.getElementById('cms-pillar-1').innerHTML = data.pillar_1;
-      if (data.pillar_2 && document.getElementById('cms-pillar-2')) document.getElementById('cms-pillar-2').innerHTML = data.pillar_2;
-      if (data.pillar_3 && document.getElementById('cms-pillar-3')) document.getElementById('cms-pillar-3').innerHTML = data.pillar_3;
-      if (data.pillar_4 && document.getElementById('cms-pillar-4')) document.getElementById('cms-pillar-4').innerHTML = data.pillar_4;
-      if (data.pillar_5 && document.getElementById('cms-pillar-5')) document.getElementById('cms-pillar-5').innerHTML = data.pillar_5;
-      if (data.pillar_6 && document.getElementById('cms-pillar-6')) document.getElementById('cms-pillar-6').innerHTML = data.pillar_6;
-
-      if (data.about_title && document.getElementById('cms-about-title')) document.getElementById('cms-about-title').innerText = data.about_title;
-      if (data.about_p1 && document.getElementById('cms-about-p1')) document.getElementById('cms-about-p1').innerText = data.about_p1;
-      if (data.about_p2 && document.getElementById('cms-about-p2')) document.getElementById('cms-about-p2').innerText = data.about_p2;
-      if (data.about_p3 && document.getElementById('cms-about-p3')) document.getElementById('cms-about-p3').innerText = data.about_p3;
-
-      if (data.workshop_1_title && document.getElementById('cms-w1-title')) document.getElementById('cms-w1-title').innerText = data.workshop_1_title;
-      if (data.workshop_1_desc && document.getElementById('cms-w1-desc')) document.getElementById('cms-w1-desc').innerText = data.workshop_1_desc;
-      if (data.workshop_2_title && document.getElementById('cms-w2-title')) document.getElementById('cms-w2-title').innerText = data.workshop_2_title;
-      if (data.workshop_2_desc && document.getElementById('cms-w2-desc')) document.getElementById('cms-w2-desc').innerText = data.workshop_2_desc;
-      if (data.workshop_3_title && document.getElementById('cms-w3-title')) document.getElementById('cms-w3-title').innerText = data.workshop_3_title;
-      if (data.workshop_3_desc && document.getElementById('cms-w3-desc')) document.getElementById('cms-w3-desc').innerText = data.workshop_3_desc;
-    })
-    .catch(error => console.log('CMS data initialized directly.'));
-</script>
-  
 </body>
 </html>
