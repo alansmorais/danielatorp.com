@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Intimacy in Context</title>
-  <meta name="description" content="Intimacy coaching, workshops, and somatic guidance by Daniela Torp. Discover the 6 pillars of intimacy.">
+  <title>Daniela Torp – Intimacy in Context</title>
+  <meta name="description" content="Intimacy in context. Certified intimacy coach and somatic practitioner Daniela Torp.">
 
   <style>
     /* =========================================
@@ -84,7 +84,7 @@
     }
 
     .nav a:first-child {
-      color: #ee5a7a;
+      color: #948f8f;
     }
 
     .nav a:hover, .nav .drop:hover {
@@ -114,7 +114,7 @@
       border: 1px solid #eee;
       border-radius: 8px;
       padding: 8px 0;
-      min-width: 240px;
+      min-width: 250px;
       z-index: 100;
     }
 
@@ -122,7 +122,7 @@
       display: block;
     }
 
-    .dropdown-menu button {
+    .dropdown-menu button, .dropdown-menu a {
       display: block;
       width: 100%;
       text-align: left;
@@ -131,18 +131,37 @@
       color: #333;
     }
 
-    .dropdown-menu button:hover {
+    .dropdown-menu button:hover, .dropdown-menu a:hover {
       background: #fff5f7;
       color: #e9476b;
     }
 
-    .flag {
-      margin-left: 30px;
-      cursor: default;
-      display: flex;
+    .lang-switcher {
+      display: inline-flex;
       align-items: center;
+      gap: 6px;
+      margin-left: 15px;
+      font-size: 12px;
+      font-weight: 500;
     }
 
+    .lang-btn {
+      padding: 3px 7px;
+      border-radius: 4px;
+      color: #777;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .lang-btn.active, .lang-btn:hover {
+      color: #ee5a7a;
+      background: #fff0f3;
+      font-weight: 700;
+    }
+
+    /* Mobile toggle */
     .mobile-menu-btn {
       display: none;
       font-size: 20px;
@@ -284,7 +303,7 @@
     }
 
     .pillar h3 {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 300;
       line-height: 1.18;
       margin: 10px 5px 0;
@@ -625,9 +644,59 @@
       color: #111;
     }
 
-    .copyright {
-      font-size: 12px;
-      color: #aaa;
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .footer-bottom .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .footer-bottom .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: #f0f0f0;
+      border-radius: 50%;
+      color: #555;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .footer-bottom .social-icons a:hover {
+      background: #e9476b;
+      color: #fff;
+    }
+
+    .footer-bottom .copyright {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .footer-bottom .developer {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .footer-bottom .developer a {
+      color: #555;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom .developer a:hover {
+      color: #e9476b;
+      text-decoration: underline;
     }
 
     /* =========================================
@@ -771,6 +840,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 
@@ -779,22 +849,22 @@
        ========================================= -->
   <header>
     <div class="wrap">
-      <a href="index.html">
+      <a href="#hjem">
         <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
       
-      <nav class="nav">
-        <a href="index.html">Home</a>
+      <nav class="nav" id="mainNav">
+        <a href="#hjem">Home</a>
         
-        <div class="drop" onclick="location.href='6-piliru-intimity/index.html'">
+        <div class="drop" onclick="location.href='../6-piliru-intimity/index.html'">
           6 Pillars of Intimacy
           <div class="dropdown-menu">
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-3'">3. Intimacy with a Baby</button>
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
-            <button onclick="location.href='6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-3'">3. Baby & Family Intimacy</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
+            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
           </div>
         </div>
 
@@ -803,20 +873,26 @@
         <div class="drop" onclick="location.href='workshops.html'">
           Workshops
           <div class="dropdown-menu">
-            <button onclick="location.href='workshops.html'">The Art of Pleasing a Woman</button>
-            <button onclick="location.href='workshops.html'">The Art of Pleasing a Man</button>
-            <button onclick="location.href='workshops.html'">The Art of Pleasing (For Couples)</button>
-            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">View All 9 Workshops ➜</button>
+            <button onclick="location.href='workshops/umeni-potesit-zenu.html'">The Art of Pleasing a Woman</button>
+            <button onclick="location.href='workshops/umeni-potesit-muze.html'">The Art of Pleasing a Man</button>
+            <button onclick="location.href='workshops/jen-pro-pary.html'">The Art of Pleasing (For Couples)</button>
+            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">All 9 Workshops ➜</button>
           </div>
         </div>
 
-        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="konsultasjon.html">Private Consultation</a>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
-        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English" style="border-radius: 2px;"></span>
+
+        <!-- Dual-Language Toggle Switcher -->
+        <div class="lang-switcher">
+          <a href="../index.html" class="lang-btn">🇳🇴 NO</a>
+          <span>|</span>
+          <button type="button" class="lang-btn active" id="btn-en">🇬🇧 EN</button>
+        </div>
       </nav>
 
-      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Meny">☰</button>
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </header>
 
@@ -825,18 +901,17 @@
        ========================================= -->
   <section class="hero" id="hjem">
     <div class="intro">
-      <h1 id="cms-hero-title">Intimacy in Context</h1>
-      <p id="cms-hero-subtitle">Intimacy is not just about sex. It is about establishing a deeply trusting relationship with yourself and with the people close to you. Intimacy—that comforting feeling of trust, connection, and understanding without words—rests upon 6 pillars. It all begins with ourselves. Take a step with me on the journey toward trust and loving care.</p>
-      <p id="cms-hero-subtitle-2">I will help you find the way to your true self and to those closest to you.</p>
+      <h1>Intimacy in Context</h1>
+      <p>Intimacy is not just sex. It is about cultivating a confidential, deeply trusted relationship with yourself and with those close to you. Intimacy—that comforting sensation of trust, union, and unspoken understanding—rests upon 6 foundational pillars. It starts within ourselves. Take a step with me on the path toward trust and loving care.</p>
+      <p>I will help you find the way to your true self and to your loved ones.</p>
       
       <div class="dates">
-  <h2 id="cms-dates-title">Upcoming Dates:</h2>
-  <div id="dynamic-dates-list">
-    <!-- These act as a fallback and will be updated by the script -->
-    <div><button onclick="openWorkshopModal('w1')">3.10.2026: The Art of Pleasing a Woman</button></div>
-    <div><button onclick="openWorkshopModal('w2')">4.10.2026: The Art of Pleasing a Man</button></div>
-    <div><button onclick="openDateModal('Samhain – Feminine Essence & Vital Energy', '16.–18.10.2026')">16.–18.10.2026: Samhain – Feminine Essence & Vital Energy</button></div>
-  </div>
+        <h2>Upcoming Dates:</h2>
+        <div>20.6.2026: Opening of Presence Center</div>
+        <div><button onclick="openDateModal('Lughnasad – Female Essence and Life Force', '4.–5.7.2026')">4.–5.7.2026: Lughnasad – Female Essence & Life Force</button></div>
+        <div><button onclick="openWorkshopModal('w1')">3.10.2026: The Art of Pleasing a Woman</button></div>
+        <div><button onclick="openWorkshopModal('w2')">4.10.2026: The Art of Pleasing a Man</button></div>
+        <div><button onclick="openDateModal('Samhain – Female Essence and Life Force', '16.–18.10.2026')">16.–18.10.2026: Samhain – Female Essence & Life Force</button></div>
       </div>
       
       <a class="button" href="#workshops">View Workshops</a>
@@ -850,32 +925,32 @@
     <div class="pillar-grid wrap">
       <div class="pillar" onclick="openPillarModal(1)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/1male_komplet_na_web-150x150.png" alt="Couple Intimacy">
-        <h3 id="cms-pillar-1">Couple Intimacy<br>Relationship with Own Body</h3>
+        <h3>Couple Intimacy<br>Relationship with Own Body</h3>
       </div>
       
       <div class="pillar" onclick="openPillarModal(2)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/2male%CC%81_komplet_na_web-150x150.png" alt="Pregnancy">
-        <h3 id="cms-pillar-2">Intimacy in Pregnancy<br>& Childbirth</h3>
+        <h3>Intimacy in Pregnancy<br>& Childbirth</h3>
       </div>
       
       <div class="pillar" onclick="openPillarModal(3)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/3male%CC%81_komplet_na_web-150x150.png" alt="Baby">
-        <h3 id="cms-pillar-3">Intimacy with Baby,<br>Family Intimacy</h3>
+        <h3>Intimacy with Baby,<br>Family Intimacy</h3>
       </div>
       
       <div class="pillar" onclick="openPillarModal(4)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/4male%CC%81_komplet_na_web-150x150.png" alt="Children and Youth">
-        <h3 id="cms-pillar-4">Intimacy in Children<br>& Adolescents</h3>
+        <h3>Intimacy in Children<br>& Adolescents</h3>
       </div>
       
       <div class="pillar" onclick="openPillarModal(5)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/5male%CC%81_komplet_na_web-150x150.png" alt="Mature Age">
-        <h3 id="cms-pillar-5">Intimacy<br>in Mature Age</h3>
+        <h3>Intimacy<br>in Mature Age</h3>
       </div>
       
       <div class="pillar" onclick="openPillarModal(6)">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/6male%CC%81_komplet_na_web-150x150.png" alt="Dying">
-        <h3 id="cms-pillar-6">Intimacy<br>in Dying</h3>
+        <h3>Intimacy<br>in Dying</h3>
       </div>
     </div>
   </section>
@@ -888,23 +963,23 @@
       <div>
         <img class="portrait" src="https://www.danielatorp.cz/wp-content/uploads/2020/05/untitled-design-7.jpg" alt="Daniela">
         <div class="photo-buttons">
-          <button class="button" onclick="openGenericModal('More About Daniela', 'Daniela has over 15 years of professional experience in holistic bodywork, couples counseling, and somatic guidance. Through the 6 Pillars of Intimacy, she guides individuals and couples toward safety, vitality, and genuine presence.')">About Daniela</button>
-          <button class="button" onclick="openGenericModal('Daniela in Media', 'Selected Podcasts & Articles:\n\n• Life Journey Podcast: “Intimacy Begins in the Mirror”\n• Harmony Magazine: “6 Pillars That Transform Partnerships”\n• Culture & Relationships: “The Sacred Art of Listening Without Words”')">Media</button>
+          <button class="button" onclick="openGenericModal('More About Daniela', 'Daniela has more than 15 years of experience in holistic bodywork, couples therapy, and somatic guidance. Through the 6 pillars of intimacy, she helps individuals and couples rediscover confidence, vitality, and true presence.')">About Daniela</button>
+          <button class="button" onclick="openGenericModal('Daniela in Media', 'Featured media and interviews:\n\n• Podcast Journey of Life: «Intimacy Starts in the Mirror»\n• Harmony Magazine: «6 Pillars That Transform Relationships»\n• Culture & Relationships: «The Art of Listening Without Words»')">Media</button>
         </div>
       </div>
       <div>
-        <h2 id="cms-about-title">Who is Daniela</h2>
+        <h2>Who is Daniela</h2>
         <div class="about-copy">
           <div>
-            <p id="cms-about-p1">I am a human being. I feel and perceive just like you. I experience similar situations, challenges, joys, and sorrows. I care for myself, my family, and my friends. I honor nature and bow humbly before its laws, its infinite diversity, and its sense of humor.</p>
-            <p id="cms-about-p2"><strong>Did you know that there are more than 180,000 islands in the world?</strong></p>
-            <p id="cms-about-p3">There are thousands of islands, and they often look very similar. Yet each one is a unique, sovereign ecosystem.</p>
+            <p>I am human. I feel and perceive just like you. I experience similar situations, challenges, joys, and sorrows. I care for myself, my family, and my friends. I honor nature and humbly bow before its laws, its endless diversity, and its sense of humor.</p>
+            <p><strong>Did you know there are more than 180,000 islands in the world?</strong></p>
+            <p>There are thousands of islands, and they often look alike. Yet each is a unique ecosystem.</p>
           </div>
           <div>
-            <p>Can you imagine trying to grow plum trees in a paradise of coconut palms? It might work for a while, but you will exhaust yourself trying to force it to succeed.</p>
-            <p>We often treat ourselves the exact same way. We force ourselves to do things that conflict with our true essence.</p>
-            <p>I personally journeyed through thousands of islands before finding my own.</p>
-            <p>The key to success is love—love for yourself.</p>
+            <p>Can you imagine trying to grow plums in a paradise of coconut palms? It might work for a while, but you must exert tremendous effort to succeed.</p>
+            <p>Often we treat ourselves the same way. We force ourselves to do things that conflict with our true essence.</p>
+            <p>I have walked through thousands of islands myself before discovering my own.</p>
+            <p>The key to fulfillment is love—love for yourself.</p>
           </div>
         </div>
       </div>
@@ -917,15 +992,15 @@
   <section class="workshops" id="workshops">
     <div class="section-title">
       <h2>Workshops</h2>
-      <p>Each of us occasionally finds ourselves in situations we aren't quite sure how to handle. In my workshops, you will find answers to your questions in a safe, supportive space.</p>
+      <p>Every one of us occasionally encounters a situation we are not sure how to navigate. In my workshops, you will find answers to your questions. Within a safe space.</p>
     </div>
     
     <div class="cards">
       <article class="card">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/2-1024x1024.jpg" alt="The Art of Pleasing a Woman">
         <div class="card-body">
-          <h3 id="cms-w1-title">The Art of Pleasing a Woman</h3>
-          <p id="cms-w1-desc">Become an exceptional lover.</p>
+          <h3>The Art of Pleasing a Woman</h3>
+          <p>Become a master lover.</p>
           <div>
             <button class="button" onclick="openWorkshopModal('w1')">Workshop Details</button>
           </div>
@@ -935,8 +1010,8 @@
       <article class="card">
         <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/9-1024x1024.jpg" alt="The Art of Pleasing a Man">
         <div class="card-body">
-          <h3 id="cms-w2-title">The Art of Pleasing a Man</h3>
-          <p id="cms-w2-desc">Become an exceptional lover.</p>
+          <h3>The Art of Pleasing a Man</h3>
+          <p>Become a master lover.</p>
           <div>
             <button class="button" onclick="openWorkshopModal('w2')">Workshop Details</button>
           </div>
@@ -944,10 +1019,10 @@
       </article>
       
       <article class="card">
-        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/6-1024x1024.jpg" alt="The Art of Pleasing (For Couples)">
+        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/6-1024x1024.jpg" alt="The Art of Pleasing">
         <div class="card-body">
-          <h3 id="cms-w3-title">The Art of Pleasing</h3>
-          <p id="cms-w3-desc">Workshop for men and women.</p>
+          <h3>The Art of Pleasing</h3>
+          <p>Workshop for men and women.</p>
           <div>
             <button class="button" onclick="openWorkshopModal('w3')">Workshop Details</button>
           </div>
@@ -955,7 +1030,7 @@
       </article>
     </div>
     <div style="text-align: center; margin-top: 35px;">
-      <a class="button" href="workshops.html" style="background:#111; color:#fff; padding: 12px 30px; font-size: 13px;">View All 9 Workshops ➜</a>
+      <a class="button" href="workshops.html" style="background:#111; color:#fff; padding: 12px 30px; font-size: 13px;">See All 9 Workshops ➜</a>
     </div>
   </section>
 
@@ -964,20 +1039,20 @@
        ========================================= -->
   <section class="contact" id="kontakt">
     <h2>Write to Me</h2>
-    <p>Do you have a question? I am here for you.</p>
+    <p>Have a question? I am here for you.</p>
     
     <form class="form" id="contactForm" onsubmit="handleFormSubmit(event)">
       <div class="field">
         <label>Full Name <span class="required">*</span></label>
-        <input type="text" required placeholder="John Doe" id="formName">
+        <input type="text" required placeholder="Jane Doe" id="formName">
       </div>
       <div class="field">
         <label>Your Email Address <span class="required">*</span></label>
-        <input type="email" required placeholder="john.doe@example.com" id="formEmail">
+        <input type="email" required placeholder="jane.doe@example.com" id="formEmail">
       </div>
       <div class="field full">
         <label>Subject <span class="required">*</span></label>
-        <input type="text" required placeholder="Consultation, workshop, question" id="formSubject">
+        <input type="text" required placeholder="Consultation, workshop, general question" id="formSubject">
       </div>
       <div class="field full">
         <label>Message <span class="required">*</span></label>
@@ -988,11 +1063,11 @@
         <div>
           <div class="captcha">Protected by reCAPTCHA ✓</div>
           <div class="notice">
-            Fields marked with an asterisk are mandatory.<br>
-            By submitting this form, I agree to the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are held in strict professional confidentiality under GDPR guidelines. Your information is never shared.')">processing of personal data</a>.
+            Fields marked with an asterisk are required.<br>
+            By submitting this form, I agree to the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are treated with strict confidentiality in accordance with GDPR guidelines. Your information will never be shared.')">processing of personal data</a>.
           </div>
         </div>
-        <button class="send" type="submit">Send Message ➜</button>
+        <button class="send" type="submit">Send message ➜</button>
       </div>
     </form>
 
@@ -1011,37 +1086,42 @@
         <h4>Contact</h4>
         <a href="#hjem">Home</a>
         <a href="#om-daniela">Who is Daniela</a>
-        <button onclick="openGenericModal('Daniela in Media', 'Press, media inquiries, and podcast guest bookings are available upon request.')">Daniela in Media</button>
+        <button onclick="openGenericModal('Daniela in Media', 'Featured articles, press, and podcasts are available upon request.')">Daniela in Media</button>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
       </div>
       <div>
         <h4>Workshops</h4>
-        <a href="workshops.html">The Art of Pleasing a Woman</a>
-        <a href="workshops.html">The Art of Pleasing a Man</a>
-        <a href="workshops.html">The Art of Pleasing (For Couples)</a>
-        <a href="workshops.html">Secrets of the Pelvic Floor</a>
-        <a href="workshops.html">I Was Pregnant, But …</a>
-        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">View All 9 Workshops ➜</a>
+        <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+        <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (For Couples)</a>
+        <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+        <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">See All 9 Workshops ➜</a>
       </div>
       <div>
-        <h4>Consultations / 6 Pillars of Intimacy</h4>
-        <a href="konsultasjon.html">Personal Consultation</a>
-        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
-        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
-        <a href="6-piliru-intimity/index.html#pilar-3">3. Intimacy with Baby</a>
-        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
-        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
-        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+        <h4>Consultations / 6 Pillars</h4>
+        <a href="konsultasjon.html">Private Consultation</a>
+        <a href="../6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="../6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
+        <a href="../6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+        <a href="../6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+        <a href="../6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="../6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
       </div>
     </div>
     
-    <div class="social">
-      <a href="https://facebook.com/danielatorp" target="_blank">f</a>
-      <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank">◎</a>
-      <a href="https://youtube.com" target="_blank">◉</a>
+    <div class="footer-bottom">
+      <div class="social-icons">
+        <a href="https://www.youtube.com/channel/UCXx9X1wDuda2NV4-WQgnivw" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/danielatorp" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/intimitycoachdanielatorp/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <p class="copyright">© 2026 All rights reserved | Daniela Torp</p>
+      <p class="developer">
+        <a href="https://AlanSMSolutions.com" target="_blank" rel="noopener noreferrer">Developed by AlanSMSolutions.com</a>
+      </p>
     </div>
-    <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
   </footer>
 
   <!-- =========================================
@@ -1063,44 +1143,182 @@
   <!-- =========================================
        JAVASCRIPT FUNCTIONALITY
        ========================================= -->
-<script>
-  // Insert your live Google Apps Script URL here
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrA4qfZdmzOWaRdbIgtDqL0VO5NpURvNBU-5GdnmJ__3cBPbK4Hy-b5vkn1P0FJo0F/exec?api=json";
-  
-  // Set to 'EN' for .com, 'NO' for .no, or 'CZ' for .cz
-  const PAGE_LANG = "EN"; // CHANGE THIS ON EACH SITE
-
-  fetch(WEB_APP_URL)
-    .then(response => response.json())
-    .then(data => {
-      const langData = data[PAGE_LANG];
-      const listContainer = document.getElementById('dynamic-dates-list');
-      
-      // Only overwrite the existing dates IF we successfully fetched an array with at least 1 date
-      if (langData && Array.isArray(langData) && langData.length > 0 && listContainer) {
-        listContainer.innerHTML = ""; // Clear the fallback dates
-        
-        langData.forEach(dateText => {
-          if (dateText.trim() === "") return; 
-          
-          const div = document.createElement('div');
-          
-          // The first date in your current list is not a button, so we can make them all buttons now 
-          // to ensure visitors can easily open the contact modal.
-          const btn = document.createElement('button');
-          btn.innerText = dateText;
-          
-          btn.onclick = function() {
-            openGenericModal("Event Inquiry", "Would you like more information or to reserve your spot for this event?\n\n" + dateText);
-          };
-          
-          div.appendChild(btn);
-          listContainer.appendChild(div);
-        });
+  <script>
+    const pillarsData = {
+      1: {
+        title: "1. Couple Intimacy & Relationship with Own Body",
+        text: "Our capacity for authentic intimacy with a partner begins with how we accept and understand our own physical self. Without an honest, loving connection to our own sensation and body, finding true safety with another is challenging. This pillar nurtures body image, healthy boundaries, pleasure, and communicating desire."
+      },
+      2: {
+        title: "2. Intimacy in Pregnancy & Childbirth",
+        text: "Pregnancy and birth open gateways to profound vulnerability and tremendous strength. We work on maintaining couple connection throughout physical shifts, emotionally preparing for childbirth, and gently releasing birth anxiety."
+      },
+      3: {
+        title: "3. Intimacy with Baby & Family Bonds",
+        text: "Skin-to-skin touch, intuitive care, and nurturing secure bonding lay the foundation for a child's lifelong trust. Simultaneously, partners learn to protect their romantic sanctuary amidst the demands of new parenthood."
+      },
+      4: {
+        title: "4. Intimacy in Children & Adolescents",
+        text: "How we navigate early curiosity and adolescent changes shapes our children's future relationships. We cover open dialogue about bodies, boundaries, consent, respect, and emotional resilience."
+      },
+      5: {
+        title: "5. Intimacy in Mature Age",
+        text: "Intimacy never ceases, but its nature matures. In later chapters of life, intimacy often becomes more subtle, free of performance anxiety, and enriched by profound presence, gratitude, and soulful affection."
+      },
+      6: {
+        title: "6. Intimacy in Dying & Departure",
+        text: "The final phase of life calls for the purest form of human presence. Sitting at a bedside without fear, holding a hand, speaking unspoken truths, and honoring the mystery of transition is intimacy in its highest expression."
       }
-    })
-    .catch(error => console.error("Error fetching live dates (falling back to hardcoded):", error));
-</script>
+    };
 
+    const workshopsData = {
+      w1: {
+        tag: "Workshop for Men",
+        title: "The Art of Pleasing a Woman",
+        text: "A practical, respectful workshop unlocking female pleasure, slow touch, energy flow, and creating genuine safety where a woman can blossom.<br><br><strong>Date:</strong> 3.10.2026<br><strong>Duration:</strong> 1 day (10:00 – 18:00)"
+      },
+      w2: {
+        tag: "Workshop for Women",
+        title: "The Art of Pleasing a Man",
+        text: "Understand a man's inner world, his need for genuine appreciation, and touch that penetrates far deeper than superficial desire.<br><br><strong>Date:</strong> 4.10.2026<br><strong>Duration:</strong> 1 day (10:00 – 18:00)"
+      },
+      w3: {
+        tag: "Couples Workshop",
+        title: "The Art of Pleasing (For Couples)",
+        text: "A shared journey into the play of polarity, sacred touch, sensory expansion, and rituals to keep romance and desire thriving over the years.<br><br><strong>Date:</strong> 4.–5.7.2026 / 16.–18.10.2026<br><strong>Duration:</strong> Weekend Intensive"
+      }
+    };
+
+    function openPillarModal(num) {
+      const data = pillarsData[num];
+      showModal("6 Pillars of Intimacy", data.title, data.text, function() {
+        prefillSubject("Pillar: " + data.title);
+      });
+    }
+
+    function openWorkshopModal(id) {
+      const data = workshopsData[id];
+      showModal(data.tag, data.title, data.text, function() {
+        prefillSubject("Registration: " + data.title);
+      });
+    }
+
+    function openDateModal(title, dateStr) {
+      showModal("Upcoming Event", title, "This event will take place on " + dateStr + ". Would you like more information or to register your interest?", function() {
+        prefillSubject("Event: " + title + " (" + dateStr + ")");
+      });
+    }
+
+    function openGenericModal(title, text) {
+      showModal("Information", title, text.replace(/\n/g, "<br>"), function() {
+        prefillSubject("Inquiry: " + title);
+      });
+    }
+
+    function showModal(tag, title, contentHtml, onAction) {
+      document.getElementById('modalTag').innerText = tag;
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalContent').innerHTML = contentHtml;
+      
+      const actionBtn = document.getElementById('modalActionBtn');
+      actionBtn.onclick = function() {
+        closeModalDirect();
+        if (onAction) onAction();
+      };
+
+      document.getElementById('modalOverlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModalDirect();
+      }
+    }
+
+    function closeModalDirect() {
+      document.getElementById('modalOverlay').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function prefillSubject(subject) {
+      const subInput = document.getElementById('formSubject');
+      subInput.value = subject;
+      document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+      subInput.focus();
+    }
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec";
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const sendBtn = document.querySelector('.send') || e.target.querySelector('button[type="submit"]');
+      const originalText = sendBtn ? sendBtn.innerHTML : 'Send message ➜';
+      
+      if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = 'Sending...';
+      }
+
+      const name = document.getElementById('formName').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const subject = document.getElementById('formSubject') ? document.getElementById('formSubject').value.trim() : '';
+      const message = document.getElementById('formMessage').value.trim();
+
+      const formattedMessage = subject ? `[Subject: ${subject}]\n\n${message}` : message;
+
+      const payload = {
+        type: 'contact',
+        lang: 'EN',
+        name: name,
+        email: email,
+        subject: subject,
+        message: formattedMessage
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        console.error('Error submitting form:', err);
+        alert('An error occurred while sending your message. Please try again or email directly.');
+        if (sendBtn) {
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = originalText;
+        }
+      }
+    }
+
+    function toggleMobileNav() {
+      const nav = document.querySelector('.nav');
+      if (nav.style.display === 'flex') {
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.top = '47px';
+        nav.style.left = '0';
+        nav.style.right = '0';
+        nav.style.background = '#fff';
+        nav.style.padding = '20px';
+        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModalDirect();
+    });
+  </script>
 </body>
 </html>
