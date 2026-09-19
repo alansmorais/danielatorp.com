@@ -4,646 +4,334 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Workshops – Daniela Torp</title>
+  <link rel="icon" href="images/cropped-favicona-32x32.png" sizes="32x32">
+  <link rel="icon" href="images/cropped-favicona-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="images/cropped-favicona-180x180.png">
 
   <style>
-        .lang-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 15px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .lang-btn {
-      padding: 3px 7px;
-      border-radius: 4px;
-      color: #777;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .lang-btn.active, .lang-btn:hover {
-      color: #ee5a7a;
-      background: #fff0f3;
-      font-weight: 700;
-    }
-
     /* =========================================
        1. GLOBAL RESET & BASE STYLES
        ========================================= */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      --color-primary: #ee5a7a;
+      --color-primary-light: #fff3f6;
+      --color-border: #e6e6eb;
+      --border-radius-sm: 8px;
+      --transition-fast: 0.2s ease;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #080808;
-      font-weight: 300;
-      background: #fff;
-      line-height: 1.6;
-    }
-
-    a, button {
-      color: inherit;
-      text-decoration: none;
-      font-family: inherit;
-    }
-
-    button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    .wrap {
-      max-width: 1344px;
-      margin: auto;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Roboto', Arial, sans-serif; color: #080808; font-weight: 300; background: #fff; line-height: 1.6; }
+    a, button { color: inherit; text-decoration: none; font-family: inherit; }
+    button { background: none; border: none; cursor: pointer; }
+    .wrap { max-width: 1344px; margin: auto; }
 
     /* =========================================
-       2. HEADER & NAVIGATION
+       2. HEADER & NAVIGATION (STANDARDIZED)
        ========================================= */
     header {
       height: 100px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.98);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       padding: 0 4.3%;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 
     header .wrap {
-      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      height: 100px;
+      margin-right: auto;
     }
 
     .logo {
       width: 325px;
       height: 100px;
       object-fit: contain;
-      margin-right: auto;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 21px;
-      font-size: 12px;
+      gap: 24px;
+      font-size: 14px;
       font-weight: 400;
+      color: #111;
     }
 
-    .nav a:hover, .nav .drop:hover {
-      color: #ee5a7a;
+    .nav > a,
+    .nav .drop-toggle {
+      color: inherit;
+      padding: 10px 0;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav a:hover,
+    .nav .drop:hover > .drop-toggle,
+    .nav .drop:focus-within > .drop-toggle {
+      color: var(--color-primary);
     }
 
     .nav .drop {
       position: relative;
-      cursor: pointer;
       padding: 10px 0;
+      cursor: pointer;
     }
 
-    .nav .drop:after {
-      content: '▼';
-      font-size: 7px;
-      margin-left: 7px;
+    .drop-arrow {
+      font-size: 8px;
+      margin-left: 5px;
+      transition: transform var(--transition-fast);
       display: inline-block;
+    }
+
+    .nav .drop:hover .drop-arrow {
+      transform: rotate(180deg);
     }
 
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: calc(100% - 4px);
+      left: -12px;
       background: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
-      border-radius: 8px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-sm);
       padding: 8px 0;
-      min-width: 240px;
-      z-index: 100;
+      min-width: 260px;
+      z-index: 1000;
     }
 
     .nav .drop:hover .dropdown-menu {
       display: block;
+      animation: navFade 0.2s ease-out forwards;
     }
 
+    @keyframes navFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-menu a,
     .dropdown-menu button {
       display: block;
       width: 100%;
       text-align: left;
-      padding: 8px 16px;
-      font-size: 12px;
-      color: #333;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: #3e3e42;
+      border-bottom: 1px solid #f8f8f8;
+      background: transparent;
     }
 
+    .dropdown-menu a:last-child,
+    .dropdown-menu button:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover,
     .dropdown-menu button:hover {
-      background: #fff5f7;
-      color: #e9476b;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      padding-left: 22px;
     }
 
     .flag {
-      font-size: 16px;
-      margin-left: 30px;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 10px;
       cursor: default;
+    }
+
+    .flag img {
+      width: 20px;
+      height: 14px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
 
     .mobile-menu-btn {
       display: none;
-      font-size: 20px;
-      padding: 5px;
+      font-size: 26px;
+      padding: 6px 10px;
+      color: #111;
+      line-height: 1;
+      border-radius: var(--border-radius-sm);
     }
 
     /* =========================================
        3. PAGE HERO SECTION
        ========================================= */
-    .page-hero {
-      position: relative;
-      text-align: center;
-      padding: 60px 15px 80px;
-      background: linear-gradient(90deg, #f9dbe3 0%, #f8d7e1 31%, #fff 49%, #d7f0f3 71%, #d5eff2 100%);
-    }
-
-    .page-hero:before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 33% 75% at 25% 40%, rgba(246,174,194,.68), transparent 70%),
-                  radial-gradient(ellipse 30% 75% at 80% 45%, rgba(113,210,226,.55), transparent 73%),
-                  radial-gradient(ellipse 38% 90% at 50% 48%, #fff 3%, rgba(255,255,255,.75) 37%, transparent 69%);
-      pointer-events: none;
-    }
-
-    .page-hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    .page-hero-content h1 {
-      font-size: 36px;
-      font-weight: 300;
-      margin-bottom: 15px;
-    }
-
-    .page-hero-content p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #555;
-    }
-
-    .button {
-      display: inline-block;
-      border: 1px solid #111;
-      border-radius: 22px;
-      padding: 10px 24px;
-      background: #fff;
-      font-size: 12px;
-      font-weight: 400;
-      color: #111;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .button:hover {
-      background: #111;
-      color: #fff;
-    }
+    .page-hero { position: relative; text-align: center; padding: 60px 15px 80px; background: linear-gradient(90deg, #f9dbe3 0%, #f8d7e1 31%, #fff 49%, #d7f0f3 71%, #d5eff2 100%); }
+    .page-hero:before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 33% 75% at 25% 40%, rgba(246, 174, 194, 0.68), transparent 70%), radial-gradient(ellipse 30% 75% at 80% 45%, rgba(113, 210, 226, 0.55), transparent 73%), radial-gradient(ellipse 38% 90% at 50% 48%, #fff 3%, rgba(255, 255, 255, 0.75) 37%, transparent 69%); pointer-events: none; }
+    .page-hero-content { position: relative; z-index: 1; max-width: 700px; margin: auto; }
+    .page-hero-content h1 { font-size: 36px; font-weight: 300; margin-bottom: 15px; }
+    .page-hero-content p { font-size: 16px; line-height: 1.6; color: #555; }
+    .button { display: inline-block; border: 1px solid #111; border-radius: 22px; padding: 10px 24px; background: #fff; font-size: 12px; font-weight: 400; color: #111; cursor: pointer; transition: all 0.2s; }
+    .button:hover { background: #111; color: #fff; }
 
     /* =========================================
        4. WORKSHOPS CATALOG SECTION
        ========================================= */
-    .workshops-section {
-      padding: 80px 4% 100px;
-      background: #fff;
-    }
-
-    .cards-grid {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-    }
-
-    .card {
-      background: #fafafa;
-      text-align: center;
-      border: 1px solid #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-    }
-
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-body {
-      padding: 24px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-grow: 1;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-weight: 300;
-      font-size: 20px;
-      line-height: 1.3;
-    }
-
-    .card p {
-      color: #887e7e;
-      margin: 0 0 20px;
-      font-size: 15px;
-    }
+    .workshops-section { padding: 80px 4% 100px; background: #fff; }
+    .cards-grid { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .card { background: #fafafa; text-align: center; border: 1px solid #f0f0f0; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; border-radius: 6px; overflow: hidden; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06); }
+    .card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .card-body { padding: 24px 18px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+    .card h3 { margin: 0 0 10px; font-weight: 300; font-size: 20px; line-height: 1.3; }
+    .card h3 a:hover { color: #ee5a7a; }
+    .card p { color: #887e7e; margin: 0 0 20px; font-size: 15px; }
 
     /* =========================================
        5. CONTACT SECTION
        ========================================= */
-    .contact {
-      padding: 130px 7% 100px;
-      text-align: center;
-      background: radial-gradient(ellipse at 76% 50%, rgba(218,173,229,.74), transparent 49%), #fafafa;
-    }
-
-    .contact h2 {
-      font-size: 32px;
-      font-weight: 300;
-      margin: 0 0 17px;
-    }
-
-    .contact > p {
-      font-size: 16px;
-    }
-
-    .form {
-      max-width: 640px;
-      margin: 58px auto 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 23px 20px;
-      text-align: left;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      display: block;
-      font-size: 14px;
-      font-weight: 400;
-      margin-bottom: 9px;
-    }
-
-    .required {
-      color: #e7485e;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      padding: 13px 15px;
-      font: 300 16px 'Roboto', sans-serif;
-      background: #fff;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      outline: none;
-      border-color: #ee5a7a;
-    }
-
-    .field textarea {
-      height: 112px;
-      resize: vertical;
-    }
-
-    .form-bottom {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .captcha {
-      height: 56px;
-      width: 230px;
-      background: #2777dc;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      margin: 2px 0 14px;
-      user-select: none;
-      border-radius: 2px;
-    }
-
-    .notice {
-      font-size: 12px;
-      color: #999;
-      line-height: 1.9;
-    }
-
-    .notice a {
-      text-decoration: underline;
-      color: #555;
-      cursor: pointer;
-    }
-
-    .send {
-      background: #000;
-      color: #fff;
-      border: 0;
-      border-radius: 24px;
-      padding: 14px 40px;
-      font-weight: 500;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    .send:hover {
-      background: #333;
-    }
-
-    .success-box {
-      display: none;
-      padding: 30px;
-      background: #fff;
-      border: 1px solid #2ecc71;
-      border-radius: 8px;
-      margin-top: 30px;
-      color: #27ae60;
-      font-size: 16px;
-    }
+    .contact { padding: 130px 7% 100px; text-align: center; background: radial-gradient(ellipse at 76% 50%, rgba(218, 173, 229, 0.74), transparent 49%), #fafafa; }
+    .contact h2 { font-size: 32px; font-weight: 300; margin: 0 0 17px; }
+    .contact > p { font-size: 16px; }
+    .form { max-width: 640px; margin: 58px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 23px 20px; text-align: left; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { display: block; font-size: 14px; font-weight: 400; margin-bottom: 9px; }
+    .required { color: #e7485e; }
+    .field input, .field textarea { width: 100%; border: 1px solid #bbb; border-radius: 4px; padding: 13px 15px; font: 300 16px 'Roboto', sans-serif; background: #fff; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: #ee5a7a; }
+    .field textarea { height: 112px; resize: vertical; }
+    .form-bottom { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .captcha { height: 56px; width: 230px; background: #2777dc; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin: 2px 0 14px; user-select: none; border-radius: 2px; }
+    .notice { font-size: 12px; color: #999; line-height: 1.9; }
+    .notice a { text-decoration: underline; color: #555; cursor: pointer; }
+    .send { background: #000; color: #fff; border: 0; border-radius: 24px; padding: 14px 40px; font-weight: 500; font-size: 14px; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .send:hover { background: #333; }
+    .success-box { display: none; padding: 30px; background: #fff; border: 1px solid #2ecc71; border-radius: 8px; margin-top: 30px; color: #27ae60; font-size: 16px; }
 
     /* =========================================
        6. FOOTER
        ========================================= */
-    footer {
-      padding: 65px 8% 30px;
-      text-align: center;
-      border-top: 1px solid #f0f0f0;
-      background: #fff;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1.4fr;
-      gap: 55px;
-      max-width: 1050px;
-      margin: auto;
-      text-align: left;
-    }
-
-    .footer-grid h4 {
-      font-size: 14px;
-      font-weight: 400;
-      margin: 0 0 15px;
-    }
-
-    .footer-grid a, .footer-grid button {
-      display: block;
-      color: #a69c9b;
-      font-size: 13px;
-      line-height: 1.85;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .footer-grid a:hover, .footer-grid button:hover {
-      color: #080808;
-    }
-
-    .social {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      font-size: 19px;
-      color: #999;
-      margin: 85px 0 16px;
-    }
-
-    .social a:hover {
-      color: #111;
-    }
-
-    .copyright {
-      font-size: 12px;
-      color: #aaa;
-    }
+    footer { padding: 65px 8% 30px; text-align: center; border-top: 1px solid #f0f0f0; background: #fff; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 55px; max-width: 1050px; margin: auto; text-align: left; }
+    .footer-grid h4 { font-size: 14px; font-weight: 400; margin: 0 0 15px; }
+    .footer-grid a, .footer-grid button { display: block; color: #a69c9b; font-size: 13px; line-height: 1.85; text-align: left; cursor: pointer; }
+    .footer-grid a:hover, .footer-grid button:hover { color: #080808; }
+    .social { display: flex; justify-content: center; gap: 22px; font-size: 19px; color: #999; margin: 85px 0 16px; }
+    .social a:hover { color: #111; }
+    .copyright { font-size: 12px; color: #aaa; }
 
     /* =========================================
        7. MODAL DIALOG
        ========================================= */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(3px);
-    }
-
-    .modal-card {
-      background: #fff;
-      max-width: 600px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      border-radius: 12px;
-      padding: 30px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      text-align: left;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 24px;
-      color: #999;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
-      color: #000;
-    }
-
-    .modal-title {
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 12px;
-      color: #111;
-    }
-
-    .modal-tag {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #ee5a7a;
-      font-weight: 500;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    .modal-body {
-      font-size: 15px;
-      color: #444;
-      line-height: 1.7;
-    }
-
-    .modal-body p {
-      margin-bottom: 12px;
-    }
-
-    .modal-btn-row {
-      margin-top: 24px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      border-top: 1px solid #eee;
-      padding-top: 16px;
-    }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(3px); }
+    .modal-card { background: #fff; max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; border-radius: 12px; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); text-align: left; }
+    .modal-close { position: absolute; top: 15px; right: 15px; font-size: 24px; color: #999; cursor: pointer; line-height: 1; }
+    .modal-close:hover { color: #000; }
+    .modal-title { font-size: 24px; font-weight: 400; margin-bottom: 12px; color: #111; }
+    .modal-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #ee5a7a; font-weight: 500; margin-bottom: 6px; display: block; }
+    .modal-body { font-size: 15px; color: #444; line-height: 1.7; }
+    .modal-body p { margin-bottom: 12px; }
+    .modal-btn-row { margin-top: 24px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 16px; }
 
     /* =========================================
        8. RESPONSIVE MEDIA QUERIES
        ========================================= */
-    @media (max-width: 900px) {
-      .nav { display: none; }
-      .mobile-menu-btn { display: block; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 560px) {
-      .cards-grid, .footer-grid, .form { grid-template-columns: 1fr; }
-      .form-bottom {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .send {
-        margin-top: 10px;
-      }
-    }
+    @media (max-width: 900px) { .nav { display: none; } .mobile-menu-btn { display: block; } .cards-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .cards-grid, .footer-grid, .form { grid-template-columns: 1fr; } .form-bottom { flex-direction: column; align-items: stretch; } .send { margin-top: 10px; } }
   </style>
 </head>
 <body>
 
-  <!-- =========================================
-       HEADER & NAVIGATION
-       ========================================= -->
-    <header>
+  <!-- HEADER & NAVIGATION -->
+  <header>
     <div class="wrap">
-      <a href="index.html">
-        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+      <a href="index.html" class="logo-link">
+        <img class="logo" src="images/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
-      
-      <nav class="nav">
+
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu">☰</button>
+
+      <nav class="nav" id="mainNav">
         <a href="index.html">Home</a>
-        
-        <div class="drop" onclick="location.href='../6-piliru-intimity/index.html'">
-          6 Pillars of Intimacy
+
+        <!-- Dropdown: 6 Pillars -->
+        <div class="drop" onclick="location.href='6-piliru-intimity/index.html'">
+          6 Pillars of Intimacy <span class="drop-arrow">▼</span>
           <div class="dropdown-menu">
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-3'">3. Baby & Family Intimacy</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
+            <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+            <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
+            <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+            <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+            <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+            <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
           </div>
         </div>
 
-        <a href="index.html#om-daniela">Who is Daniela</a>
-        
+        <a href="index.html#om-daniela">About Daniela</a>
+
+        <!-- Dropdown: Workshops -->
         <div class="drop" onclick="location.href='workshops.html'">
-          Workshops
+          Workshops <span class="drop-arrow">▼</span>
           <div class="dropdown-menu">
-            <button onclick="location.href='workshops/umeni-potesit-zenu.html'">The Art of Pleasing a Woman</button>
-            <button onclick="location.href='workshops/umeni-potesit-muze.html'">The Art of Pleasing a Man</button>
-            <button onclick="location.href='workshops/jen-pro-pary.html'">The Art of Pleasing (For Couples)</button>
-            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">All 9 Workshops ➜</button>
+            <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+            <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+            <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
+            <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+            <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+            <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
+            <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
+            <a href="workshops/Hraj-si-se-mnou.html">Play With Me</a>
+            <a href="workshops/zenska-esence-no.html">Female Essence & Vitality</a>
+            <a href="workshops.html" style="font-weight: 500; color: #ee5a7a;">See all 9 workshops ➜</a>
           </div>
         </div>
 
-        <a href="konsultasjon.html">Private Consultation</a>
+        <a href="konsultasjon.html">Personal Consultation</a>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
-
-        <!-- Dual-Language Toggle Switcher -->
-        <div class="lang-switcher">
-          <a href="../workshops.html" class="lang-btn">🇳🇴 NO</a>
-          <span>|</span>
-          <button type="button" class="lang-btn active">🇬🇧 EN</button>
-        </div>
+        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English"></span>
       </nav>
-
-      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </header>
 
   <!-- PAGE HERO -->
-    <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="page-hero-content">
       <h1>Our Workshops</h1>
-      <p>Every one of us occasionally finds ourselves in a situation we are not quite sure how to handle. In my workshops, you will find answers to your questions within a safe, warm, and supportive space.</p>
+      <p>Each of us occasionally faces situations where we aren't entirely sure how to move forward. In my workshops, you will discover answers to your deepest questions within a supportive and secure environment.</p>
     </div>
   </section>
 
-  <!-- WORKSHOPS CATALOG (All 9 Workshops) -->
+  <!-- WORKSHOPS CATALOG -->
   <section class="workshops-section">
-        <div class="cards-grid">
+    <div class="cards-grid">
       
-      <!-- 1. Play with Me -->
+      <!-- 1. Play With Me -->
       <article class="card">
         <a href="workshops/Hraj-si-se-mnou.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2024/10/playwme.jpeg" alt="Play with Me">
+          <img src="images/playwme.jpeg" alt="Play With Me">
         </a>
         <div class="card-body">
           <div>
-            <h3><a href="workshops/Hraj-si-se-mnou.html">Play with Me</a></h3>
-            <p><a href="workshops/Hraj-si-se-mnou.html">A three-day transformative journey to the roots of your desires.</a></p>
+            <h3><a href="workshops/Hraj-si-se-mnou.html">Play With Me</a></h3>
+            <p>A three-day immersive voyage to the origins of your deepest desires.</p>
           </div>
           <div>
             <a class="button" href="workshops/Hraj-si-se-mnou.html">Workshop Details</a>
@@ -651,15 +339,15 @@
         </div>
       </article>
 
-      <!-- 2. Female Essence and Life Force -->
+      <!-- 2. Female Essence and Vitality -->
       <article class="card">
         <a href="workshops/zenska-esence-no.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/1.jpg" alt="Female Essence and Life Force">
+          <img src="images/1.jpg" alt="Female Essence and Vitality">
         </a>
         <div class="card-body">
           <div>
-            <h3><a href="workshops/zenska-esence-no.html">Female Essence and Life Force</a></h3>
-            <p><a href="workshops/zenska-esence-no.html">Reconnect with your primal vitality and magnetic radiance.</a></p>
+            <h3><a href="workshops/zenska-esence-no.html">Female Essence and Vitality</a></h3>
+            <p>Connect with your primal feminine power and irresistible natural radiance.</p>
           </div>
           <div>
             <a class="button" href="workshops/zenska-esence-no.html">Workshop Details</a>
@@ -667,15 +355,15 @@
         </div>
       </article>
 
-      <!-- 3. The Art of Pleasing (For Couples) -->
+      <!-- 3. The Art of Pleasing (for Couples) -->
       <article class="card">
         <a href="workshops/jen-pro-pary.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/6-1024x1024.jpg" alt="The Art of Pleasing for Couples">
+          <img src="images/6-1024x1024.jpg" alt="The Art of Pleasing for Couples">
         </a>
         <div class="card-body">
           <div>
-            <h3><a href="workshops/jen-pro-pary.html">The Art of Pleasing (For Couples)</a></h3>
-            <p><a href="workshops/jen-pro-pary.html">Rediscover the profound magic and playfulness of intimacy together.</a></p>
+            <h3><a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a></h3>
+            <p>Rediscover the tenderness, playfulness, and magic of partner intimacy together.</p>
           </div>
           <div>
             <a class="button" href="workshops/jen-pro-pary.html">Workshop Details</a>
@@ -686,12 +374,12 @@
       <!-- 4. The Art of Pleasing a Woman -->
       <article class="card">
         <a href="workshops/umeni-potesit-zenu.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/2-1024x1024.jpg" alt="The Art of Pleasing a Woman">
+          <img src="images/2-1024x1024.jpg" alt="The Art of Pleasing a Woman">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a></h3>
-            <p><a href="workshops/umeni-potesit-zenu.html">Become a conscious, attentive, and confident lover.</a></p>
+            <p>Master presence, subtle touch, and deep emotional resonance as a lover.</p>
           </div>
           <div>
             <a class="button" href="workshops/umeni-potesit-zenu.html">Workshop Details</a>
@@ -702,12 +390,12 @@
       <!-- 5. Secrets of the Pelvic Floor -->
       <article class="card">
         <a href="workshops/tajemstvi-panevniho-dna.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/2-2-1024x1024.jpg" alt="Secrets of the Pelvic Floor">
+          <img src="images/2-2-1024x1024.jpg" alt="Secrets of the Pelvic Floor">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a></h3>
-            <p><a href="workshops/tajemstvi-panevniho-dna.html">Awaken your feminine energy, stability, and sensuality.</a></p>
+            <p>Meet your core feminine energy, somatic vitality, and organic physical power.</p>
           </div>
           <div>
             <a class="button" href="workshops/tajemstvi-panevniho-dna.html">Workshop Details</a>
@@ -718,12 +406,12 @@
       <!-- 6. The Art of Pleasing a Man -->
       <article class="card">
         <a href="workshops/umeni-potesit-muze.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/9-1024x1024.jpg" alt="The Art of Pleasing a Man">
+          <img src="images/9-1024x1024.jpg" alt="The Art of Pleasing a Man">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a></h3>
-            <p><a href="workshops/umeni-potesit-muze.html">Open the door to a man's heart and deeper erotic world.</a></p>
+            <p>Understand the male emotional landscape and touch that goes beyond the surface.</p>
           </div>
           <div>
             <a class="button" href="workshops/umeni-potesit-muze.html">Workshop Details</a>
@@ -734,12 +422,12 @@
       <!-- 7. I Was Pregnant, But … -->
       <article class="card">
         <a href="workshops/byla-jsem-tehotna-ale.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/4-1-1024x1024.jpg" alt="I Was Pregnant, But …">
+          <img src="images/4-1-1024x1024.jpg" alt="I Was Pregnant, But …">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a></h3>
-            <p><a href="workshops/byla-jsem-tehotna-ale.html">Gently process and release past grief in a safe sanctuary.</a></p>
+            <p>Release pain, grief, and past birth wounds within a compassionate safe haven.</p>
           </div>
           <div>
             <a class="button" href="workshops/byla-jsem-tehotna-ale.html">Workshop Details</a>
@@ -750,12 +438,12 @@
       <!-- 8. Birth as Certainty -->
       <article class="card">
         <a href="workshops/porod-jako-jistota.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/03/2-1-1024x1024.jpg" alt="Birth as Certainty">
+          <img src="images/2-1-1024x1024.jpg" alt="Birth as Certainty">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/porod-jako-jistota.html">Birth as Certainty</a></h3>
-            <p><a href="workshops/porod-jako-jistota.html">Gain complete trust within yourself and your partner before birth.</a></p>
+            <p>Cultivate unconditional inner trust and intuitive calm ahead of childbirth.</p>
           </div>
           <div>
             <a class="button" href="workshops/porod-jako-jistota.html">Workshop Details</a>
@@ -766,12 +454,12 @@
       <!-- 9. Mother and Daughter -->
       <article class="card">
         <a href="workshops/matka-a-dcera.html">
-          <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/2.jpg" alt="Mother and Daughter">
+          <img src="images/2.jpg" alt="Mother and Daughter">
         </a>
         <div class="card-body">
           <div>
             <h3><a href="workshops/matka-a-dcera.html">Mother and Daughter</a></h3>
-            <p><a href="workshops/matka-a-dcera.html">Learn to listen, share openly, and honor the sacred maternal bond.</a></p>
+            <p>Learn conscious listening and genuine heartfelt communication with mutual respect.</p>
           </div>
           <div>
             <a class="button" href="workshops/matka-a-dcera.html">Workshop Details</a>
@@ -782,61 +470,55 @@
     </div>
   </section>
 
-  <!-- =========================================
-       CONTACT SECTION
-       ========================================= -->
-    <!-- CONTACT SECTION -->
+  <!-- CONTACT SECTION -->
   <section class="contact" id="kontakt">
     <h2>Write to Me</h2>
-    <p>Do you have a question or need advice choosing a workshop? I am here for you.</p>
-    
+    <p>Do you have a question? I am here for you.</p>
+
     <form class="form" id="contactForm" onsubmit="handleFormSubmit(event)">
       <div class="field">
-        <label>Name and surname <span class="required">*</span></label>
-        <input type="text" required placeholder="Jane Doe" id="formName">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" required placeholder="John Doe" id="formName">
       </div>
       <div class="field">
-        <label>Your email address <span class="required">*</span></label>
-        <input type="email" required placeholder="jane.doe@example.com" id="formEmail">
+        <label>Your Email Address <span class="required">*</span></label>
+        <input type="email" required placeholder="john.doe@example.com" id="formEmail">
       </div>
       <div class="field full">
         <label>Subject <span class="required">*</span></label>
-        <input type="text" required placeholder="Workshop inquiry, questions" id="formSubject">
+        <input type="text" required placeholder="Consultation, workshop" id="formSubject">
       </div>
       <div class="field full">
-        <label>Your message or question <span class="required">*</span></label>
-        <textarea required placeholder="Write your message here..." id="formMessage"></textarea>
+        <label>Message <span class="required">*</span></label>
+        <textarea required placeholder="Write your message here" id="formMessage"></textarea>
       </div>
-      
+
       <div class="form-bottom">
         <div>
-          <div class="captcha">🛡️ Protected by reCAPTCHA</div>
+          <div class="captcha">Protected by reCAPTCHA ✓</div>
           <div class="notice">
             Fields marked with an asterisk are required.<br>
-            By submitting, I agree to the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are processed strictly confidentially according to GDPR guidelines.')">processing of personal data</a>.
+            By submitting this form, I consent to the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are handled in strict confidentiality under applicable GDPR regulations. Your data is never shared.')">processing of personal data</a>.
           </div>
         </div>
-        <button class="send" id="sendBtn" type="submit">Send message ➜</button>
+        <button class="send" type="submit">Submit ➜</button>
       </div>
     </form>
 
     <div class="success-box" id="successBox">
-      <h3>Thank you for your inquiry!</h3>
-      <p>Your message has been sent. Daniela will get back to you as soon as possible.</p>
+      <h3>Thank you for reaching out!</h3>
+      <p>Your message has been sent. Daniela will respond to you promptly.</p>
     </div>
   </section>
 
-  <!-- =========================================
-       FOOTER
-       ========================================= -->
-    <!-- FOOTER -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
         <h4>Contact</h4>
         <a href="index.html">Home</a>
-        <a href="index.html#om-daniela">Who is Daniela</a>
-        <button onclick="openGenericModal('Daniela in Media', 'Interviews, press inquiries, and podcasts are available upon request.')">Daniela in Media</button>
+        <a href="index.html#om-daniela">About Daniela</a>
+        <button onclick="openGenericModal('Daniela in Media', 'Press features and podcasts are available upon request.')">Daniela in Media</button>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
       </div>
@@ -844,23 +526,25 @@
         <h4>Workshops</h4>
         <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
         <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
-        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (For Couples)</a>
+        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
         <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
         <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
-        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">All 9 Workshops ➜</a>
+        <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
+        <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
+        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">All 9 Workshops</a>
       </div>
       <div>
         <h4>Consultations / 6 Pillars of Intimacy</h4>
-        <a href="konsultasjon.html">Private Consultation</a>
-        <a href="../6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
-        <a href="../6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
-        <a href="../6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
-        <a href="../6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
-        <a href="../6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
-        <a href="../6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
+        <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
       </div>
     </div>
-    
+
     <div class="social">
       <a href="https://facebook.com/danielatorp" target="_blank">f</a>
       <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank">◎</a>
@@ -869,133 +553,57 @@
     <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
   </footer>
 
-  <!-- =========================================
-       MODAL DIALOG
-       ========================================= -->
+  <!-- MODAL DIALOG -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal-card">
       <span class="modal-close" onclick="closeModalDirect()">&times;</span>
-      <span class="modal-tag" id="modalTag">Detaljer</span>
-      <h3 class="modal-title" id="modalTitle">Tittel</h3>
-      <div class="modal-body" id="modalContent">Innhold</div>
+      <span class="modal-tag" id="modalTag">Details</span>
+      <h3 class="modal-title" id="modalTitle">Title</h3>
+      <div class="modal-body" id="modalContent">Content</div>
       <div class="modal-btn-row">
-        <button class="button" onclick="closeModalDirect()">Lukk</button>
-        <button class="button" id="modalActionBtn" style="background:#000;color:#fff;border-color:#000;">Bestill / Spør</button>
+        <button class="button" onclick="closeModalDirect()">Close</button>
       </div>
     </div>
   </div>
 
-  <!-- =========================================
-       JAVASCRIPT LOGIC
-       ========================================= -->
+  <!-- JAVASCRIPT CONTROLLER -->
   <script>
-    const pillarsData = {
-      1: {
-        title: "1. Parintimitet & Forholdet til egen kropp",
-        text: "Vår evne til å være intime med en partner starter med hvordan vi aksepterer og forstår vår egen kropp. Uten et ærlig, kjærlig forhold til egen anatomi og sanselighet er det vanskelig å oppleve ekte trygghet med en annen."
-      },
-      2: {
-        title: "2. Intimitet under graviditet og ved fødsel",
-        text: "Svangerskap og fødsel åpner porter til dyp sårbarhet og uendelig styrke. Vi jobber med å bevare tilknytningen mellom partnere, forberede kroppen emosjonelt og fysisk."
-      },
-      3: {
-        title: "3. Intimitet med baby, familieintimitet",
-        text: "Hud-mot-hud-kontakt, intuitiv omsorg og oppbyggingen av et trygt tilknytningsmønster legger fundamentet for barnets fremtidige evne til tillit."
-      },
-      4: {
-        title: "4. Intimitet hos barn og ungdom",
-        text: "Hvordan vi møter barns nysgjerrighet og ungdoms utforsking former deres fremtidige syn på relasjoner, samtykke og respekt."
-      },
-      5: {
-        title: "5. Intimitet i moden alder",
-        text: "Intimitet slutter aldri, men dens form modnes. I moden alder kan intimitet bli mer subtil, dyp og frigjørende – fri for prestasjonspress."
-      },
-      6: {
-        title: "6. Intimitet i døden",
-        text: "Den siste fasen i livet krever den reneste form for nærvær. Å tørre å sitte ved en døendes seng, holde en hånd uten frykt og skape et verdig rom."
+    function toggleMobileNav() {
+      const nav = document.getElementById('mainNav');
+      if (nav.style.display === 'flex' && nav.style.flexDirection === 'column') {
+        nav.style.display = '';
+      } else {
+        nav.style.display = 'flex';
+        nav.style.flexDirection = 'column';
+        nav.style.position = 'absolute';
+        nav.style.top = '100px';
+        nav.style.left = '0';
+        nav.style.right = '0';
+        nav.style.background = '#fff';
+        nav.style.padding = '20px';
+        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
       }
-    };
-
-    const workshopsData = {
-      w1: {
-        tag: "Spesiell workshop",
-        title: "Spill med meg",
-        text: "En tredagers reise til røttene til dine dypeste tužeb (begjær). Gjennom lek, øvelser og refleksjon utforsker vi hvem du er og hva du virkelig ønsker i dine nære relasjoner."
-      },
-      w2: {
-        tag: "Kvinneseminar",
-        title: "Kvinneessens og livskraft",
-        text: "Koble deg på din magiske urkraft som ingen mann kan motstå. Lær å balansere din indre sykliske visdom med jordet tilstedeværelse."
-      },
-      w3: {
-        tag: "Workshop for par",
-        title: "Kunsten å behage (for par)",
-        text: "Znovu společně objevte kouzlo intimity. En felles reise inn i samspillet mellom det maskuline og feminine for å holde lidenskapen levende."
-      },
-      w4: {
-        tag: "Workshop for menn",
-        title: "Kunsten å behage en kvinne",
-        text: "En praktisk og respektfull workshop der du lærer hemmelighetene bak kvinnelig nytelse, langsom berøring, energiflyt og hvordan du skaper trygghet.<br><br><strong>Dato:</strong> 3.10.2026<br><strong>Varighet:</strong> 1 dag (10:00 – 18:00)"
-      },
-      w5: {
-        tag: "Kvinneworkshop",
-        title: "Bekkenbunnens hemmeligheter",
-        text: "Møt din feminine energi og styrke gjennom somatisk avspenning og bevissthet rundt bekkenbunnen."
-      },
-      w6: {
-        tag: "Workshop for kvinner",
-        title: "Kunsten å behage en mann",
-        text: "Forstå mannens indre verden, hans behov for anerkjennelse og berøring som går langt dypere enn overfladisk lyst.<br><br><strong>Dato:</strong> 4.10.2026<br><strong>Varighet:</strong> 1 dag (10:00 – 18:00)"
-      },
-      w7: {
-        tag: "Støttegruppe",
-        title: "Jeg var gravid, men …",
-        text: "Vyrovnejte se s traumatem minulosti. Et trygt og omsorgsfullt rom for kvinner som har opplevd tap eller ufullendte svangerskap."
-      },
-      w8: {
-        tag: "Graviditet & Fødsel",
-        title: "Fødsel som sikkerhet",
-        text: "Získejte jistotu v sebe sama. Få fullstendig trygghet, tillit til egen kropp og mental styrke inn mot fødselen."
-      },
-      w9: {
-        tag: "Relasjonsworkshop",
-        title: "Mor og datter",
-        text: "Naučte se naslouchat. Lær å lytte, kommunisere med respekt og forstå hverandres følelser i et dypere bånd."
-      }
-    };
-
-    function openPillarModal(num) {
-      const data = pillarsData[num];
-      showModal("6 Pilarer for Intimitet", data.title, data.text, function() {
-        prefillSubject("Pilar: " + data.title);
-      });
     }
 
-    function openWorkshopModal(id) {
-      const data = workshopsData[id];
-      showModal(data.tag, data.title, data.text, function() {
-        prefillSubject("Påmelding / Spørsmål: " + data.title);
-      });
+    function toggleDropdown(btn) {
+      if (window.innerWidth < 992) {
+        const menu = btn.nextElementSibling;
+        menu.classList.toggle('is-open');
+      }
     }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 992) {
+        const nav = document.getElementById('mainNav');
+        if (nav) nav.classList.remove('is-open');
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('is-open'));
+      }
+    });
 
     function openGenericModal(title, text) {
-      showModal("Informasjon", title, text, function() {
-        prefillSubject("Henvendelse: " + title);
-      });
-    }
-
-    function showModal(tag, title, contentHtml, onAction) {
-      document.getElementById('modalTag').innerText = tag;
+      document.getElementById('modalTag').innerText = "Information";
       document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalContent').innerHTML = contentHtml;
-      
-      const actionBtn = document.getElementById('modalActionBtn');
-      actionBtn.innerText = "Meld interesse / Spør";
-      actionBtn.onclick = function() {
-        closeModalDirect();
-        if (onAction) onAction();
-      };
-
+      document.getElementById('modalContent').innerText = text;
       document.getElementById('modalOverlay').style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
@@ -1011,23 +619,16 @@
       document.body.style.overflow = 'auto';
     }
 
-    function prefillSubject(subject) {
-      const subInput = document.getElementById('formSubject');
-      subInput.value = subject;
-      document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
-      subInput.focus();
-    }
-
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec";
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec';
 
     async function handleFormSubmit(e) {
       e.preventDefault();
-      const sendBtn = document.querySelector('.send') || e.target.querySelector('button[type="submit"]');
-      const originalText = sendBtn ? sendBtn.innerHTML : 'Send inn ➜';
-      
+      const sendBtn = document.querySelector('.send');
+      const originalText = sendBtn ? sendBtn.innerHTML : 'Submit ➜';
+
       if (sendBtn) {
         sendBtn.disabled = true;
-        sendBtn.innerHTML = 'Sender...';
+        sendBtn.innerHTML = 'Sending...';
       }
 
       const name = document.getElementById('formName').value.trim();
@@ -1035,13 +636,10 @@
       const subject = document.getElementById('formSubject') ? document.getElementById('formSubject').value.trim() : '';
       const message = document.getElementById('formMessage').value.trim();
 
-      const formattedMessage = `[Kilde: danielatorp.no kontaktskjema]\n${subject ? `[Emne: ${subject}]\n` : ''}\n${message}`;
+      const formattedMessage = subject ? `[Subject: ${subject}]\n\n${message}` : message;
 
       const payload = {
         type: 'contact',
-        lang: 'EN',
-        source: 'danielatorp.no/en contact form',
-        origin: 'danielatorp.no/en',
         name: name,
         email: email,
         subject: subject,
@@ -1063,28 +661,11 @@
         document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch (err) {
         console.error('Error submitting form:', err);
-        alert('Det oppstod en feil ved sending av meldingen. Vennligst prøv igjen.');
+        alert('An error occurred while sending your message. Please try again.');
         if (sendBtn) {
           sendBtn.disabled = false;
           sendBtn.innerHTML = originalText;
         }
-      }
-    }
-
-    function toggleMobileNav() {
-      const nav = document.querySelector('.nav');
-      if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-      } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '47px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = '#fff';
-        nav.style.padding = '20px';
-        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
       }
     }
 

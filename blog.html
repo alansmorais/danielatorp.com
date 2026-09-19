@@ -2,39 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog – Daniela Torp</title>
+  <link rel="icon" href="images/cropped-favicona-32x32.png" sizes="32x32">
+  <link rel="icon" href="images/cropped-favicona-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="images/cropped-favicona-180x180.png">
 
   <style>
-        .lang-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 15px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .lang-btn {
-      padding: 3px 7px;
-      border-radius: 4px;
-      color: #777;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-
-    .lang-btn.active, .lang-btn:hover {
-      color: #ee5a7a;
-      background: #fff0f3;
-      font-weight: 700;
-    }
-
     /* =========================================
-       1. GLOBAL RESET & BASE STYLES
+       1. GLOBAL RESET & DESIGN SYSTEM
        ========================================= */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+    :root {
+      --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --color-text: #1d1d1f;
+      --color-text-muted: #5e5e64;
+      --color-primary: #ee5a7a;
+      --color-primary-dark: #d63d60;
+      --color-primary-light: #fff3f6;
+      --color-border: #e6e6eb;
+      --color-card-bg: #ffffff;
+      --color-page-bg: #ffffff;
+      --container-max-width: 1200px;
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --border-radius-lg: 20px;
+      --transition-fast: 0.2s ease;
+      --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.1);
+    }
 
     * {
       box-sizing: border-box;
@@ -47,17 +46,21 @@
     }
 
     body {
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #080808;
+      font-family: var(--font-main);
+      color: var(--color-text);
       font-weight: 300;
-      background: #fff;
-      line-height: 1.6;
+      background: var(--color-page-bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     a, button {
       color: inherit;
       text-decoration: none;
       font-family: inherit;
+      transition: all var(--transition-fast);
     }
 
     button {
@@ -67,105 +70,173 @@
     }
 
     .wrap {
-      max-width: 1344px;
-      margin: auto;
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
     }
 
     /* =========================================
-       2. HEADER & NAVIGATION
+       2. STANDARDIZED HEADER & NAVIGATION
        ========================================= */
     header {
-      height: 100px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      padding: 0 4.3%;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.96);
       position: sticky;
       top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
     }
 
     header .wrap {
-      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
     }
 
     .logo {
-      width: 325px;
-      height: 100px;
+      width: auto;
+      height: 52px;
+      max-width: 250px;
       object-fit: contain;
-      margin-right: auto;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 21px;
-      font-size: 12px;
+      gap: 22px;
+      font-size: 13px;
       font-weight: 400;
+      letter-spacing: 0.2px;
     }
 
-    .nav a:hover, .nav .drop:hover {
-      color: #ee5a7a;
+    .nav > a,
+    .nav .drop-toggle {
+      color: #2b2b2e;
+      padding: 8px 0;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 400;
+      font-family: inherit;
+    }
+
+    .nav a:hover,
+    .nav .drop:hover > .drop-toggle,
+    .nav .drop:focus-within > .drop-toggle {
+      color: var(--color-primary);
     }
 
     .nav .drop {
       position: relative;
-      cursor: pointer;
       padding: 10px 0;
     }
 
-    .nav .drop:after {
-      content: '▼';
-      font-size: 7px;
-      margin-left: 7px;
+    .drop-arrow {
+      font-size: 8px;
+      margin-left: 2px;
+      transition: transform var(--transition-fast);
       display: inline-block;
+    }
+
+    .nav .drop:hover .drop-arrow {
+      transform: rotate(180deg);
     }
 
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: calc(100% - 4px);
+      left: -12px;
       background: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
-      border-radius: 8px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-sm);
       padding: 8px 0;
-      min-width: 240px;
-      z-index: 100;
+      min-width: 260px;
+      z-index: 1000;
     }
 
     .nav .drop:hover .dropdown-menu {
       display: block;
+      animation: navFade 0.2s ease-out forwards;
     }
 
+    @keyframes navFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-menu a,
     .dropdown-menu button {
       display: block;
       width: 100%;
       text-align: left;
-      padding: 8px 16px;
-      font-size: 12px;
-      color: #333;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: #3e3e42;
+      border-bottom: 1px solid #f8f8f8;
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      cursor: pointer;
     }
 
+    .dropdown-menu a:last-child,
+    .dropdown-menu button:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover,
     .dropdown-menu button:hover {
-      background: #fff5f7;
-      color: #e9476b;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      padding-left: 22px;
     }
 
     .flag {
-      font-size: 16px;
-      margin-left: 30px;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 10px;
       cursor: default;
+    }
+
+    .flag img {
+      width: 20px;
+      height: 14px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
 
     .mobile-menu-btn {
       display: none;
-      font-size: 20px;
-      padding: 5px;
+      font-size: 26px;
+      padding: 6px 10px;
+      color: #111;
+      line-height: 1;
+      border-radius: var(--border-radius-sm);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     /* =========================================
@@ -174,7 +245,7 @@
     .page-hero {
       position: relative;
       text-align: center;
-      padding: 80px 15px 100px;
+      padding: 80px 15px 95px;
       background: linear-gradient(90deg, #f9dbe3 0%, #f8d7e1 31%, #fff 49%, #d7f0f3 71%, #d5eff2 100%);
     }
 
@@ -199,33 +270,39 @@
       font-size: 38px;
       font-weight: 300;
       margin-bottom: 10px;
+      letter-spacing: -0.5px;
     }
 
     .button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid #111;
-      border-radius: 22px;
+      border-radius: 30px;
       padding: 10px 24px;
       background: #fff;
       font-size: 12px;
       font-weight: 400;
       color: #111;
       cursor: pointer;
-      transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
     }
 
     .button:hover {
       background: #111;
       color: #fff;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
 
     /* =========================================
        4. BLOG MAIN LAYOUT (Posts + Sidebar)
        ========================================= */
     .blog-container {
-      max-width: 1170px;
+      max-width: var(--container-max-width);
       margin: 80px auto;
-      padding: 0 5%;
+      padding: 0 24px;
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 50px;
@@ -239,50 +316,52 @@
     }
 
     .blog-card {
-      background: #fafafa;
-      border: 1px solid #f0f0f0;
-      border-radius: 8px;
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-md);
       overflow: hidden;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      gap: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
 
     .blog-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-md);
     }
 
     .blog-card img {
       width: 100%;
       height: 100%;
-      min-height: 220px;
+      min-height: 240px;
       object-fit: cover;
       display: block;
     }
 
     .blog-card-content {
-      padding: 24px 18px 24px 0;
+      padding: 24px 24px 24px 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .blog-card h3 {
-      font-size: 20px;
-      font-weight: 300;
-      margin-bottom: 10px;
-      line-height: 1.3;
+      font-size: 21px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      line-height: 1.35;
+      letter-spacing: -0.3px;
     }
 
     .blog-card h3 a:hover {
-      color: #ee5a7a;
+      color: var(--color-primary);
     }
 
     .blog-meta {
       font-size: 12px;
-      color: #888;
+      color: var(--color-text-muted);
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -290,25 +369,25 @@
     }
 
     .blog-excerpt {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.5;
-      margin-bottom: 15px;
+      font-size: 14.5px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 18px;
     }
 
     /* Sidebar */
     .sidebar {
       background: #fdf8f9;
       border: 1px solid #f4e8ec;
-      border-radius: 8px;
-      padding: 25px;
+      border-radius: var(--border-radius-md);
+      padding: 28px;
     }
 
     .sidebar h5 {
       font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ee5a7a;
+      font-weight: 500;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--color-primary);
       padding-bottom: 6px;
       display: inline-block;
     }
@@ -318,17 +397,17 @@
     }
 
     .sidebar li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .sidebar a {
       font-size: 14px;
       color: #555;
-      transition: color 0.2s;
+      transition: color var(--transition-fast);
     }
 
     .sidebar a:hover {
-      color: #ee5a7a;
+      color: var(--color-primary);
     }
 
     /* =========================================
@@ -337,7 +416,7 @@
     footer {
       padding: 65px 8% 30px;
       text-align: center;
-      border-top: 1px solid #f0f0f0;
+      border-top: 1px solid var(--color-border);
       background: #fff;
     }
 
@@ -352,21 +431,24 @@
 
     .footer-grid h4 {
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       margin: 0 0 15px;
+      color: #111;
     }
 
-    .footer-grid a, .footer-grid button {
+    .footer-grid a,
+    .footer-grid button {
       display: block;
-      color: #a69c9b;
+      color: #7e7978;
       font-size: 13px;
-      line-height: 1.85;
+      line-height: 1.95;
       text-align: left;
       cursor: pointer;
     }
 
-    .footer-grid a:hover, .footer-grid button:hover {
-      color: #080808;
+    .footer-grid a:hover,
+    .footer-grid button:hover {
+      color: var(--color-primary);
     }
 
     .social {
@@ -395,11 +477,11 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
+      z-index: 2000;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      backdrop-filter: blur(3px);
+      backdrop-filter: blur(4px);
     }
 
     .modal-card {
@@ -408,17 +490,17 @@
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
-      border-radius: 12px;
-      padding: 30px;
+      border-radius: var(--border-radius-md);
+      padding: 32px;
       position: relative;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: var(--shadow-lg);
       text-align: left;
     }
 
     .modal-close {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 16px;
+      right: 18px;
       font-size: 24px;
       color: #999;
       cursor: pointer;
@@ -440,7 +522,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #ee5a7a;
+      color: var(--color-primary);
       font-weight: 500;
       margin-bottom: 6px;
       display: block;
@@ -450,6 +532,7 @@
       font-size: 15px;
       color: #444;
       line-height: 1.7;
+      white-space: pre-line;
     }
 
     .modal-body p {
@@ -468,79 +551,161 @@
     /* =========================================
        7. RESPONSIVE MEDIA QUERIES
        ========================================= */
-    @media (max-width: 900px) {
-      .nav { display: none; }
-      .mobile-menu-btn { display: block; }
-      .blog-container { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 991px) {
+      header {
+        height: 80px;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 20px 24px 30px;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid var(--color-border);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        gap: 0;
+        align-items: stretch;
+      }
+
+      .nav.is-open {
+        display: flex;
+      }
+
+      .nav > a,
+      .nav .drop-toggle {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 15px;
+        border-bottom: 1px solid #f2f2f5;
+        justify-content: space-between;
+      }
+
+      .nav .drop {
+        padding: 0;
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: #fbfbfc;
+        padding: 4px 0 10px 14px;
+        border-left: 2px solid var(--color-primary);
+        margin: 4px 0 10px;
+      }
+
+      .dropdown-menu.is-open {
+        display: block;
+      }
+
+      .dropdown-menu a,
+      .dropdown-menu button {
+        padding: 10px 0;
+        font-size: 13.5px;
+        border-bottom: 1px dashed #ececed;
+      }
+
+      .flag {
+        padding: 16px 0 0;
+        margin-left: 0;
+      }
+
+      .blog-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 560px) {
-      .blog-card { grid-template-columns: 1fr; }
-      .blog-card-content { padding: 18px; }
-      .footer-grid { grid-template-columns: 1fr; }
+      .blog-card {
+        grid-template-columns: 1fr;
+      }
+      .blog-card-content {
+        padding: 20px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- =========================================
-       HEADER & NAVIGATION
+       STANDARDIZED HEADER & NAVIGATION
        ========================================= -->
-    <header>
+  <header>
     <div class="wrap">
-      <a href="index.html">
-        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+      <a href="index.html" class="logo-link">
+        <img class="logo" src="images/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
       
-      <nav class="nav">
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false">☰</button>
+
+      <nav class="nav" id="mainNav">
         <a href="index.html">Home</a>
         
-        <div class="drop" onclick="location.href='../6-piliru-intimity/index.html'">
-          6 Pillars of Intimacy
+        <div class="drop">
+          <button type="button" class="drop-toggle" onclick="toggleDropdown(this)">
+            6 Pillars of Intimacy <span class="drop-arrow">▼</span>
+          </button>
           <div class="dropdown-menu">
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-1'">1. Couple Intimacy & Own Body</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-2'">2. Pregnancy & Childbirth</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-3'">3. Baby & Family Intimacy</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-4'">4. Children & Adolescents</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-5'">5. Intimacy in Mature Age</button>
-            <button onclick="location.href='../6-piliru-intimity/index.html#pilar-6'">6. Intimacy in Dying</button>
+            <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+            <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
+            <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+            <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+            <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+            <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
           </div>
         </div>
 
         <a href="index.html#om-daniela">Who is Daniela</a>
         
-        <div class="drop" onclick="location.href='workshops.html'">
-          Workshops
+        <div class="drop">
+          <button type="button" class="drop-toggle" onclick="toggleDropdown(this)">
+            Workshops <span class="drop-arrow">▼</span>
+          </button>
           <div class="dropdown-menu">
-            <button onclick="location.href='workshops/umeni-potesit-zenu.html'">The Art of Pleasing a Woman</button>
-            <button onclick="location.href='workshops/umeni-potesit-muze.html'">The Art of Pleasing a Man</button>
-            <button onclick="location.href='workshops/jen-pro-pary.html'">The Art of Pleasing (For Couples)</button>
-            <button onclick="location.href='workshops.html'" style="font-weight:500;color:#ee5a7a;border-top:1px solid #eee;">All 9 Workshops ➜</button>
+            <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+            <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+            <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
+            <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+            <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+            <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
+            <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
+            <a href="workshops/Hraj-si-se-mnou.html">Play With Me</a>
+            <a href="workshops/zenska-esence-no.html">Female Essence & Vitality</a>
+            <a href="workshops/workshops.html" style="font-weight:500;color:var(--color-primary);">See all 9 workshops ➜</a>
           </div>
         </div>
 
-        <a href="konsultasjon.html">Private Consultation</a>
-        <a href="blog.html" style="color:#ee5a7a; font-weight:500;">Blog</a>
-        <a href="#kontakt">Contact</a>
-
-        <!-- Dual-Language Toggle Switcher -->
-        <div class="lang-switcher">
-          <a href="../blog.html" class="lang-btn">🇳🇴 NO</a>
-          <span>|</span>
-          <button type="button" class="lang-btn active">🇬🇧 EN</button>
-        </div>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="blog.html" style="color:var(--color-primary); font-weight:500;">Blog</a>
+        <a href="index.html#kontakt">Contact</a>
+        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English"></span>
       </nav>
-
-      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Menu">☰</button>
     </div>
   </header>
 
   <!-- PAGE HERO -->
-    <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="page-hero-content">
-      <h1>Blog & Insights</h1>
+      <h1>Blog</h1>
     </div>
   </section>
 
@@ -550,25 +715,14 @@
     <!-- Blog Posts List -->
     <div class="blog-posts">
       
-      <!-- Post 1 -->
+      <!-- Post: My Story -->
       <article class="blog-card">
-        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/02/40_50_198-1024x575.jpg" alt="My Story">
+        <img src="images/40_50_198-1024x575.jpg" alt="My Story">
         <div class="blog-card-content">
-          <div class="blog-meta">📅 27. april 2022</div>
-          <h3><a href="#" onclick="openBlogPost('My Story', 'Dette er historien om min reise gjennom livets opp- og nedturer, og hvordan jeg fant veien til meg selv og kunsten å leve i ekte intimitet med omverdenen.')">My Story</a></h3>
-          <p class="blog-excerpt">A personal reflection on finding one\'s true inner compass, accepting vulnerability, and reconnecting with authentic life vitality.</p>
-          <a class="button" style="display:inline-block; font-size:11px; padding:6px 14px;" href="#" onclick="openBlogPost('My Story', 'Dette er historien om min reise gjennom livets opp- og nedturer, og hvordan jeg fant veien til meg selv og kunsten å leve i ekte intimitet med omverdenen.')">Read more</a>
-        </div>
-      </article>
-
-      <!-- Post 2 -->
-      <article class="blog-card">
-        <img src="https://www.danielatorp.cz/wp-content/uploads/2020/05/1.jpg" alt="Prosjekt: Barn">
-        <div class="blog-card-content">
-          <div class="blog-meta">📅 31. august 2021</div>
-          <h3><a href="#" onclick="openBlogPost('Prosjekt: Barn', 'I en verden som vil ha oss til å være sterke kvinner, og der vi så gjerne fremstiller oss selv som sterke kvinner, blir morskap til et prosjekt for oss, der slutten skal være et perfekt produkt – forstått som et barn. Snart fødes mitt andre barn. Og mer enn noen gang tenker jeg på hvordan jeg skal nyte min neste sterke livskaffe, og hvilke leksjoner som venter meg med det. Fordi de venter på hver og en av oss!')">Prosjekt: Barn</a></h3>
-          <p class="blog-excerpt">I en verden som vil ha oss til å være sterke kvinner, blir morskap ofte til et prosjekt med et perfekt produkt som mål...</p>
-          <a class="button" style="display:inline-block; font-size:11px; padding:6px 14px;" href="#" onclick="openBlogPost('Prosjekt: Barn', 'I en verden som vil ha oss til å være sterke kvinner, og der vi så gjerne fremstiller oss selv som sterke kvinner, blir morskap til et prosjekt for oss, der slutten skal være et perfekt produkt – forstått som et barn. Snart fødes mitt andre barn. Og mer enn noen gang tenker jeg på hvordan jeg skal nyte min neste sterke livskaffe, og hvilke leksjoner som venter meg med det. Fordi de venter på hver og en av oss!')">Read more</a>
+          <div class="blog-meta">📅 April 27, 2022</div>
+          <h3><a href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life\'s ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">My Story</a></h3>
+          <p class="blog-excerpt">A personal story about finding your inner compass, embracing vulnerability, and rediscovering true vitality.</p>
+          <a class="button" style="display:inline-flex; font-size:11px; padding:6px 14px;" href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life\'s ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">Read more</a>
         </div>
       </article>
 
@@ -576,9 +730,9 @@
 
     <!-- Sidebar / Categories -->
     <aside class="sidebar">
-      <h5>Kategorier</h5>
+      <h5>Categories</h5>
       <ul>
-        <li><a href="#">Daniela i magasiner (2)</a></li>
+        <li><a href="#">Daniela in Magazines (1)</a></li>
       </ul>
     </aside>
 
@@ -587,42 +741,43 @@
   <!-- =========================================
        FOOTER
        ========================================= -->
-    <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div>
         <h4>Contact</h4>
         <a href="index.html">Home</a>
         <a href="index.html#om-daniela">Who is Daniela</a>
-        <button onclick="openGenericModal('Daniela in Media', 'Interviews, press inquiries, and podcasts are available upon request.')">Daniela in Media</button>
+        <button type="button" onclick="openGenericModal('Daniela in the Media', 'Press features and podcast interviews are available upon request.')">Daniela in Media</button>
         <a href="blog.html">Blog</a>
-        <a href="#kontakt">Contact</a>
+        <a href="index.html#kontakt">Contact</a>
       </div>
       <div>
         <h4>Workshops</h4>
         <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
         <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
-        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (For Couples)</a>
+        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
         <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
         <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
-        <a href="workshops.html" style="color:#ee5a7a; font-weight:500;">All 9 Workshops ➜</a>
+        <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
+        <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
+        <a href="workshops/workshops.html" style="color:var(--color-primary); font-weight:500;">See all 9 workshops ➜</a>
       </div>
       <div>
-        <h4>Consultations / 6 Pillars of Intimacy</h4>
-        <a href="konsultasjon.html">Private Consultation</a>
-        <a href="../6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
-        <a href="../6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Childbirth</a>
-        <a href="../6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
-        <a href="../6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
-        <a href="../6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
-        <a href="../6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+        <h4>Consultations / 6 Pillars</h4>
+        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
+        <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
       </div>
     </div>
     
     <div class="social">
-      <a href="https://facebook.com/danielatorp" target="_blank">f</a>
-      <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank">◎</a>
-      <a href="https://youtube.com" target="_blank">◉</a>
+      <a href="https://facebook.com/danielatorp" target="_blank" rel="noopener">f</a>
+      <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank" rel="noopener">◎</a>
+      <a href="https://youtube.com" target="_blank" rel="noopener">◉</a>
     </div>
     <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
   </footer>
@@ -633,11 +788,11 @@
   <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
     <div class="modal-card">
       <span class="modal-close" onclick="closeModalDirect()">&times;</span>
-      <span class="modal-tag" id="modalTag">Blogg</span>
-      <h3 class="modal-title" id="modalTitle">Tittel</h3>
-      <div class="modal-body" id="modalContent">Innhold</div>
+      <span class="modal-tag" id="modalTag">Blog</span>
+      <h3 class="modal-title" id="modalTitle">Title</h3>
+      <div class="modal-body" id="modalContent">Content</div>
       <div class="modal-btn-row">
-        <button class="button" onclick="closeModalDirect()">Lukk</button>
+        <button type="button" class="button" onclick="closeModalDirect()">Close</button>
       </div>
     </div>
   </div>
@@ -646,26 +801,43 @@
        JAVASCRIPT LOGIC
        ========================================= -->
   <script>
-    const pillarsData = {
-      1: { title: "1. Parintimitet & Forholdet til egen kropp", text: "Vår evne til å være intime med en partner starter med hvordan vi aksepterer og forstår vår egen kropp." },
-      2: { title: "2. Intimitet under graviditet og ved fødsel", text: "Svangerskap og fødsel åpner porter til dyp sårbarhet og uendelig styrke." },
-      3: { title: "3. Intimitet med baby, familieintimitet", text: "Hud-mot-hud-kontakt og intuitiv omsorg legger fundamentet for trygg tilknytning." },
-      4: { title: "4. Intimitet hos barn og ungdom", text: "Hvordan vi møter barns nysgjerrighet og ungdoms utforsking former deres fremtidige relasjoner." },
-      5: { title: "5. Intimitet i moden alder", text: "I moden alder kan intimitet bli mer subtil, dyp og frigjørende – fri for prestasjonspress." },
-      6: { title: "6. Intimitet i døden", text: "Den siste fasen i livet krever den reneste form for nærvær og verdighet." }
-    };
-
-    function openPillarModal(num) {
-      const data = pillarsData[num];
-      showModal("6 Pilarer for Intimitet", data.title, data.text);
+    function toggleMobileNav() {
+      const nav = document.getElementById('mainNav');
+      const btn = document.querySelector('.mobile-menu-btn');
+      const isOpen = nav.classList.toggle('is-open');
+      btn.innerText = isOpen ? '✕' : '☰';
+      btn.setAttribute('aria-expanded', isOpen);
     }
 
+    function toggleDropdown(btn) {
+      if (window.innerWidth < 992) {
+        const menu = btn.nextElementSibling;
+        const arrow = btn.querySelector('.drop-arrow');
+        const isOpen = menu.classList.toggle('is-open');
+        if (arrow) arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0)';
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 992) {
+        const nav = document.getElementById('mainNav');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (nav) nav.classList.remove('is-open');
+        if (btn) {
+          btn.innerText = '☰';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('is-open'));
+        document.querySelectorAll('.drop-arrow').forEach(a => a.style.transform = 'rotate(0)');
+      }
+    });
+
     function openBlogPost(title, text) {
-      showModal("Blogginnlegg", title, text);
+      showModal("Blog Post", title, text);
     }
 
     function openGenericModal(title, text) {
-      showModal("Informasjon", title, text);
+      showModal("Information", title, text);
     }
 
     function showModal(tag, title, contentHtml) {
@@ -685,23 +857,6 @@
     function closeModalDirect() {
       document.getElementById('modalOverlay').style.display = 'none';
       document.body.style.overflow = 'auto';
-    }
-
-    function toggleMobileNav() {
-      const nav = document.querySelector('.nav');
-      if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-      } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '47px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = '#fff';
-        nav.style.padding = '20px';
-        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-      }
     }
 
     document.addEventListener('keydown', function(e) {

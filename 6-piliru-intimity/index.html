@@ -1,16 +1,40 @@
 <!doctype html>
-<html lang="no">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>6 pilarer for intimitet / 6 Pillars of Intimacy | Daniela Torp</title>
-  <meta name="description" content="Intimitet i sammenheng / Intimacy in context - Daniela Torp">
+  <title>6 Pillars of Intimacy | Daniela Torp</title>
+  <meta name="description" content="Intimacy in Context - 6 Pillars of Intimacy with Daniela Torp">
+  <link rel="icon" href="../images/cropped-favicona-32x32.png" sizes="32x32">
+  <link rel="icon" href="../images/cropped-favicona-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="../images/cropped-favicona-180x180.png">
 
   <style>
     /* =========================================
-       1. GLOBAL RESET & BASE STYLES
+       1. GLOBAL RESET & DESIGN SYSTEM
        ========================================= */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+
+    :root {
+      --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --color-text: #1d1d1f;
+      --color-text-muted: #5e5e64;
+      --color-primary: #ee5a7a;
+      --color-primary-dark: #d63d60;
+      --color-primary-light: #fff3f6;
+      --color-border: #e6e6eb;
+      --color-card-bg: #ffffff;
+      --color-page-bg: #ffffff;
+      --container-max-width: 1200px;
+      --border-radius-sm: 8px;
+      --border-radius-md: 12px;
+      --border-radius-lg: 20px;
+      --transition-fast: 0.2s ease;
+      --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.1);
+    }
 
     * {
       box-sizing: border-box;
@@ -23,17 +47,21 @@
     }
 
     body {
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #080808;
+      font-family: var(--font-main);
+      color: var(--color-text);
       font-weight: 300;
-      background: #fff;
-      line-height: 1.6;
+      background: var(--color-page-bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     a, button {
       color: inherit;
       text-decoration: none;
       font-family: inherit;
+      transition: all var(--transition-fast);
     }
 
     button {
@@ -43,154 +71,206 @@
     }
 
     .wrap {
-      max-width: 1344px;
-      margin: auto;
+      width: 100%;
+      max-width: var(--container-max-width);
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
     }
 
     /* =========================================
-       2. MULTILINGUAL SWITCHER ENGINE
-       ========================================= */
-    body:not(.lang-en) [data-lang="en"] {
-      display: none !important;
-    }
-    body.lang-en [data-lang="no"] {
-      display: none !important;
-    }
-
-    /* =========================================
-       3. HEADER & NAVIGATION
+       2. STANDARDIZED HEADER & NAVIGATION
        ========================================= */
     header {
       height: 100px;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      padding: 0 4.3%;
+      background: rgba(255, 255, 255, 0.98);
       position: sticky;
       top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
     }
 
     header .wrap {
-      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      height: 100%;
+      margin-right: auto;
     }
 
     .logo {
       width: 325px;
       height: 100px;
       object-fit: contain;
-      margin-right: auto;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 21px;
-      font-size: 12px;
+      gap: 24px;
+      font-size: 14px;
       font-weight: 400;
+      color: #111;
     }
 
-    .nav a:hover, .nav .drop:hover {
-      color: #ee5a7a;
+    .nav > a,
+    .nav .drop-toggle {
+      color: inherit;
+      padding: 10px 0;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: inherit;
+    }
+
+    .nav a:hover,
+    .nav .drop:hover > .drop-toggle,
+    .nav .drop:focus-within > .drop-toggle {
+      color: var(--color-primary);
     }
 
     .nav .drop {
       position: relative;
-      cursor: pointer;
       padding: 10px 0;
     }
 
-    .nav .drop:after {
-      content: '▼';
-      font-size: 7px;
-      margin-left: 7px;
+    .drop-arrow {
+      font-size: 8px;
+      margin-left: 5px;
+      transition: transform var(--transition-fast);
       display: inline-block;
+    }
+
+    .nav .drop:hover .drop-arrow {
+      transform: rotate(180deg);
     }
 
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: calc(100% - 4px);
+      left: -12px;
       background: #fff;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
-      border-radius: 8px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--border-radius-sm);
       padding: 8px 0;
-      min-width: 280px;
-      z-index: 100;
+      min-width: 260px;
+      z-index: 1000;
     }
 
     .nav .drop:hover .dropdown-menu {
       display: block;
+      animation: navFade 0.2s ease-out forwards;
     }
 
-    .dropdown-menu a {
+    @keyframes navFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-menu a,
+    .dropdown-menu button {
       display: block;
       width: 100%;
       text-align: left;
-      padding: 8px 16px;
-      font-size: 12px;
-      color: #333;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: #3e3e42;
+      border-bottom: 1px solid #f8f8f8;
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      cursor: pointer;
     }
 
-    .dropdown-menu a:hover {
-      background: #fff5f7;
-      color: #e9476b;
+    .dropdown-menu a:last-child,
+    .dropdown-menu button:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu button:hover {
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      padding-left: 22px;
     }
 
     .flag {
       display: inline-flex;
       align-items: center;
-      margin-left: 20px;
+      margin-left: 10px;
+      cursor: default;
+    }
+
+    .flag img {
+      width: 20px;
+      height: 14px;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
     }
 
     .mobile-menu-btn {
       display: none;
-      font-size: 24px;
-      padding: 5px;
+      font-size: 26px;
+      padding: 6px 10px;
+      color: #111;
+      line-height: 1;
+      border-radius: var(--border-radius-sm);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     /* =========================================
-       4. HERO SECTION
+       3. HERO SECTION
        ========================================= */
     .page-hero {
-      position: relative;
       text-align: center;
-      padding: 60px 20px 50px;
-      background: linear-gradient(90deg, #f9dbe3 0%, #fff 50%, #d5eff2 100%);
-      border-bottom: 1px solid rgba(0,0,0,0.03);
+      padding: 80px 20px 90px;
+      background: linear-gradient(90deg, #f9dbe3 0%, #f8d7e1 31%, #fff 49%, #d7f0f3 71%, #d5eff2 100%);
+      position: relative;
     }
 
     .page-hero h1 {
-      font-size: 34px;
-      font-weight: 400;
+      font-size: 38px;
+      font-weight: 300;
       margin-bottom: 18px;
       color: #111;
     }
 
     .page-hero p {
       max-width: 820px;
-      margin: 0 auto 12px;
-      font-size: 15px;
-      line-height: 1.8;
+      margin: 0 auto 14px;
+      font-size: 16px;
       color: #444;
-    }
-
-    .page-hero strong {
-      font-weight: 500;
-      color: #222;
+      line-height: 1.7;
     }
 
     /* =========================================
-       5. PILLARS ROWS
+       4. PILLARS CONTENT
        ========================================= */
     .pillar-section {
-      padding: 65px 20px;
-      border-bottom: 1px solid #f6f6f6;
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .pillar-section:nth-child(even) {
@@ -198,80 +278,87 @@
     }
 
     .pillar-row {
-      max-width: 1140px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 60px;
+      gap: 65px;
+      max-width: 1050px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    .pillar-section:nth-child(even) .pillar-row {
+      flex-direction: row-reverse;
     }
 
     .pillar-image {
-      flex: 0 0 50%;
+      flex: 0 0 240px;
       text-align: center;
     }
 
     .pillar-image img {
-      width: 224px;
-      height: 224px;
-      max-width: 100%;
+      width: 220px;
+      height: 220px;
       object-fit: contain;
-      display: inline-block;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.06));
     }
 
     .pillar-content {
-      flex: 0 0 50%;
-      padding-right: 20px;
+      flex: 1;
     }
 
     .svg-divider {
-      width: 126px;
-      height: 26px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid meet' overflow='visible' height='100%25' viewBox='0 0 126 26' fill='black' stroke='none'%3E%3Cpath d='M3,10.2c2.6,0,2.6,2,2.6,3.2S4.4,16.5,3,16.5s-3-1.4-3-3.2S0.4,10.2,3,10.2z M18.8,10.2c1.7,0,3.2,1.4,3.2,3.2s-1.4,3.2-3.2,3.2c-1.7,0-3.2-1.4-3.2-3.2S17,10.2,18.8,10.2z M34.6,10.2c1.5,0,2.6,1.4,2.6,3.2s-0.5,3.2-1.9,3.2c-1.5,0-3.4-1.4-3.4-3.2S33.1,10.2,34.6,10.2z M50.5,10.2c1.7,0,3.2,1.4,3.2,3.2s-1.4,3.2-3.2,3.2c-1.7,0-3.3-0.9-3.3-2.6S48.7,10.2,50.5,10.2z M66.2,10.2c1.5,0,3.4,1.4,3.4,3.2s-1.9,3.2-3.4,3.2c-1.5,0-2.6-0.4-2.6-2.1S64.8,10.2,66.2,10.2z M82.2,10.2c1.7,0.8,2.6,1.4,2.6,3.2s-0.1,3.2-1.6,3.2c-1.5,0-3.7-1.4-3.7-3.2S80.5,9.4,82.2,10.2zM98.6,10.2c1.5,0,2.6,0.4,2.6,2.1s-1.2,4.2-2.6,4.2c-1.5,0-3.7-0.4-3.7-2.1S97.1,10.2,98.6,10.2z M113.4,10.2c1.2,0,2.2,0.9,2.2,3.2s-0.1,3.2-1.3,3.2s-3.1-1.4-3.1-3.2S112.2,10.2,113.4,10.2z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: contain;
-      margin-bottom: 18px;
+      width: 48px;
+      height: 3px;
+      background: var(--color-primary);
+      margin-bottom: 20px;
+      border-radius: 2px;
     }
 
     .pillar-content h2 {
-      font-size: 27px;
+      font-size: 26px;
       font-weight: 400;
-      color: #111;
       margin-bottom: 16px;
-      line-height: 1.3;
+      color: #111;
+      line-height: 1.35;
     }
 
     .pillar-content p {
-      font-size: 15px;
+      font-size: 15.5px;
       color: #555;
-      line-height: 1.8;
+      line-height: 1.75;
       margin-bottom: 24px;
     }
 
     .button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid #111;
-      border-radius: 22px;
+      border-radius: 30px;
       padding: 10px 24px;
       background: #fff;
-      font-size: 12px;
+      font-size: 12.5px;
       font-weight: 400;
       color: #111;
       cursor: pointer;
-      transition: all 0.2s;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
     }
 
     .button:hover {
       background: #111;
       color: #fff;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
     }
 
     /* =========================================
-       6. FOOTER
+       5. FOOTER
        ========================================= */
     footer {
       padding: 65px 8% 30px;
       text-align: center;
-      border-top: 1px solid #f0f0f0;
+      border-top: 1px solid var(--color-border);
       background: #fff;
     }
 
@@ -286,105 +373,129 @@
 
     .footer-grid h4 {
       font-size: 14px;
-      font-weight: 400;
+      font-weight: 500;
       margin: 0 0 15px;
+      color: #111;
     }
 
-    .footer-grid a {
+    .footer-grid a,
+    .footer-grid button {
       display: block;
-      color: #a69c9b;
+      color: #7e7978;
       font-size: 13px;
-      line-height: 1.85;
+      line-height: 1.95;
       text-align: left;
+      cursor: pointer;
     }
 
-    .footer-grid a:hover {
-      color: #080808;
+    .footer-grid a:hover,
+    .footer-grid button:hover {
+      color: var(--color-primary);
     }
 
-    .footer-bottom {
-      text-align: center;
-      margin-top: 40px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .footer-bottom .social-icons {
+    .social {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-bottom: 15px;
+      gap: 22px;
+      font-size: 19px;
+      color: #999;
+      margin: 85px 0 16px;
     }
 
-    .footer-bottom .social-icons a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: #f0f0f0;
-      border-radius: 50%;
-      color: #555;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      text-decoration: none;
+    .social a:hover {
+      color: #111;
     }
 
-    .footer-bottom .social-icons a:hover {
-      background: #e9476b;
-      color: #fff;
-    }
-
-    .footer-bottom .copyright {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 8px;
-    }
-
-    .footer-bottom .developer {
-      font-size: 13px;
-      font-weight: 500;
-    }
-
-    .footer-bottom .developer a {
-      color: #555;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-bottom .developer a:hover {
-      color: #e9476b;
-      text-decoration: underline;
+    .copyright {
+      font-size: 12px;
+      color: #aaa;
     }
 
     /* =========================================
-       7. RESPONSIVE
+       6. RESPONSIVE
        ========================================= */
-    @media (max-width: 900px) {
-      .nav {
-        display: none;
+    @media (max-width: 991px) {
+      header {
+        height: 80px;
       }
+
       .mobile-menu-btn {
         display: block;
       }
-      .pillar-row {
+
+      .nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 20px 24px 30px;
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid var(--color-border);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        gap: 0;
+        align-items: stretch;
+      }
+
+      .nav.is-open {
+        display: flex;
+      }
+
+      .nav > a,
+      .nav .drop-toggle {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 15px;
+        border-bottom: 1px solid #f2f2f5;
+        justify-content: space-between;
+      }
+
+      .nav .drop {
+        padding: 0;
+        width: 100%;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: static;
+        box-shadow: none;
+        border: none;
+        background: #fbfbfc;
+        padding: 4px 0 10px 14px;
+        border-left: 2px solid var(--color-primary);
+        margin: 4px 0 10px;
+      }
+
+      .dropdown-menu.is-open {
+        display: block;
+      }
+
+      .dropdown-menu a,
+      .dropdown-menu button {
+        padding: 10px 0;
+        font-size: 13.5px;
+        border-bottom: 1px dashed #ececed;
+      }
+
+      .flag {
+        padding: 16px 0 0;
+        margin-left: 0;
+      }
+
+      .pillar-row,
+      .pillar-section:nth-child(even) .pillar-row {
         flex-direction: column;
         text-align: center;
         gap: 35px;
       }
-      .pillar-image, .pillar-content {
-        flex: 100%;
-        width: 100%;
-        padding: 0;
-      }
-      .pillar-image img {
-        width: 100%;
-        max-width: 224px;
-        height: auto;
-      }
+
       .svg-divider {
-        margin: 0 auto 18px;
+        margin: 0 auto 20px;
       }
+
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -395,98 +506,77 @@
         grid-template-columns: 1fr;
       }
       .page-hero h1 {
-        font-size: 26px;
+        font-size: 28px;
       }
       .pillar-content h2 {
         font-size: 22px;
       }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-<body class="lang-en">
+<body>
 
   <!-- ================= HEADER ================= -->
   <header>
     <div class="wrap">
-      <a href="../index.html">
-        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+      <a href="../index.html" class="logo-link">
+        <img class="logo" src="../images/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
       
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false">☰</button>
+
       <nav class="nav" id="mainNav">
-        <!-- Home -->
-        <a href="../index.html" data-lang="no">Hjem</a>
-        <a href="../index.html" data-lang="en">Home</a>
+        <a href="../index.html">Home</a>
         
-        <!-- Dropdown: Pillars -->
-        <div class="drop" onclick="location.href='#pilarer'">
-          <span data-lang="no">6 pilarer for intimitet</span>
-          <span data-lang="en">6 Pillars of Intimacy</span>
+        <div class="drop">
+          <button type="button" class="drop-toggle" onclick="toggleDropdown(this)">
+            6 Pillars of Intimacy <span class="drop-arrow">▼</span>
+          </button>
           <div class="dropdown-menu">
-            <a href="#pilar-1" data-lang="no">1. Parintimitet & egen kropp</a>
-            <a href="#pilar-1" data-lang="en">1. Couple Intimacy & Own Body</a>
-            <a href="#pilar-2" data-lang="no">2. Graviditet og fødsel</a>
-            <a href="#pilar-2" data-lang="en">2. Pregnancy & Childbirth</a>
-            <a href="#pilar-3" data-lang="no">3. Intimitet med baby</a>
-            <a href="#pilar-3" data-lang="en">3. Baby & Family Intimacy</a>
-            <a href="#pilar-4" data-lang="no">4. Barn og ungdom</a>
-            <a href="#pilar-4" data-lang="en">4. Children & Adolescents</a>
-            <a href="#pilar-5" data-lang="no">5. Intimitet i moden alder</a>
-            <a href="#pilar-5" data-lang="en">5. Intimacy in Mature Age</a>
-            <a href="#pilar-6" data-lang="no">6. Intimitet i døden</a>
-            <a href="#pilar-6" data-lang="en">6. Intimacy in Dying</a>
+            <a href="#pilar-1">1. Couple Intimacy & Own Body</a>
+            <a href="#pilar-2">2. Pregnancy & Birth</a>
+            <a href="#pilar-3">3. Baby & Family Intimacy</a>
+            <a href="#pilar-4">4. Children & Adolescents</a>
+            <a href="#pilar-5">5. Intimacy in Mature Age</a>
+            <a href="#pilar-6">6. Intimacy in Dying</a>
           </div>
         </div>
 
-        <!-- About -->
-        <a href="../index.html#om-daniela" data-lang="no">Hvem er Daniela</a>
-        <a href="../index.html#om-daniela" data-lang="en">Who is Daniela</a>
+        <a href="../index.html#om-daniela">Who is Daniela</a>
         
-        <!-- Dropdown: Workshops -->
-        <div class="drop" onclick="location.href='../index.html#workshops'">
-          <span data-lang="no">Workshoper</span>
-          <span data-lang="en">Workshops</span>
+        <div class="drop">
+          <button type="button" class="drop-toggle" onclick="toggleDropdown(this)">
+            Workshops <span class="drop-arrow">▼</span>
+          </button>
           <div class="dropdown-menu">
-            <a href="../index.html#workshops" data-lang="no">Kunsten å behage en kvinne</a>
-            <a href="../index.html#workshops" data-lang="en">The Art of Pleasing a Woman</a>
-            <a href="../index.html#workshops" data-lang="no">Kunsten å behage en mann</a>
-            <a href="../index.html#workshops" data-lang="en">The Art of Pleasing a Man</a>
-            <a href="../index.html#workshops" data-lang="no">Kunsten å behage (for par)</a>
-            <a href="../index.html#workshops" data-lang="en">The Art of Pleasing (For Couples)</a>
+            <a href="../workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+            <a href="../workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+            <a href="../workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
+            <a href="../workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+            <a href="../workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+            <a href="../workshops/porod-jako-jistota.html">Birth as Certainty</a>
+            <a href="../workshops/matka-a-dcera.html">Mother and Daughter</a>
+            <a href="../workshops/Hraj-si-se-mnou.html">Play With Me</a>
+            <a href="../workshops/zenska-esence-no.html">Female Essence & Vitality</a>
+            <a href="../workshops.html" style="font-weight:500;color:var(--color-primary);">See all 9 workshops ➜</a>
           </div>
         </div>
 
-        <a href="../index.html#kontakt" data-lang="no">Personlig konsultasjon</a>
-        <a href="../index.html#kontakt" data-lang="en">Private Consultation</a>
-
-        <a href="../index.html#om-daniela" data-lang="no">Blogg</a>
-        <a href="../index.html#om-daniela" data-lang="en">Blog</a>
-
-        <a href="../index.html#kontakt" data-lang="no">Kontakt</a>
-        <a href="../index.html#kontakt" data-lang="en">Contact</a>
-
-        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English" style="border-radius: 2px;"></span>
+        <a href="../konsultasjon.html">Personal Consultation</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#kontakt">Contact</a>
+        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English"></span>
       </nav>
-
-      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Meny">☰</button>
     </div>
   </header>
 
   <!-- ================= HERO ================= -->
   <section class="page-hero">
     <div class="wrap">
-      <div data-lang="no">
-        <h1>6 pilarer for intimitet</h1>
-        <p>Intimitet er den behagelige følelsen av trygghet og tillit mellom mennesker. Intimitet oppstår ikke av seg selv, man må jobbe med den. Den følger oss gjennom alle faser av livet.</p>
-        <p>Fra mitt perspektiv hviler intimitet på 6 grunnleggende pilarer. I konsultasjoner med klienter fokuserer vi primært på intimitet i forhold til egen kropp. Alt begynner og slutter med kjærlighet til seg selv. Når jeg elsker meg selv, kan jeg elske andre. Når jeg har medfølelse for meg selv, kan jeg vise det til andre i ulike livsfaser.</p>
-        <p><strong>Respekt, kjærlighet og medfølelse.</strong></p>
-      </div>
-      <div data-lang="en">
-        <h1>6 Pillars of Intimacy</h1>
-        <p>Intimacy is that comforting feeling of safety and trust between people. It doesn't appear by itself; it requires care and dedication. It accompanies us throughout every stage of life.</p>
-        <p>From my perspective, intimacy rests upon 6 foundational pillars. In consultations with clients, we focus primarily on the relationship with our own body. Everything begins and ends with self-love. When I love myself, I can love others. When I cultivate self-compassion, I can extend it to others in all walks of life.</p>
-        <p><strong>Respect, love, and compassion.</strong></p>
-      </div>
+      <h1>6 Pillars of Intimacy</h1>
+      <p>Intimacy is that comforting feeling of safety, merge, and deep trust between people. It does not appear by chance; it requires care, presence, and dedication. It accompanies us throughout every stage of our life.</p>
+      <p>From my perspective, intimacy rests upon 6 foundational pillars. In consultations with clients, we focus primarily on the relationship with our own body. Everything begins and ends with self-love. When I love myself, I can genuinely love others. When I cultivate self-compassion, I can extend it to others in all seasons of life.</p>
+      <p><strong>Respect, love, and compassion.</strong></p>
     </div>
   </section>
 
@@ -495,20 +585,13 @@
     <section class="pillar-section" id="pilar-1">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/1male_komplet_na_web.png" width="224" height="224" alt="Parintimitet">
+          <img src="../images/1male_komplet_na_web.png" width="220" height="220" alt="Couple Intimacy">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Parintimitet, forholdet til egen kropp</h2>
-            <p>Ofte forstår vi rett og slett ikke oss selv. Eller hverandre. Likevel ønsker vi alle det samme – å elske og bli elsket. Å nyte et romantisk forhold og seksualiteten vår. Vi kan bare akseptere den andre fullt ut dersom vi aksepterer oss selv fullt ut. Kjærlighet til egen kropp. Ofte det vanskeligste. Det betyr å akseptere kroppen din akkurat slik den er. Jeg jobber med par både individuelt og sammen.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Couple Intimacy & Relationship with One's Own Body</h2>
-            <p>Often we simply struggle to understand ourselves—and each other. Yet we all yearn for the same thing: to love and be loved, and to genuinely enjoy our romantic partnership and sexuality. We can only fully accept someone else once we fully embrace ourselves. Loving our own body is often the greatest hurdle, meaning accepting it precisely as it is. I work with couples both individually and together.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>1. Couple Intimacy & Relationship with One's Own Body</h2>
+          <p>Often we simply struggle to understand ourselves—and each other. Yet we all yearn for the same thing: to love and be loved, and to genuinely enjoy our romantic partnership and sexuality. We can only fully accept someone else once we fully embrace ourselves. Loving our own body is often the greatest hurdle, meaning accepting it precisely as it is. I work with couples both individually and together.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -517,20 +600,13 @@
     <section class="pillar-section" id="pilar-2">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/2male%CC%81_komplet_na_web.png" width="224" height="224" alt="Graviditet">
+          <img src="../images/2male%CC%81_komplet_na_web.png" width="220" height="220" alt="Pregnancy & Birth">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Intimitet i svangerskapet og ved fødsel</h2>
-            <p>Du elsker kroppen din. Akkurat slik den er. Du har blitt vant til deg selv. Du tar vare på den. Plutselig, på grunn av graviditet, begynner den å endre seg ukontrollert. Den endrer seg på en slik måte at du ofte ikke en gang kjenner deg selv igjen. Den reagerer annerledes på berøring, bevegelse og intimitet. Å opprettholde intimitet som par under graviditet er ofte en utfordring. Jeg er her for å hjelpe deg med det. I trygge omgivelser vil jeg veilede deg gjennom intimitetens verden i svangerskapet.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Intimacy in Pregnancy & Birth</h2>
-            <p>You love your body as it is; you have grown familiar with it and take good care of it. Suddenly, pregnancy initiates profound, uncontrollable shifts. It changes to the point where you might barely recognize yourself, responding differently to touch, movement, and affection. Nurturing intimacy as a couple throughout pregnancy is frequently a sensitive challenge. I am here to guide you safely through this profound chapter.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>2. Intimacy in Pregnancy & Birth</h2>
+          <p>You love your body as it is; you have grown familiar with it and take good care of it. Suddenly, pregnancy initiates profound, uncontrollable shifts. It changes to the point where you might barely recognize yourself, responding differently to touch, movement, and affection. Nurturing intimacy as a couple throughout pregnancy is frequently a sensitive challenge. I am here to guide you safely through this profound chapter.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -539,20 +615,13 @@
     <section class="pillar-section" id="pilar-3">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/3male%CC%81_komplet_na_web.png" width="224" height="224" alt="Morsrollen">
+          <img src="../images/3male%CC%81_komplet_na_web.png" width="220" height="220" alt="Baby & Family Intimacy">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Intimitet i morsrollen</h2>
-            <p>Den etterlengtede babyen er født. Dere er lykkelige foreldre. Verden deres er plutselig snudd helt på hodet. Intimiteten i forholdet deres har plutselig forsvunnet. Hvordan gjenopprette den? Hvordan håndtere denne helt nye situasjonen sammen. Jeg har opplevd det selv. Jeg vet hva som hjelper. Du må bare ønske å endre det.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Intimacy in Motherhood & Family Bonds</h2>
-            <p>Your long-awaited child has arrived. You are joyful parents, yet your daily reality has turned upside down. Romantic intimacy often takes a sudden backseat. How do you rekindle that connection? How do you navigate this brand-new dynamic as partners? Having walked this path myself, I know what truly supports reconnection—all it takes is the mutual will to begin.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>3. Intimacy in Motherhood & Family Bonds</h2>
+          <p>Your long-awaited child has arrived. You are joyful parents, yet your daily reality has turned upside down. Romantic intimacy often takes a sudden backseat. How do you rekindle that connection? How do you navigate this brand-new dynamic as partners? Having walked this path myself, I know what truly supports reconnection—all it takes is the mutual will to begin.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -561,20 +630,13 @@
     <section class="pillar-section" id="pilar-4">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/4male%CC%81_komplet_na_web.png" width="224" height="224" alt="Barn og Ungdom">
+          <img src="../images/4male%CC%81_komplet_na_web.png" width="220" height="220" alt="Children & Adolescents">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Intimitet hos barn og ungdom</h2>
-            <p>I løpet av de første 18 månedene utvikler barn et intimt forhold til sin egen kropp. Gruer du deg til de første spørsmålene om seksualitet og sex? Er du rådvill når ditt kjære barn leker med underlivet sitt? Du har stor makt til å endre barnets tilnærming til kroppen sin. Du kan påvirke hva slags første seksuelle opplevelse datteren din vil ha. Først vil vi bearbeide frykten din sammen, og deretter kan vi gå videre og forberede deg på tiden med nysgjerrige spørsmål.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Intimacy in Children & Adolescents</h2>
-            <p>During the first 18 months, children already begin forming an intimate relationship with their physical selves. Do you feel anxious about early questions regarding bodies and sexuality? Are you unsure how to respond when your little one explores private parts? Parents hold tremendous influence in cultivating a healthy body image and setting the stage for respectful future relationships. Together, we address your worries and prepare you for insightful, open conversations.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>4. Intimacy in Children & Adolescents</h2>
+          <p>During the first 18 months, children already begin forming an intimate relationship with their physical selves. Do you feel anxious about early questions regarding bodies and sexuality? Are you unsure how to respond when your little one explores private parts? Parents hold tremendous influence in cultivating a healthy body image and setting the stage for respectful future relationships. Together, we address your worries and prepare you for insightful, open conversations.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -583,20 +645,13 @@
     <section class="pillar-section" id="pilar-5">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/5male%CC%81_komplet_na_web.png" width="224" height="224" alt="Moden alder">
+          <img src="../images/5male%CC%81_komplet_na_web.png" width="220" height="220" alt="Mature Age">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Intimitet i moden alder</h2>
-            <p>Lever du i et langvarig forhold og tror at dere ikke kan oppdage noe nytt om hverandre? La meg motbevise det. Du vil bli overrasket over hvor mye dere kan nyte, og hvordan dere kan forelske dere på nytt selv etter 20 års samliv. Dere vil finne mye inspirasjon til det intime livet. Dersom du lever alene etter en skilsmisse eller et langt brudd og ikke vet hvordan du knytter nye bånd, finner vi ut av det sammen. Vi avdekker dine skjulte styrker. Du vil bli overrasket over hvor fullt og rikt livet kan leves også i moden alder.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Intimacy in Mature Age</h2>
-            <p>If you have shared a long-term bond, you might believe there is nothing left to learn about each other. Let me prove otherwise. You will be amazed at the renewed passion you can discover and how you can fall in love all over again, even after decades together. And if you are single following a divorce or long separation, we will explore your inner strengths and show you how richly intimacy can flourish at any age.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>5. Intimacy in Mature Age</h2>
+          <p>If you have shared a long-term bond, you might believe there is nothing left to learn about each other. Let me prove otherwise. You will be amazed at the renewed passion you can discover and how you can fall in love all over again, even after decades together. And if you are single following a divorce or long separation, we will explore your inner strengths and show you how richly intimacy can flourish at any age.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -605,20 +660,13 @@
     <section class="pillar-section" id="pilar-6">
       <div class="pillar-row">
         <div class="pillar-image">
-          <img src="https://raw.githubusercontent.com/alansmorais/danielatorp/main/images/6male%CC%81_komplet_na_web.png" width="224" height="224" alt="Døden">
+          <img src="../images/6male%CC%81_komplet_na_web.png" width="220" height="220" alt="Dying & Departure">
         </div>
         <div class="pillar-content">
           <div class="svg-divider"></div>
-          <div data-lang="no">
-            <h2>Intimitet i døden</h2>
-            <p>Alt tar en slutt en dag. Også livet. Det er opp til oss om vi klarer å følge våre nærmeste til veis ende med verdighet og respekt.</p>
-            <a href="../index.html#kontakt" class="button">Bestill konsultasjon</a>
-          </div>
-          <div data-lang="en">
-            <h2>Intimacy in Dying & Departure</h2>
-            <p>Everything in life eventually runs its course. It rests within our hands whether we are able to accompany our loved ones through their final journey with reverence, peace, and deep human presence.</p>
-            <a href="../index.html#kontakt" class="button">Book a Consultation</a>
-          </div>
+          <h2>6. Intimacy in Dying & Departure</h2>
+          <p>Everything in life eventually runs its course. It rests within our hands whether we are able to accompany our loved ones through their final journey with reverence, peace, and deep human presence.</p>
+          <a href="../index.html#kontakt" class="button">Book a Consultation</a>
         </div>
       </div>
     </section>
@@ -629,92 +677,82 @@
     <div class="footer-grid">
       <!-- Col 1: Contact -->
       <div>
-        <h4 data-lang="no">Kontakt</h4>
-        <h4 data-lang="en">Contact</h4>
-        <a href="../index.html" data-lang="no">Hjem</a>
-        <a href="../index.html" data-lang="en">Home</a>
-        <a href="../index.html#om-daniela" data-lang="no">Hvem er Daniela</a>
-        <a href="../index.html#om-daniela" data-lang="en">Who is Daniela</a>
-        <a href="../index.html#om-daniela" data-lang="no">Daniela i media</a>
-        <a href="../index.html#om-daniela" data-lang="en">Daniela in Media</a>
-        <a href="../index.html#om-daniela" data-lang="no">Blogg</a>
-        <a href="../index.html#om-daniela" data-lang="en">Blog</a>
-        <a href="../index.html#kontakt" data-lang="no">Kontakt</a>
-        <a href="../index.html#kontakt" data-lang="en">Contact</a>
+        <h4>Contact</h4>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#om-daniela">Who is Daniela</a>
+        <a href="../index.html#om-daniela">Daniela in Media</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../index.html#kontakt">Contact</a>
       </div>
 
       <!-- Col 2: Workshops -->
       <div>
-        <h4 data-lang="no">Workshoper</h4>
-        <h4 data-lang="en">Workshops</h4>
-        <a href="../index.html#workshops" data-lang="no">Kunsten å behage en kvinne</a>
-        <a href="../index.html#workshops" data-lang="en">The Art of Pleasing a Woman</a>
-        <a href="../index.html#workshops" data-lang="no">Kunsten å behage en mann</a>
-        <a href="../index.html#workshops" data-lang="en">The Art of Pleasing a Man</a>
-        <a href="../index.html#workshops" data-lang="no">Bare for par</a>
-        <a href="../index.html#workshops" data-lang="en">Just for Couples</a>
-        <a href="../index.html#workshops" data-lang="no">Bekkenbunnens hemmeligheter</a>
-        <a href="../index.html#workshops" data-lang="en">Secrets of the Pelvic Floor</a>
-        <a href="../index.html#workshops" data-lang="no">Jeg var gravid, men ...</a>
-        <a href="../index.html#workshops" data-lang="en">I Was Pregnant, But ...</a>
-        <a href="../index.html#workshops" data-lang="no">Fødsel som trygghet</a>
-        <a href="../index.html#workshops" data-lang="en">Birth as Certainty</a>
+        <h4>Workshops</h4>
+        <a href="../workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+        <a href="../workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+        <a href="../workshops/jen-pro-pary.html">The Art of Pleasing (For Couples)</a>
+        <a href="../workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+        <a href="../workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+        <a href="../workshops/porod-jako-jistota.html">Birth as Certainty</a>
+        <a href="../workshops/matka-a-dcera.html">Mother and Daughter</a>
+        <a href="../workshops/Hraj-si-se-mnou.html">Play With Me</a>
+        <a href="../workshops/zenska-esence-no.html">Female Essence & Life Force</a>
+        <a href="../workshops.html" style="color:var(--color-primary);font-weight:500;">See all 9 workshops ➜</a>
       </div>
 
       <!-- Col 3: Pillars -->
       <div>
-        <h4 data-lang="no">Konsultasjoner / 6 pilarer for intimitet</h4>
-        <h4 data-lang="en">Consultations / 6 Pillars of Intimacy</h4>
-        <a href="../index.html#kontakt" data-lang="no">Personlig konsultasjon</a>
-        <a href="../index.html#kontakt" data-lang="en">Private Consultation</a>
-        <a href="#pilar-1" data-lang="no">Parintimitet, forholdet til egen kropp</a>
-        <a href="#pilar-1" data-lang="en">Couple intimacy & body image</a>
-        <a href="#pilar-2" data-lang="no">Intimitet under graviditet og ved fødsel</a>
-        <a href="#pilar-2" data-lang="en">Intimacy in pregnancy and childbirth</a>
-        <a href="#pilar-3" data-lang="no">Intimitet i morsrollen</a>
-        <a href="#pilar-3" data-lang="en">Intimacy in motherhood</a>
-        <a href="#pilar-4" data-lang="no">Intimitet hos barn og ungdom</a>
-        <a href="#pilar-4" data-lang="en">Intimacy in children & youth</a>
-        <a href="#pilar-5" data-lang="no">Intimitet i moden alder</a>
-        <a href="#pilar-5" data-lang="en">Intimacy in mature age</a>
-        <a href="#pilar-6" data-lang="no">Intimitet i døden</a>
-        <a href="#pilar-6" data-lang="en">Intimacy in dying</a>
+        <h4>Consultations / 6 Pillars of Intimacy</h4>
+        <a href="../konsultasjon.html">Private Consultation</a>
+        <a href="#pilar-1">1. Couple Intimacy & Own Body</a>
+        <a href="#pilar-2">2. Pregnancy & Birth</a>
+        <a href="#pilar-3">3. Baby & Family Intimacy</a>
+        <a href="#pilar-4">4. Children & Adolescents</a>
+        <a href="#pilar-5">5. Intimacy in Mature Age</a>
+        <a href="#pilar-6">6. Intimacy in Dying</a>
       </div>
     </div>
 
-    <!-- Exact Custom Footer Bottom -->
-    <div class="footer-bottom">
-      <div class="social-icons">
-        <a href="https://www.youtube.com/channel/UCXx9X1wDuda2NV4-WQgnivw" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/danielatorp" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/intimitycoachdanielatorp/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      </div>
-      <p class="copyright">© 2026 <span data-lang="no">Alle rettigheter forbeholdt</span><span data-lang="en">All rights reserved</span> | Daniela Torp</p>
-      <p class="developer">
-        <a href="https://AlanSMSolutions.com" target="_blank" rel="noopener noreferrer">Developed by AlanSMSolutions.com</a>
-      </p>
+    <div class="social">
+      <a href="https://facebook.com/danielatorp" target="_blank" rel="noopener">f</a>
+      <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank" rel="noopener">◎</a>
+      <a href="https://youtube.com" target="_blank" rel="noopener">◉</a>
     </div>
+    <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
   </footer>
 
   <!-- ================= SCRIPTS ================= -->
   <script>
-    // Mobile nav toggle
     function toggleMobileNav() {
       const nav = document.getElementById('mainNav');
-      if (nav.style.display === 'flex' && nav.style.flexDirection === 'column') {
-        nav.style.display = '';
-      } else {
-        nav.style.display = 'flex';
-        nav.style.flexDirection = 'column';
-        nav.style.position = 'absolute';
-        nav.style.top = '100px';
-        nav.style.left = '0';
-        nav.style.right = '0';
-        nav.style.background = '#fff';
-        nav.style.padding = '20px';
-        nav.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+      const btn = document.querySelector('.mobile-menu-btn');
+      const isOpen = nav.classList.toggle('is-open');
+      btn.innerText = isOpen ? '✕' : '☰';
+      btn.setAttribute('aria-expanded', isOpen);
+    }
+
+    function toggleDropdown(btn) {
+      if (window.innerWidth < 992) {
+        const menu = btn.nextElementSibling;
+        const arrow = btn.querySelector('.drop-arrow');
+        const isOpen = menu.classList.toggle('is-open');
+        if (arrow) arrow.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0)';
       }
     }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 992) {
+        const nav = document.getElementById('mainNav');
+        const btn = document.querySelector('.mobile-menu-btn');
+        if (nav) nav.classList.remove('is-open');
+        if (btn) {
+          btn.innerText = '☰';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+        document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('is-open'));
+        document.querySelectorAll('.drop-arrow').forEach(a => a.style.transform = 'rotate(0)');
+      }
+    });
   </script>
 </body>
 </html>
