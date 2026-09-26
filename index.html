@@ -1201,7 +1201,64 @@
         gap: 32px;
       }
     }
+  
+    /* =========================================
+       MULTILINGUAL LANGUAGE SWITCHER
+       ========================================= */
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 4px;
+      padding-left: 4px;
+      border-left: 1px solid var(--color-border);
+    }
+
+    .language-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      white-space: nowrap;
+      border-radius: 6px;
+    }
+
+    .language-link:hover,
+    .language-link.active {
+      color: var(--color-primary);
+    }
+
+    .language-flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    @media (max-width: 991px) {
+      .language-switcher {
+        width: 100%;
+        justify-content: center;
+        margin: 8px 0 0;
+        padding: 12px 0 4px;
+        border-left: 0;
+        border-top: 1px solid var(--color-border);
+      }
+
+      .language-link {
+        padding: 8px 10px;
+      }
+    }
+
   </style>
+
+  <!-- Multilingual SEO: equivalent homepage versions -->
+  <link rel="alternate" hreflang="no" href="https://danielatorp.no/">
+  <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/">
+  <link rel="alternate" hreflang="en" href="https://danielatorp.com/">
+  <link rel="alternate" hreflang="x-default" href="https://danielatorp.com/">
+
 </head>
 <body>
 
@@ -1256,7 +1313,12 @@
         <a href="konsultasjon.html">Private Consultation</a>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
-        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English"></span>
+
+        <div class="language-switcher" aria-label="Language selection">
+          <a class="language-link" href="https://danielatorp.no/" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true">🇳🇴</span><span>NO</span></a>
+          <a class="language-link" href="https://www.danielatorp.cz/" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true">🇨🇿</span><span>CZ</span></a>
+          <a class="language-link active" href="https://danielatorp.com/" hreflang="en" lang="en" aria-label="English"><span class="language-flag" aria-hidden="true">🇬🇧</span><span>EN</span></a>
+        </div>
       </nav>
     </div>
   </header>
@@ -1580,6 +1642,28 @@
        JAVASCRIPT FUNCTIONALITY
        ========================================= -->
   <script>
+    /* =========================================
+       MULTILINGUAL DOMAIN CONFIGURATION
+       ========================================= */
+    const LANGUAGE_DOMAINS = {'no': 'https://danielatorp.no/', 'cz': 'https://www.danielatorp.cz/', 'en': 'https://danielatorp.com/'};
+
+    // The three homepage links above are explicit. For equivalent deeper pages,
+    // preserve the current pathname/hash when this same file is reused there.
+    function updateLanguageLinksForCurrentPath() {
+      const currentPath = window.location.pathname || '/';
+      const currentHash = window.location.hash || '';
+      document.querySelectorAll('.language-link').forEach(link => {
+        const targetCode = link.getAttribute('hreflang') === 'cs' ? 'cz' : link.getAttribute('hreflang');
+        if (!targetCode || !LANGUAGE_DOMAINS[targetCode]) return;
+        // Keep homepage links clean while preserving deeper paths automatically.
+        if (currentPath !== '/' && currentPath !== '/index.html') {
+          link.href = LANGUAGE_DOMAINS[targetCode].replace(/\/$/, '') + currentPath + currentHash;
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateLanguageLinksForCurrentPath);
+
     function toggleMobileNav() {
       const nav = document.getElementById('mainNav');
       const btn = document.querySelector('.mobile-menu-btn');
