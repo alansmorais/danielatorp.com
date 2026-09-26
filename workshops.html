@@ -1,20 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="cs">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Workshops – Daniela Torp</title>
-  <link rel="icon" href="images/logo_perem_bez_pozadi%CC%81.png" type="image/png">
-  <link rel="apple-touch-icon" href="images/logo_perem_bez_pozadi%CC%81.png">
-  <link rel="alternate" hreflang="no" href="https://danielatorp.no/workshops.html">
-  <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/workshops.html">
-  <link rel="alternate" hreflang="en" href="https://danielatorp.com/workshops.html">
-  <link rel="alternate" hreflang="x-default" href="https://danielatorp.com/workshops.html">
+  <title>Workshopy – Daniela Torp</title>
 <style>
     /* =========================================
        1. GLOBAL RESET & BASE STYLES
        ========================================= */
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
     :root {
       --color-primary: #ee5a7a;
@@ -32,154 +26,38 @@
     .wrap { max-width: 1344px; margin: auto; }
 
     /* =========================================
-       2. HEADER & NAVIGATION (STANDARDIZED)
+       2. HEADER & MOBILE-FIRST NAVIGATION
        ========================================= */
-    header {
-      height: 100px;
-      background: rgba(255, 255, 255, 0.98);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      padding: 0 4.3%;
-    }
+    header { height: 80px; background: #fff; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+    header .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; }
+    .logo-link { display: inline-flex; align-items: center; height: 100px; margin-right: auto; }
+    .logo { height: 52px; width: auto; object-fit: contain; }
+    .mobile-menu-btn { display: block; font-size: 28px; line-height: 1; color: #111; padding: 8px; background: none; border: none; cursor: pointer; }
+    .nav { display: none; position: absolute; top: 80px; left: 0; width: 100%; background: #fff; flex-direction: column; padding: 16px 6% 24px; border-bottom: 2px solid #eee; box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08); max-height: calc(100vh - 80px); overflow-y: auto; gap: 0; }
+    .nav.is-open { display: flex; }
+    .nav a, .nav .drop-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 14px 0; font-size: 15px; font-weight: 400; color: #111; border-bottom: 1px solid #f5f5f5; background: none; text-align: left; }
+    .nav a:hover, .nav .drop-toggle:hover { color: #ee5a7a; }
+    .nav .drop { width: 100%; }
+    .dropdown-menu { display: none; flex-direction: column; background: #fafafa; padding: 4px 0 10px 14px; border-left: 2px solid #ee5a7a; margin: 4px 0 10px; }
+    .dropdown-menu.is-open { display: flex; }
+    .dropdown-menu a, .dropdown-menu button { padding: 10px 0; font-size: 13.5px; color: #555; width: 100%; text-align: left; border-bottom: 1px dashed #eee; }
+    .flag { padding: 14px 0 0; display: flex; align-items: center; }
+    .flag img { width: 20px; height: auto; border-radius: 2px; display: block; }
 
-    header .wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .logo-link {
-      display: inline-flex;
-      align-items: center;
-      height: 100px;
-      margin-right: auto;
-    }
-
-    .logo {
-      width: 325px;
-      height: 100px;
-      object-fit: contain;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 14px;
-      font-weight: 400;
-      color: #111;
-    }
-
-    .nav > a,
-    .nav .drop-toggle {
-      color: inherit;
-      padding: 10px 0;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav a:hover,
-    .nav .drop:hover > .drop-toggle,
-    .nav .drop:focus-within > .drop-toggle {
-      color: var(--color-primary);
-    }
-
-    .nav .drop {
-      position: relative;
-      padding: 10px 0;
-      cursor: pointer;
-    }
-
-    .drop-arrow {
-      font-size: 8px;
-      margin-left: 5px;
-      transition: transform var(--transition-fast);
-      display: inline-block;
-    }
-
-    .nav .drop:hover .drop-arrow {
-      transform: rotate(180deg);
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% - 4px);
-      left: -12px;
-      background: #fff;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
-      border: 1px solid var(--color-border);
-      border-radius: var(--border-radius-sm);
-      padding: 8px 0;
-      min-width: 260px;
-      z-index: 1000;
-    }
-
-    .nav .drop:hover .dropdown-menu {
-      display: block;
-      animation: navFade 0.2s ease-out forwards;
-    }
-
-    @keyframes navFade {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .dropdown-menu a,
-    .dropdown-menu button {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 10px 18px;
-      font-size: 13px;
-      color: #3e3e42;
-      border-bottom: 1px solid #f8f8f8;
-      background: transparent;
-    }
-
-    .dropdown-menu a:last-child,
-    .dropdown-menu button:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-menu a:hover,
-    .dropdown-menu button:hover {
-      background: var(--color-primary-light);
-      color: var(--color-primary);
-      padding-left: 22px;
-    }
-
-    .flag {
-      display: inline-flex;
-      align-items: center;
-      margin-left: 10px;
-      cursor: default;
-    }
-
-    .flag img {
-      width: 20px;
-      height: 14px;
-      object-fit: cover;
-      border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      font-size: 26px;
-      padding: 6px 10px;
-      color: #111;
-      line-height: 1;
-      border-radius: var(--border-radius-sm);
+    @media (min-width: 992px) {
+      header { height: 100px; }
+      .logo { height: 100px; width: 325px; }
+      .mobile-menu-btn { display: none; }
+      .nav { display: flex !important; position: static; flex-direction: row; width: auto; padding: 0; box-shadow: none; border-bottom: none; overflow-y: visible; gap: 24px; align-items: center; }
+      .nav a, .nav .drop-toggle { padding: 8px 0; font-size: 14px; width: auto; border-bottom: none; }
+      .nav .drop { position: relative; width: auto; cursor: pointer; }
+      .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 0; min-width: 260px; margin: 0; border-left: none; }
+      .nav .drop:hover .dropdown-menu { display: flex; }
+      .dropdown-menu a, .dropdown-menu button { padding: 8px 16px; font-size: 13px; border-bottom: none; }
+      .dropdown-menu a:hover, .dropdown-menu button:hover { background: var(--color-primary-light); color: var(--color-primary); }
+      .flag { padding: 0; margin-left: 20px; }
+      .drop-arrow { font-size: 8px; margin-left: 5px; transition: transform var(--transition-fast); display: inline-block; }
+      .nav .drop:hover .drop-arrow { transform: rotate(180deg); }
     }
 
     /* =========================================
@@ -255,7 +133,7 @@
     /* =========================================
        8. RESPONSIVE MEDIA QUERIES
        ========================================= */
-    @media (max-width: 900px) { .nav { display: none; } .mobile-menu-btn { display: block; } .cards-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 991px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 640px) { .cards-grid, .footer-grid, .form { grid-template-columns: 1fr; } .form-bottom { flex-direction: column; align-items: stretch; } .send { margin-top: 10px; } }
   
     /* Multilingual language switcher */
@@ -276,47 +154,47 @@
         <img class="logo" src="images/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
 
-      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu">☰</button>
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Otevřít menu">☰</button>
 
       <nav class="nav" id="mainNav">
-        <a href="index.html">Home</a>
+        <a href="index.html">Domů</a>
 
-        <!-- Dropdown: 6 Pillars -->
+        <!-- Dropdown: 6 pilířů -->
         <div class="drop" onclick="location.href='6-piliru-intimity/index.html'">
-          6 Pillars of Intimacy <span class="drop-arrow">▼</span>
+          6 pilířů intimity <span class="drop-arrow">▼</span>
           <div class="dropdown-menu">
-            <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
-            <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
-            <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
-            <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
-            <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
-            <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+            <a href="6-piliru-intimity/index.html#pilar-1">1. Partnerská intimita a vlastní tělo</a>
+            <a href="6-piliru-intimity/index.html#pilar-2">2. Těhotenství a porod</a>
+            <a href="6-piliru-intimity/index.html#pilar-3">3. Intimita s miminkem</a>
+            <a href="6-piliru-intimity/index.html#pilar-4">4. Děti a dospívající</a>
+            <a href="6-piliru-intimity/index.html#pilar-5">5. Intimita ve zralém věku</a>
+            <a href="6-piliru-intimity/index.html#pilar-6">6. Intimita ve smrti</a>
           </div>
         </div>
 
-        <a href="index.html#om-daniela">About Daniela</a>
+        <a href="index.html#om-daniela">Kdo je Daniela</a>
 
-        <!-- Dropdown: Workshops -->
+        <!-- Dropdown: Workshopy -->
         <div class="drop" onclick="location.href='workshops.html'">
-          Workshops <span class="drop-arrow">▼</span>
+          Workshopy <span class="drop-arrow">▼</span>
           <div class="dropdown-menu">
-            <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
-            <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
-            <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
-            <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
-            <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
-            <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
-            <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
-            <a href="workshops/Hraj-si-se-mnou.html">Play With Me</a>
-            <a href="workshops/zenska-esence-no.html">Female Essence & Vitality</a>
-            <a href="workshops.html" style="font-weight: 500; color: #ee5a7a;">See all 9 workshops ➜</a>
+            <a href="workshops/umeni-potesit-zenu.html">Umění potěšit ženu</a>
+            <a href="workshops/umeni-potesit-muze.html">Umění potěšit muže</a>
+            <a href="workshops/jen-pro-pary.html">Umění potěšit (pro páry)</a>
+            <a href="workshops/tajemstvi-panevniho-dna.html">Tajemství pánevního dna</a>
+            <a href="workshops/byla-jsem-tehotna-ale.html">Byla jsem těhotná, ale…</a>
+            <a href="workshops/porod-jako-jistota.html">Porod jako jistota</a>
+            <a href="workshops/matka-a-dcera.html">Matka a dcera</a>
+            <a href="workshops/Hraj-si-se-mnou.html">Hraj si se mnou</a>
+            <a href="workshops/zenska-esence-no.html">Ženská esence a životní síla</a>
+            <a href="workshops.html" style="font-weight: 500; color: #ee5a7a;">Zobrazit všech 9 workshopů ➜</a>
           </div>
         </div>
 
-        <a href="konsultasjon.html">Personal Consultation</a>
+        <a href="konsultasjon.html">Osobní konzultace</a>
         <a href="blog.html">Blog</a>
-        <a href="#kontakt">Contact</a>
-              <div class="language-switcher" aria-label="Language selection"><a class="language-link " href="https://danielatorp.no/workshops.html" aria-label="Norsk"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#BA0C2F"/><rect x="6" width="2" height="14" fill="#fff"/><rect y="6" width="20" height="2" fill="#fff"/><rect x="6.5" width="1" height="14" fill="#00205B"/><rect y="6.5" width="20" height="1" fill="#00205B"/></svg><span>NO</span></a><a class="language-link " href="https://www.danielatorp.cz/workshops.html" aria-label="Čeština"><svg viewBox="0 0 20 14" aria-hidden="true"><path d="M0 0h20v7H0z" fill="#fff"/><path d="M0 7h20v7H0z" fill="#d7141a"/><path d="M0 0v14l10-7z" fill="#11457e"/></svg><span>CZ</span></a><a class="language-link active" href="https://danielatorp.com/workshops.html" aria-label="English"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><path d="M0 0l20 14M20 0L0 14" stroke="#c8102e" stroke-width="2"/><path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="4"/><path d="M10 0v14M0 7h20" stroke="#012169" stroke-width="2"/></svg><span>EN</span></a></div>
+        <a href="#kontakt">Kontakt</a>
+              <div class="language-switcher" aria-label="Language selection"><a class="language-link " href="https://danielatorp.no/workshops.html" aria-label="Norsk"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#BA0C2F"/><rect x="6" width="2" height="14" fill="#fff"/><rect y="6" width="20" height="2" fill="#fff"/><rect x="6.5" width="1" height="14" fill="#00205B"/><rect y="6.5" width="20" height="1" fill="#00205B"/></svg><span>NO</span></a><a class="language-link active" href="https://www.danielatorp.cz/workshops.html" aria-label="Čeština"><svg viewBox="0 0 20 14" aria-hidden="true"><path d="M0 0h20v7H0z" fill="#fff"/><path d="M0 7h20v7H0z" fill="#d7141a"/><path d="M0 0v14l10-7z" fill="#11457e"/></svg><span>CZ</span></a><a class="language-link " href="https://danielatorp.com/workshops.html" aria-label="English"><svg viewBox="0 0 20 14" aria-hidden="true"><rect width="20" height="14" fill="#fff"/><path d="M0 0l20 14M20 0L0 14" stroke="#c8102e" stroke-width="2"/><path d="M10 0v14M0 7h20" stroke="#fff" stroke-width="4"/><path d="M10 0v14M0 7h20" stroke="#012169" stroke-width="2"/></svg><span>EN</span></a></div>
       </nav>
     </div>
   </header>
