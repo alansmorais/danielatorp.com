@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="alternate" hreflang="no" href="https://danielatorp.no/konsultasjon.html">
+  <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/konsultasjon.html">
+  <link rel="alternate" hreflang="en" href="https://danielatorp.com/konsultasjon.html">
+  <link rel="alternate" hreflang="x-default" href="https://danielatorp.com/konsultasjon.html">
   <title>Personal Consultations – Daniela Torp</title>
-  <link rel="icon" href="images/cropped-favicona-32x32.png" sizes="32x32">
-  <link rel="icon" href="images/cropped-favicona-192x192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="images/cropped-favicona-180x180.png">
+  <link rel="icon" href="images/logo_perem_bez_pozadi%CC%81.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo_perem_bez_pozadi%CC%81.png">
 
   <style>
     /* =========================================
@@ -271,6 +274,49 @@
        ========================================= */
     @media (max-width: 900px) { .nav { display: none; } .mobile-menu-btn { display: block; } .consultation-grid, .about-mini, .footer-grid { grid-template-columns: 1fr; } .gallery-strip { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .form { grid-template-columns: 1fr; } .form-bottom { flex-direction: column; align-items: stretch; } .send { margin-top: 10px; } }
+  
+/* Multilingual language switcher */
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 10px;
+}
+.language-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 2px;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.language-flag svg {
+  width: 20px;
+  height: 14px;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+}
+.language-flag:hover {
+  color: #ee5a7a;
+}
+.language-flag.active {
+  color: #ee5a7a;
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .language-switcher {
+    margin-left: 0;
+    padding: 10px 0 0;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -322,7 +368,7 @@
         <a href="konsultasjon.html" style="color:#ee5a7a; font-weight:500;">Private Consultation</a>
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
-        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English" style="border-radius: 2px;"></span>
+        <div class="language-switcher"><a class="language-flag" href="https://danielatorp.no/konsultasjon.html" aria-label="Norwegian" title="Norwegian"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg><span>NO</span></a><a class="language-flag" href="https://www.danielatorp.cz/konsultasjon.html" aria-label="Česky" title="Česky"><svg viewBox="0 0 22 16" aria-hidden="true"><path d="M0 0h22v8H0z" fill="#fff"/><path d="M0 8h22v8H0z" fill="#d7141a"/><path d="M0 0v16l11-8z" fill="#11457e"/></svg><span>CZ</span></a><a class="language-flag active" href="https://danielatorp.com/konsultasjon.html" aria-label="English" title="English"><svg viewBox="0 0 22 16" aria-hidden="true"><rect width="22" height="16" fill="#fff"/><path d="M0 0h22v16H0z" fill="#fff"/><path d="M0 0h22v7H0z" fill="#b22234"/><path d="M0 9h22v7H0z" fill="#b22234"/><path d="M0 0h9v8H0z" fill="#3c3b6e"/></svg><span>EN</span></a></div>
       </nav>
     </div>
   </header>
