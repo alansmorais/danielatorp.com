@@ -1205,6 +1205,26 @@
     /* =========================================
        MULTILINGUAL LANGUAGE SWITCHER
        ========================================= */
+
+    /* Language flags: inline SVG so they render consistently on Windows, macOS, iOS and Android. */
+    .language-flag {
+      display: inline-flex;
+      width: 22px;
+      height: 16px;
+      flex: 0 0 22px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      vertical-align: middle;
+    }
+    .language-flag svg {
+      display: block;
+      width: 22px;
+      height: 16px;
+    }
+
     .language-switcher {
       display: inline-flex;
       align-items: center;
@@ -1315,9 +1335,9 @@
         <a href="#kontakt">Contact</a>
 
         <div class="language-switcher" aria-label="Language selection">
-          <a class="language-link" href="https://danielatorp.no/" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true">🇳🇴</span><span>NO</span></a>
-          <a class="language-link" href="https://www.danielatorp.cz/" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true">🇨🇿</span><span>CZ</span></a>
-          <a class="language-link active" href="https://danielatorp.com/" hreflang="en" lang="en" aria-label="English"><span class="language-flag" aria-hidden="true">🇬🇧</span><span>EN</span></a>
+          <a class="language-link" href="https://danielatorp.no/" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg></span><span>NO</span></a>
+          <a class="language-link" href="https://www.danielatorp.cz/" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="8" fill="#fff"/><rect y="8" width="22" height="8" fill="#d7141a"/><path d="M0 0L11 8 0 16Z" fill="#11457e"/></svg></span><span>CZ</span></a>
+          <a class="language-link active" href="https://danielatorp.com/" hreflang="en" lang="en" aria-label="English"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#012169"/><path d="M0 0L22 16M22 0L0 16" stroke="#fff" stroke-width="4"/><path d="M0 0L22 16M22 0L0 16" stroke="#c8102e" stroke-width="2"/><path d="M11 0V16M0 8H22" stroke="#fff" stroke-width="6"/><path d="M11 0V16M0 8H22" stroke="#c8102e" stroke-width="3"/></svg></span><span>EN</span></a>
         </div>
       </nav>
     </div>
