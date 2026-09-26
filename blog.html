@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog – Daniela Torp</title>
-  <link rel="icon" href="images/cropped-favicona-32x32.png" sizes="32x32">
-  <link rel="icon" href="images/cropped-favicona-192x192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="images/cropped-favicona-180x180.png">
+  <link rel="icon" href="images/logo_perem_bez_pozadi%CC%81.png" type="image/png">
+<link rel="apple-touch-icon" href="images/logo_perem_bez_pozadi%CC%81.png">
 
   <style>
     /* =========================================
@@ -225,6 +224,45 @@
       object-fit: cover;
       border-radius: 2px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+    .language-switcher a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      font-weight: 400;
+      color: #555;
+      text-decoration: none;
+    }
+    .language-switcher a:hover,
+    .language-switcher a.active {
+      color: var(--color-primary, #ee5a7a);
+    }
+    .language-flag {
+      display: inline-flex;
+      width: 22px;
+      height: 16px;
+      flex: 0 0 22px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
+      vertical-align: middle;
+    }
+    .language-flag svg {
+      display: block;
+      width: 22px;
+      height: 16px;
     }
 
     .mobile-menu-btn {
@@ -642,7 +680,23 @@
         grid-template-columns: 1fr;
       }
     }
+      /* MOBILE LANGUAGE SWITCHER */
+
+      .language-switcher {
+        margin-left: 0;
+        padding: 16px 0 0;
+        gap: 14px;
+      }
+      .language-switcher a {
+        width: auto;
+        padding: 0;
+        border: none;
+      }
   </style>
+  <link rel="alternate" hreflang="no" href="https://danielatorp.no/blog.html">
+  <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/blog.html">
+  <link rel="alternate" hreflang="en" href="https://danielatorp.com/blog.html">
+  <link rel="alternate" hreflang="x-default" href="https://danielatorp.com/blog.html">
 </head>
 <body>
 
@@ -697,7 +751,11 @@
         <a href="konsultasjon.html">Personal Consultation</a>
         <a href="blog.html" style="color:var(--color-primary); font-weight:500;">Blog</a>
         <a href="index.html#kontakt">Contact</a>
-        <span class="flag"><img src="https://flagcdn.com/w20/gb.png" width="20" alt="English"></span>
+        <div class="language-switcher" aria-label="Language selection">
+  <a class="" href="https://danielatorp.no/blog.html" hreflang="no" aria-label="NO"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="22" height="16" fill="#ef2b2d"/><path d="M0 6h22v4H0z" fill="#fff"/><path d="M7 0h4v16H7z" fill="#fff"/><path d="M8 0h2v16H8z" fill="#002868"/><path d="M0 7h22v2H0z" fill="#002868"/></svg></span><span>NO</span></a>
+  <a class="" href="https://www.danielatorp.cz/blog.html" hreflang="cz" aria-label="CZ"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#fff" d="M0 0h22v8H0z"/><path fill="#d7141a" d="M0 8h22v8H0z"/><path fill="#11457e" d="M0 0l10 8L0 16z"/></svg></span><span>CZ</span></a>
+  <a class="active" href="https://danielatorp.com/blog.html" hreflang="en" aria-label="EN"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="22" height="16" fill="#012169"/><path d="M0 0l22 16M22 0L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0l22 16M22 0L0 16" stroke="#c8102e" stroke-width="1.4"/><path d="M11 0v16M0 8h22" stroke="#fff" stroke-width="5"/><path d="M11 0v16M0 8h22" stroke="#c8102e" stroke-width="3"/></svg></span><span>EN</span></a>
+</div>
       </nav>
     </div>
   </header>
