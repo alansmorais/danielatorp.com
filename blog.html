@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog – Daniela Torp</title>
-  <link rel="icon" href="images/logo_perem_bez_pozadi%CC%81.png" type="image/png">
-<link rel="apple-touch-icon" href="images/logo_perem_bez_pozadi%CC%81.png">
+  <link rel="icon" href="images/logo_perem_bez_pozadí.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/logo_perem_bez_pozadí.png">
 
   <style>
     /* =========================================
@@ -68,6 +68,12 @@
       cursor: pointer;
     }
 
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .wrap {
       width: 100%;
       max-width: var(--container-max-width);
@@ -77,16 +83,54 @@
       padding-right: 24px;
     }
 
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #111;
+      border-radius: 30px;
+      padding: 11px 28px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      color: #111;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+
+    .button:hover {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .button.primary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .button.primary:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+
     /* =========================================
        2. STANDARDIZED HEADER & NAVIGATION
        ========================================= */
     header {
-      height: 90px;
-      background: rgba(255, 255, 255, 0.96);
+      height: 100px;
+      background: rgba(255, 255, 255, 0.98);
       position: sticky;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: flex;
@@ -97,44 +141,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
     }
 
     .logo-link {
       display: inline-flex;
       align-items: center;
-      height: 100%;
+      height: 100px;
+      margin-right: auto;
     }
 
     .logo {
-      width: auto;
-      height: 52px;
-      max-width: 250px;
+      width: 325px;
+      height: 100px;
       object-fit: contain;
     }
 
     .nav {
       display: flex;
       align-items: center;
-      gap: 22px;
-      font-size: 13px;
+      gap: 24px;
+      font-size: 14px;
       font-weight: 400;
-      letter-spacing: 0.2px;
+      color: #111;
     }
 
     .nav > a,
     .nav .drop-toggle {
-      color: #2b2b2e;
-      padding: 8px 0;
+      color: inherit;
+      padding: 10px 0;
       position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 400;
-      font-family: inherit;
+      gap: 6px;
     }
 
     .nav a:hover,
@@ -146,6 +185,7 @@
     .nav .drop {
       position: relative;
       padding: 10px 0;
+      cursor: pointer;
     }
 
     .drop-arrow {
@@ -162,8 +202,8 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% - 4px);
-      left: -12px;
+      top: 100%;
+      left: 0;
       background: #fff;
       box-shadow: 0 14px 34px rgba(0, 0, 0, 0.12);
       border: 1px solid var(--color-border);
@@ -193,10 +233,6 @@
       color: #3e3e42;
       border-bottom: 1px solid #f8f8f8;
       background: transparent;
-      border-top: none;
-      border-left: none;
-      border-right: none;
-      cursor: pointer;
     }
 
     .dropdown-menu a:last-child,
@@ -211,60 +247,6 @@
       padding-left: 22px;
     }
 
-    .flag {
-      display: inline-flex;
-      align-items: center;
-      margin-left: 10px;
-      cursor: default;
-    }
-
-    .flag img {
-      width: 20px;
-      height: 14px;
-      object-fit: cover;
-      border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-
-
-    .language-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-left: 10px;
-      white-space: nowrap;
-    }
-    .language-switcher a {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 400;
-      color: #555;
-      text-decoration: none;
-    }
-    .language-switcher a:hover,
-    .language-switcher a.active {
-      color: var(--color-primary, #ee5a7a);
-    }
-    .language-flag {
-      display: inline-flex;
-      width: 22px;
-      height: 16px;
-      flex: 0 0 22px;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
-      vertical-align: middle;
-    }
-    .language-flag svg {
-      display: block;
-      width: 22px;
-      height: 16px;
-    }
-
     .mobile-menu-btn {
       display: none;
       font-size: 26px;
@@ -272,10 +254,14 @@
       color: #111;
       line-height: 1;
       border-radius: var(--border-radius-sm);
-      background: none;
-      border: none;
-      cursor: pointer;
     }
+
+    /* Multilingual Switcher */
+    .language-flag { display: inline-flex; width: 22px; height: 16px; flex: 0 0 22px; align-items: center; justify-content: center; overflow: hidden; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.18); vertical-align: middle; }
+    .language-flag svg { display: block; width: 22px; height: 16px; }
+    .language-switcher { display: inline-flex; align-items: center; gap: 8px; margin-left: 4px; padding-left: 4px; border-left: 1px solid var(--color-border); }
+    .language-link { display: inline-flex; align-items: center; gap: 4px; padding: 6px 4px; font-size: 12px; font-weight: 500; color: #555; white-space: nowrap; border-radius: 6px; }
+    .language-link:hover, .language-link.active { color: var(--color-primary); }
 
     /* =========================================
        3. PAGE HERO SECTION
@@ -311,28 +297,6 @@
       letter-spacing: -0.5px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #111;
-      border-radius: 30px;
-      padding: 10px 24px;
-      background: #fff;
-      font-size: 12px;
-      font-weight: 400;
-      color: #111;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: all var(--transition-fast);
-    }
-
-    .button:hover {
-      background: #111;
-      color: #fff;
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-md);
-    }
 
     /* =========================================
        4. BLOG MAIN LAYOUT (Posts + Sidebar)
@@ -452,59 +416,88 @@
        5. FOOTER
        ========================================= */
     footer {
-      padding: 65px 8% 30px;
-      text-align: center;
+      padding: 70px 0 35px;
+      background: #ffffff;
       border-top: 1px solid var(--color-border);
-      background: #fff;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1.4fr;
-      gap: 55px;
-      max-width: 1050px;
-      margin: auto;
-      text-align: left;
+      grid-template-columns: 1fr 1fr 1.3fr;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto 55px;
     }
 
-    .footer-grid h4 {
+    .footer-col h4 {
       font-size: 14px;
       font-weight: 500;
-      margin: 0 0 15px;
       color: #111;
+      margin-bottom: 18px;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
     }
 
-    .footer-grid a,
-    .footer-grid button {
-      display: block;
-      color: #7e7978;
-      font-size: 13px;
-      line-height: 1.95;
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a,
+    .footer-links button {
+      color: #71717a;
+      font-size: 13.5px;
+      line-height: 1.5;
       text-align: left;
-      cursor: pointer;
+      background: transparent;
+      padding: 0;
     }
 
-    .footer-grid a:hover,
-    .footer-grid button:hover {
+    .footer-links a:hover,
+    .footer-links button:hover {
       color: var(--color-primary);
+      padding-left: 3px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #f2f2f5;
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
     }
 
     .social {
       display: flex;
       justify-content: center;
-      gap: 22px;
-      font-size: 19px;
-      color: #999;
-      margin: 85px 0 16px;
+      gap: 20px;
+      font-size: 20px;
+      color: #888892;
+    }
+
+    .social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f7f7f9;
+      color: #555;
+      transition: all var(--transition-fast);
     }
 
     .social a:hover {
-      color: #111;
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+      transform: translateY(-2px);
     }
 
     .copyright {
-      font-size: 12px;
-      color: #aaa;
+      font-size: 12.5px;
+      color: #92929c;
     }
 
     /* =========================================
@@ -514,46 +507,61 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       z-index: 2000;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
     .modal-card {
       background: #fff;
-      max-width: 600px;
+      max-width: 650px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
       border-radius: var(--border-radius-md);
-      padding: 32px;
+      padding: 36px 32px;
       position: relative;
       box-shadow: var(--shadow-lg);
       text-align: left;
+      animation: modalSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .modal-close {
       position: absolute;
-      top: 16px;
+      top: 18px;
       right: 18px;
-      font-size: 24px;
+      font-size: 26px;
       color: #999;
       cursor: pointer;
       line-height: 1;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
     }
 
     .modal-close:hover {
-      color: #000;
+      color: #111;
+      background: #f4f4f6;
     }
 
     .modal-title {
       font-size: 24px;
       font-weight: 400;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: #111;
+      line-height: 1.3;
     }
 
     .modal-tag {
@@ -569,7 +577,7 @@
     .modal-body {
       font-size: 15px;
       color: #444;
-      line-height: 1.7;
+      line-height: 1.75;
       white-space: pre-line;
     }
 
@@ -578,12 +586,12 @@
     }
 
     .modal-btn-row {
-      margin-top: 24px;
+      margin-top: 28px;
       display: flex;
       justify-content: flex-end;
-      gap: 10px;
+      gap: 12px;
       border-top: 1px solid #eee;
-      padding-top: 16px;
+      padding-top: 20px;
     }
 
     /* =========================================
@@ -655,11 +663,15 @@
         border-bottom: 1px dashed #ececed;
       }
 
-      .flag {
-        padding: 16px 0 0;
-        margin-left: 0;
+      .language-switcher {
+        width: 100%;
+        justify-content: center;
+        margin: 8px 0 0;
+        padding: 12px 0 4px;
+        border-left: 0;
+        border-top: 1px solid var(--color-border);
       }
-
+      
       .blog-container {
         grid-template-columns: 1fr;
       }
@@ -680,18 +692,6 @@
         grid-template-columns: 1fr;
       }
     }
-      /* MOBILE LANGUAGE SWITCHER */
-
-      .language-switcher {
-        margin-left: 0;
-        padding: 16px 0 0;
-        gap: 14px;
-      }
-      .language-switcher a {
-        width: auto;
-        padding: 0;
-        border: none;
-      }
   </style>
   <link rel="alternate" hreflang="no" href="https://danielatorp.no/blog.html">
   <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/blog.html">
@@ -744,18 +744,22 @@
             <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
             <a href="workshops/Hraj-si-se-mnou.html">Play With Me</a>
             <a href="workshops/zenska-esence-no.html">Female Essence & Vitality</a>
-            <a href="workshops/workshops.html" style="font-weight:500;color:var(--color-primary);">See all 9 workshops ➜</a>
+            <a href="workshops.html" style="font-weight:500;color:var(--color-primary);">See all 9 workshops ➜</a>
           </div>
         </div>
 
         <a href="konsultasjon.html">Personal Consultation</a>
         <a href="blog.html" style="color:var(--color-primary); font-weight:500;">Blog</a>
         <a href="index.html#kontakt">Contact</a>
+        
+        <!-- Cancellation Policy Header Link -->
+        <a href="#" onclick="openCancellationModal(); return false;" style="color:var(--color-text-muted);">Cancellation Policy</a>
+
         <div class="language-switcher" aria-label="Language selection">
-  <a class="" href="https://danielatorp.no/blog.html" hreflang="no" aria-label="NO"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="22" height="16" fill="#ef2b2d"/><path d="M0 6h22v4H0z" fill="#fff"/><path d="M7 0h4v16H7z" fill="#fff"/><path d="M8 0h2v16H8z" fill="#002868"/><path d="M0 7h22v2H0z" fill="#002868"/></svg></span><span>NO</span></a>
-  <a class="" href="https://www.danielatorp.cz/blog.html" hreflang="cz" aria-label="CZ"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#fff" d="M0 0h22v8H0z"/><path fill="#d7141a" d="M0 8h22v8H0z"/><path fill="#11457e" d="M0 0l10 8L0 16z"/></svg></span><span>CZ</span></a>
-  <a class="active" href="https://danielatorp.com/blog.html" hreflang="en" aria-label="EN"><span class="language-flag"><svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="22" height="16" fill="#012169"/><path d="M0 0l22 16M22 0L0 16" stroke="#fff" stroke-width="3"/><path d="M0 0l22 16M22 0L0 16" stroke="#c8102e" stroke-width="1.4"/><path d="M11 0v16M0 8h22" stroke="#fff" stroke-width="5"/><path d="M11 0v16M0 8h22" stroke="#c8102e" stroke-width="3"/></svg></span><span>EN</span></a>
-</div>
+          <a class="language-link" href="https://danielatorp.no/blog.html" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg></span><span>NO</span></a>
+          <a class="language-link" href="https://www.danielatorp.cz/blog.html" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="8" fill="#fff"/><rect y="8" width="22" height="8" fill="#d7141a"/><path d="M0 0L11 8 0 16Z" fill="#11457e"/></svg></span><span>CZ</span></a>
+          <a class="language-link active" href="https://danielatorp.com/blog.html" hreflang="en" lang="en" aria-label="English"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#012169"/><path d="M0 0L22 16M22 0L0 16" stroke="#fff" stroke-width="4"/><path d="M0 0L22 16M22 0L0 16" stroke="#c8102e" stroke-width="2"/><path d="M11 0V16M0 8H22" stroke="#fff" stroke-width="6"/><path d="M11 0V16M0 8H22" stroke="#c8102e" stroke-width="3"/></svg></span><span>EN</span></a>
+        </div>
       </nav>
     </div>
   </header>
@@ -778,9 +782,9 @@
         <img src="images/40_50_198-1024x575.jpg" alt="My Story">
         <div class="blog-card-content">
           <div class="blog-meta">📅 April 27, 2022</div>
-          <h3><a href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life\'s ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">My Story</a></h3>
+          <h3><a href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life's ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">My Story</a></h3>
           <p class="blog-excerpt">A personal story about finding your inner compass, embracing vulnerability, and rediscovering true vitality.</p>
-          <a class="button" style="display:inline-flex; font-size:11px; padding:6px 14px;" href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life\'s ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">Read more</a>
+          <a class="button" style="display:inline-flex; font-size:11px; padding:6px 14px;" href="#" onclick="openBlogPost('My Story', 'This is the story of my journey through life's ups and downs, and how I found my way back to myself and to the art of living in genuine intimacy with the world around me.')">Read more</a>
         </div>
       </article>
 
@@ -800,44 +804,58 @@
        FOOTER
        ========================================= -->
   <footer>
-    <div class="footer-grid">
-      <div>
-        <h4>Contact</h4>
-        <a href="index.html">Home</a>
-        <a href="index.html#om-daniela">Who is Daniela</a>
-        <button type="button" onclick="openGenericModal('Daniela in the Media', 'Press features and podcast interviews are available upon request.')">Daniela in Media</button>
-        <a href="blog.html">Blog</a>
-        <a href="index.html#kontakt">Contact</a>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#om-daniela">About Daniela</a>
+            <button type="button" onclick="openGenericModal('Daniela in Media', 'Press features and podcasts are available upon request.')">Daniela in Media</button>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#kontakt">Contact</a>
+            <!-- Cancellation Policy Footer Link -->
+            <a href="#" onclick="openCancellationModal(); return false;">Cancellation Policy</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Workshops</h4>
+          <div class="footer-links">
+            <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
+            <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
+            <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
+            <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
+            <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
+            <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
+            <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
+            <a href="workshops.html" style="color:var(--color-primary); font-weight:500;">See all 9 workshops ➜</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Consultations / 6 Pillars</h4>
+          <div class="footer-links">
+            <a href="konsultasjon.html">Private Consultation</a>
+            <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
+            <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
+            <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
+            <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
+            <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
+            <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+          </div>
+        </div>
       </div>
-      <div>
-        <h4>Workshops</h4>
-        <a href="workshops/umeni-potesit-zenu.html">The Art of Pleasing a Woman</a>
-        <a href="workshops/umeni-potesit-muze.html">The Art of Pleasing a Man</a>
-        <a href="workshops/jen-pro-pary.html">The Art of Pleasing (for Couples)</a>
-        <a href="workshops/tajemstvi-panevniho-dna.html">Secrets of the Pelvic Floor</a>
-        <a href="workshops/byla-jsem-tehotna-ale.html">I Was Pregnant, But …</a>
-        <a href="workshops/porod-jako-jistota.html">Birth as Certainty</a>
-        <a href="workshops/matka-a-dcera.html">Mother and Daughter</a>
-        <a href="workshops/workshops.html" style="color:var(--color-primary); font-weight:500;">See all 9 workshops ➜</a>
-      </div>
-      <div>
-        <h4>Consultations / 6 Pillars</h4>
-        <a href="konsultasjon.html">Personal Consultation</a>
-        <a href="6-piliru-intimity/index.html#pilar-1">1. Couple Intimacy & Own Body</a>
-        <a href="6-piliru-intimity/index.html#pilar-2">2. Pregnancy & Birth</a>
-        <a href="6-piliru-intimity/index.html#pilar-3">3. Baby & Family Intimacy</a>
-        <a href="6-piliru-intimity/index.html#pilar-4">4. Children & Adolescents</a>
-        <a href="6-piliru-intimity/index.html#pilar-5">5. Intimacy in Mature Age</a>
-        <a href="6-piliru-intimity/index.html#pilar-6">6. Intimacy in Dying</a>
+
+      <div class="footer-bottom">
+        <div class="social">
+          <a href="https://facebook.com/danielatorp" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">◉</a>
+        </div>
+        <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
       </div>
     </div>
-    
-    <div class="social">
-      <a href="https://facebook.com/danielatorp" target="_blank" rel="noopener">f</a>
-      <a href="https://instagram.com/intimitycoachdanielatorp/" target="_blank" rel="noopener">◎</a>
-      <a href="https://youtube.com" target="_blank" rel="noopener">◉</a>
-    </div>
-    <div class="copyright">© 2026 All rights reserved | Daniela Torp</div>
   </footer>
 
   <!-- =========================================
@@ -859,6 +877,22 @@
        JAVASCRIPT LOGIC
        ========================================= -->
   <script>
+    const LANGUAGE_DOMAINS = {'no': 'https://danielatorp.no/', 'cz': 'https://www.danielatorp.cz/', 'en': 'https://danielatorp.com/'};
+
+    function updateLanguageLinksForCurrentPath() {
+      const currentPath = window.location.pathname || '/';
+      const currentHash = window.location.hash || '';
+      document.querySelectorAll('.language-link').forEach(link => {
+        const targetCode = link.getAttribute('hreflang') === 'cs' ? 'cz' : link.getAttribute('hreflang');
+        if (!targetCode || !LANGUAGE_DOMAINS[targetCode]) return;
+        if (currentPath !== '/' && currentPath !== '/index.html') {
+          link.href = LANGUAGE_DOMAINS[targetCode].replace(/\/$/, '') + currentPath + currentHash;
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateLanguageLinksForCurrentPath);
+
     function toggleMobileNav() {
       const nav = document.getElementById('mainNav');
       const btn = document.querySelector('.mobile-menu-btn');
@@ -889,6 +923,45 @@
         document.querySelectorAll('.drop-arrow').forEach(a => a.style.transform = 'rotate(0)');
       }
     });
+
+    function openCancellationModal() {
+      const policyHTML = `
+        <p>At Daniela Torp, I value your time and appreciate the trust you place in my work. Every session and workshop requires time, preparation and care. To ensure a respectful and professional experience for everyone, I kindly ask all clients to familiarise themselves with the following cancellation policy.</p>
+
+        <h4>1. Workshops and Seminars</h4>
+        <ul>
+          <li><strong>14 days or more before the event:</strong> A full refund (100%) will be issued.</li>
+          <li><strong>7–13 days before the event:</strong> A 50% refund will be issued.</li>
+          <li><strong>Less than 7 days before the event:</strong> The booking fee is non-refundable, subject to applicable consumer rights.</li>
+        </ul>
+        <p>If you are unable to attend, you may request to transfer your booking to another person, subject to prior approval.</p>
+        <p>If I cancel an event, you will be offered either a full refund or the option to transfer your payment to another event.</p>
+
+        <h4>2. Massages and Individual Sessions</h4>
+        <p>For individual appointments, including massages and consultations, the following cancellation terms apply:</p>
+        <ul>
+          <li><strong>48 hours or more before your appointment:</strong> You may cancel or reschedule free of charge.</li>
+          <li><strong>Less than 48 hours before your appointment:</strong> A cancellation fee of 50% of the service price applies.</li>
+          <li><strong>Less than 24 hours before your appointment, or failure to attend without notice:</strong> A cancellation fee of 100% of the service price applies.</li>
+        </ul>
+        <p>If unexpected and serious circumstances prevent you from attending, please contact me as soon as possible. I will consider such situations individually and with understanding.</p>
+
+        <h4>3. How to Cancel or Reschedule</h4>
+        <p>Please notify me in writing by email or through the communication channel used to make your booking.</p>
+        <p>The time at which your written cancellation is received will determine which cancellation terms apply.</p>
+
+        <h4>4. Consumer Rights</h4>
+        <p>This cancellation policy does not override any mandatory rights you may have under Norwegian or applicable EEA consumer protection legislation, including any statutory right of withdrawal where applicable.</p>
+        <p>The right of withdrawal and the cancellation terms for a specific appointment or event are separate matters. Any applicable statutory rights will take precedence over these terms.</p>
+
+        <h4>5. A Note of Appreciation</h4>
+        <p>Thank you for respecting my time, my work and the space we create together. Your understanding helps me provide a thoughtful, safe and professional experience for every client.</p>
+        
+        <p>Warmly,<br><strong>Daniela Torp</strong><br>Founder of SHE Academy</p>
+      `;
+
+      showModal("Terms", "Cancellation Policy", policyHTML);
+    }
 
     function openBlogPost(title, text) {
       showModal("Blog Post", title, text);
