@@ -921,7 +921,7 @@
     }
 
     /* =========================================
-       9. POPUP MODAL
+       9. POPUP MODAL & CANCELLATION POLICY
        ========================================= */
     .modal-overlay {
       display: none;
@@ -938,7 +938,7 @@
 
     .modal-card {
       background: #fff;
-      max-width: 600px;
+      max-width: 650px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
@@ -1003,6 +1003,22 @@
 
     .modal-body p {
       margin-bottom: 12px;
+    }
+
+    .modal-body h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #111;
+      margin: 16px 0 8px;
+    }
+
+    .modal-body ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .modal-body li {
+      margin-bottom: 6px;
     }
 
     .modal-btn-row {
@@ -1334,6 +1350,9 @@
         <a href="blog.html">Blog</a>
         <a href="#kontakt">Contact</a>
 
+        <!-- Cancellation Policy Header Link -->
+        <a href="#" onclick="openCancellationModal(); return false;" style="color:var(--color-text-muted);">Cancellation Policy</a>
+
         <div class="language-switcher" aria-label="Language selection">
           <a class="language-link" href="https://danielatorp.no/" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg></span><span>NO</span></a>
           <a class="language-link" href="https://www.danielatorp.cz/" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="8" fill="#fff"/><rect y="8" width="22" height="8" fill="#d7141a"/><path d="M0 0L11 8 0 16Z" fill="#11457e"/></svg></span><span>CZ</span></a>
@@ -1600,6 +1619,8 @@
             <button type="button" onclick="openGenericModal('Daniela in Media', 'Press features and podcasts are available upon request.')">Daniela in Media</button>
             <a href="blog.html">Blog</a>
             <a href="#kontakt">Contact</a>
+            <!-- Cancellation Policy Footer Link -->
+            <a href="#" onclick="openCancellationModal(); return false;">Cancellation Policy</a>
           </div>
         </div>
 
@@ -1742,7 +1763,7 @@
     }
 
     function openDateModal(title, dateStr) {
-      showModal("Event Date", title, "Date: " + dateStr + "\\n\\nWould you like more details or wish to reserve your place? Fill out the form below.", function() {
+      showModal("Event Date", title, "Date: " + dateStr + "\n\nWould you like more details or wish to reserve your place? Fill out the form below.", function() {
         prefillSubject("Interest in event: " + title + " (" + dateStr + ")");
       });
     }
@@ -1753,17 +1774,62 @@
       });
     }
 
+    // New Function for Cancellation Policy
+    function openCancellationModal() {
+      const policyHTML = `
+        <p>At Daniela Torp, I value your time and appreciate the trust you place in my work. Every session and workshop requires time, preparation and care. To ensure a respectful and professional experience for everyone, I kindly ask all clients to familiarise themselves with the following cancellation policy.</p>
+
+        <h4>1. Workshops and Seminars</h4>
+        <ul>
+          <li><strong>14 days or more before the event:</strong> A full refund (100%) will be issued.</li>
+          <li><strong>7–13 days before the event:</strong> A 50% refund will be issued.</li>
+          <li><strong>Less than 7 days before the event:</strong> The booking fee is non-refundable, subject to applicable consumer rights.</li>
+        </ul>
+        <p>If you are unable to attend, you may request to transfer your booking to another person, subject to prior approval.</p>
+        <p>If I cancel an event, you will be offered either a full refund or the option to transfer your payment to another event.</p>
+
+        <h4>2. Massages and Individual Sessions</h4>
+        <p>For individual appointments, including massages and consultations, the following cancellation terms apply:</p>
+        <ul>
+          <li><strong>48 hours or more before your appointment:</strong> You may cancel or reschedule free of charge.</li>
+          <li><strong>Less than 48 hours before your appointment:</strong> A cancellation fee of 50% of the service price applies.</li>
+          <li><strong>Less than 24 hours before your appointment, or failure to attend without notice:</strong> A cancellation fee of 100% of the service price applies.</li>
+        </ul>
+        <p>If unexpected and serious circumstances prevent you from attending, please contact me as soon as possible. I will consider such situations individually and with understanding.</p>
+
+        <h4>3. How to Cancel or Reschedule</h4>
+        <p>Please notify me in writing by email or through the communication channel used to make your booking.</p>
+        <p>The time at which your written cancellation is received will determine which cancellation terms apply.</p>
+
+        <h4>4. Consumer Rights</h4>
+        <p>This cancellation policy does not override any mandatory rights you may have under Norwegian or applicable EEA consumer protection legislation, including any statutory right of withdrawal where applicable.</p>
+        <p>The right of withdrawal and the cancellation terms for a specific appointment or event are separate matters. Any applicable statutory rights will take precedence over these terms.</p>
+
+        <h4>5. A Note of Appreciation</h4>
+        <p>Thank you for respecting my time, my work and the space we create together. Your understanding helps me provide a thoughtful, safe and professional experience for every client.</p>
+        
+        <p>Warmly,<br><strong>Daniela Torp</strong><br>Founder of SHE Academy</p>
+      `;
+
+      showModal("Terms", "Cancellation Policy", policyHTML, null);
+    }
+
     function showModal(tag, title, contentHtml, onAction) {
       document.getElementById('modalTag').innerText = tag;
       document.getElementById('modalTitle').innerText = title;
       document.getElementById('modalContent').innerHTML = contentHtml;
 
       const actionBtn = document.getElementById('modalActionBtn');
-      actionBtn.innerText = "Register / Inquire";
-      actionBtn.onclick = function() {
-        closeModalDirect();
-        if (onAction) onAction();
-      };
+      if (onAction) {
+        actionBtn.style.display = 'inline-flex';
+        actionBtn.innerText = "Register / Inquire";
+        actionBtn.onclick = function() {
+          closeModalDirect();
+          onAction();
+        };
+      } else {
+        actionBtn.style.display = 'none';
+      }
 
       document.getElementById('modalOverlay').style.display = 'flex';
       document.body.style.overflow = 'hidden';
@@ -1810,7 +1876,7 @@
       const subject = document.getElementById('formSubject') ? document.getElementById('formSubject').value.trim() : '';
       const message = document.getElementById('formMessage').value.trim();
 
-      const formattedMessage = subject ? `[Subject: ${subject}]\\n\\n${message}` : message;
+      const formattedMessage = subject ? `[Subject: ${subject}]\n\n${message}` : message;
 
       const payload = {
         type: 'contact',
@@ -1864,7 +1930,7 @@
             btn.innerText = dateText;
             
             btn.onclick = function() {
-              openGenericModal("Event Inquiry", "Would you like more information or to register for this event?\\n\\n" + dateText);
+              openGenericModal("Event Inquiry", "Would you like more information or to register for this event?\n\n" + dateText);
             };
             
             div.appendChild(btn);
