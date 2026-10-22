@@ -248,21 +248,6 @@
       padding-left: 22px;
     }
 
-    .flag {
-      display: inline-flex;
-      align-items: center;
-      margin-left: 10px;
-      cursor: default;
-    }
-
-    .flag img {
-      width: 20px;
-      height: 14px;
-      object-fit: cover;
-      border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-    }
-
     .mobile-menu-btn {
       display: none;
       font-size: 26px;
@@ -271,6 +256,13 @@
       line-height: 1;
       border-radius: var(--border-radius-sm);
     }
+
+    /* Multilingual Switcher */
+    .language-flag { display: inline-flex; width: 22px; height: 16px; flex: 0 0 22px; align-items: center; justify-content: center; overflow: hidden; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.18); vertical-align: middle; }
+    .language-flag svg { display: block; width: 22px; height: 16px; }
+    .language-switcher { display: inline-flex; align-items: center; gap: 8px; margin-left: 4px; padding-left: 4px; border-left: 1px solid var(--color-border); }
+    .language-link { display: inline-flex; align-items: center; gap: 4px; padding: 6px 4px; font-size: 12px; font-weight: 500; color: #555; white-space: nowrap; border-radius: 6px; }
+    .language-link:hover, .language-link.active { color: var(--color-primary); }
 
     /* =========================================
        3. HERO SECTION
@@ -657,12 +649,12 @@
     }
 
     /* =========================================
-       7. CONTACT SECTION
+       7. CONTACT SECTION (SPAM-PROTECTED)
        ========================================= */
     .contact {
       padding: 100px 0 110px;
       text-align: center;
-      background: radial-gradient(ellipse at 80% 50%, rgba(218, 173, 229, 0.45), transparent 55%), #fbfbfc;
+      background: radial-gradient(ellipse at 80% 50%, rgba(218, 173, 229, 0.25), transparent 55%), #fbfbfc;
       border-top: 1px solid #f0f0f5;
     }
 
@@ -692,6 +684,12 @@
       border-radius: var(--border-radius-md);
       box-shadow: var(--shadow-md);
       border: 1px solid var(--color-border);
+    }
+
+    .honeypot-field {
+      display: none !important;
+      position: absolute;
+      left: -9999px;
     }
 
     .field.full {
@@ -755,22 +753,6 @@
       text-align: left;
     }
 
-    .captcha {
-      height: 38px;
-      width: fit-content;
-      padding: 0 16px;
-      background: #2777dc;
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12.5px;
-      font-weight: 500;
-      border-radius: 4px;
-      user-select: none;
-      letter-spacing: 0.2px;
-    }
-
     .notice {
       font-size: 12px;
       color: #7b7b84;
@@ -785,6 +767,19 @@
 
     .notice a:hover {
       color: var(--color-primary);
+    }
+
+    .shield-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      background: #f0fdf4;
+      color: #166534;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #bbf7d0;
+      font-weight: 500;
     }
 
     .send {
@@ -830,6 +825,18 @@
       font-size: 20px;
       font-weight: 500;
       margin-bottom: 8px;
+    }
+    
+    .error-box {
+      display: none;
+      max-width: 680px;
+      margin: 30px auto 0;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e7485e;
+      border-radius: var(--border-radius-md);
+      color: #e7485e;
+      font-size: 15px;
     }
 
     /* =========================================
@@ -921,7 +928,7 @@
     }
 
     /* =========================================
-       9. POPUP MODAL & CANCELLATION POLICY
+       9. POPUP MODAL
        ========================================= */
     .modal-overlay {
       display: none;
@@ -1114,17 +1121,13 @@
         border-bottom: 1px dashed #ececed;
       }
 
-      .flag {
-        padding: 16px 0 0;
-        margin-left: 0;
-      }
-
-      .hero {
-        padding: 50px 0 90px;
-      }
-
-      .intro h1 {
-        font-size: 30px;
+      .language-switcher {
+        width: 100%;
+        justify-content: center;
+        margin: 8px 0 0;
+        padding: 12px 0 4px;
+        border-left: 0;
+        border-top: 1px solid var(--color-border);
       }
 
       .about-grid {
@@ -1217,79 +1220,8 @@
         gap: 32px;
       }
     }
-  
-    /* =========================================
-       MULTILINGUAL LANGUAGE SWITCHER
-       ========================================= */
-
-    /* Language flags: inline SVG so they render consistently on Windows, macOS, iOS and Android. */
-    .language-flag {
-      display: inline-flex;
-      width: 22px;
-      height: 16px;
-      flex: 0 0 22px;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 2px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.18);
-      vertical-align: middle;
-    }
-    .language-flag svg {
-      display: block;
-      width: 22px;
-      height: 16px;
-    }
-
-    .language-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-left: 4px;
-      padding-left: 4px;
-      border-left: 1px solid var(--color-border);
-    }
-
-    .language-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 4px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #555;
-      white-space: nowrap;
-      border-radius: 6px;
-    }
-
-    .language-link:hover,
-    .language-link.active {
-      color: var(--color-primary);
-    }
-
-    .language-flag {
-      font-size: 16px;
-      line-height: 1;
-    }
-
-    @media (max-width: 991px) {
-      .language-switcher {
-        width: 100%;
-        justify-content: center;
-        margin: 8px 0 0;
-        padding: 12px 0 4px;
-        border-left: 0;
-        border-top: 1px solid var(--color-border);
-      }
-
-      .language-link {
-        padding: 8px 10px;
-      }
-    }
-
   </style>
 
-  <!-- Multilingual SEO: equivalent homepage versions -->
   <link rel="alternate" hreflang="no" href="https://danielatorp.no/">
   <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/">
   <link rel="alternate" hreflang="en" href="https://danielatorp.com/">
@@ -1303,14 +1235,14 @@
        ========================================= -->
   <header>
     <div class="wrap">
-      <a href="#hjem" class="logo-link">
+      <a href="index.html" class="logo-link">
         <img class="logo" src="images/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
       </a>
       
       <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false">☰</button>
 
       <nav class="nav" id="mainNav">
-        <a href="#hjem">Home</a>
+        <a href="index.html">Home</a>
         
         <div class="drop">
           <button type="button" class="drop-toggle" onclick="toggleDropdown(this)">
@@ -1378,9 +1310,7 @@
         <div class="dates">
           <h2 id="cms-dates-title">Upcoming Dates</h2>
           <div id="dynamic-dates-list">
-            <div><button type="button" onclick="openWorkshopModal('w1')">Oct 3, 2026: The Art of Pleasing a Woman</button></div>
-            <div><button type="button" onclick="openWorkshopModal('w2')">Oct 4, 2026: The Art of Pleasing a Man</button></div>
-            <div><button type="button" onclick="openDateModal('Samhain – Female Essence and Vitality', 'Oct 16–18, 2026')">Oct 16–18, 2026: Samhain – Female Essence and Vitality</button></div>
+             <!-- Fallback logic dynamically overwrites this -->
           </div>
         </div>
         
@@ -1470,7 +1400,11 @@
           <img class="portrait" src="images/untitled-design-7.jpg" alt="Daniela Torp">
           <div class="photo-buttons">
             <button type="button" class="button" onclick="openGenericModal('About Daniela', 'Daniela brings over 15 years of deep experience in somatic therapy, couple counseling, and mindful intimacy guidance. Grounded in the 6 pillars of intimacy, she helps people foster emotional security, vitality, and presence.')">About Daniela</button>
-            <button type="button" class="button" onclick="openGenericModal('Daniela in Media', 'Selected media features:\n\n• Podcast Life Journey: «Intimacy begins in the mirror»\n• Harmoni Magazine: «6 Pillars that transform romantic relationships»\n• Culture & Connections: «The art of listening without words»')">Media</button>
+            <button type="button" class="button" onclick="openGenericModal('Daniela in Media', 'Selected media features:
+
+• Podcast Life Journey: «Intimacy begins in the mirror»
+• Harmoni Magazine: «6 Pillars that transform romantic relationships»
+• Culture & Connections: «The art of listening without words»')">Media</button>
           </div>
         </div>
         
@@ -1569,6 +1503,8 @@
       <p class="contact-intro">Do you have a question? I am here for you.</p>
       
       <form class="form" id="contactForm" onsubmit="handleFormSubmit(event)">
+        <input type="text" name="website" id="honeypot" class="honeypot-field" tabindex="-1" autocomplete="off">
+        
         <div class="field">
           <label for="formName">Full Name <span class="required">*</span></label>
           <input type="text" required placeholder="John Doe" id="formName">
@@ -1588,10 +1524,13 @@
         
         <div class="form-bottom">
           <div class="security-notice">
-            <div class="captcha">Protected by reCAPTCHA ✓</div>
             <div class="notice">
               Fields marked with an asterisk are required.<br>
               By sending this form, I agree to the <a onclick="openGenericModal('Privacy Policy', 'All inquiries are handled in strict confidence according to applicable GDPR standards. Your details are never shared.')">processing of personal data</a>.
+            </div>
+            <div class="shield-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+              Secure Submission (Anti-Spam)
             </div>
           </div>
           <button class="send" id="sendSubmitBtn" type="submit">Submit ➜</button>
@@ -1601,6 +1540,9 @@
       <div class="success-box" id="successBox">
         <h3>Thank you for your message!</h3>
         <p>Your note has been submitted successfully. Daniela will respond as soon as possible.</p>
+      </div>
+      <div class="error-box" id="errorBox">
+        <p>An error occurred. Please try again.</p>
       </div>
     </div>
   </section>
@@ -1683,20 +1625,14 @@
        JAVASCRIPT FUNCTIONALITY
        ========================================= -->
   <script>
-    /* =========================================
-       MULTILINGUAL DOMAIN CONFIGURATION
-       ========================================= */
     const LANGUAGE_DOMAINS = {'no': 'https://danielatorp.no/', 'cz': 'https://www.danielatorp.cz/', 'en': 'https://danielatorp.com/'};
 
-    // The three homepage links above are explicit. For equivalent deeper pages,
-    // preserve the current pathname/hash when this same file is reused there.
     function updateLanguageLinksForCurrentPath() {
       const currentPath = window.location.pathname || '/';
       const currentHash = window.location.hash || '';
       document.querySelectorAll('.language-link').forEach(link => {
         const targetCode = link.getAttribute('hreflang') === 'cs' ? 'cz' : link.getAttribute('hreflang');
         if (!targetCode || !LANGUAGE_DOMAINS[targetCode]) return;
-        // Keep homepage links clean while preserving deeper paths automatically.
         if (currentPath !== '/' && currentPath !== '/index.html') {
           link.href = LANGUAGE_DOMAINS[targetCode].replace(/\/$/, '') + currentPath + currentHash;
         }
@@ -1736,45 +1672,6 @@
       }
     });
 
-    const workshopsData = {
-      w1: {
-        tag: "Workshop for Men",
-        title: "The Art of Pleasing a Woman",
-        text: "A practical and respectful workshop where you learn the secrets behind feminine pleasure, slow touch, energetic flow, and emotional safety.<br><br><strong>Date:</strong> Oct 3, 2026<br><strong>Duration:</strong> 1 day (10:00 – 18:00)"
-      },
-      w2: {
-        tag: "Workshop for Women",
-        title: "The Art of Pleasing a Man",
-        text: "Understand the male emotional landscape, his genuine need for recognition, and touch that touches the heart.<br><br><strong>Date:</strong> Oct 4, 2026<br><strong>Duration:</strong> 1 day (10:00 – 18:00)"
-      },
-      w3: {
-        tag: "Workshop for Couples",
-        title: "The Art of Pleasing (for Couples)",
-        text: "Rediscover the spark of partner connection. A journey into the interplay between masculine and feminine energy to keep passion alive."
-      }
-    };
-
-    function openWorkshopModal(id) {
-      const data = workshopsData[id];
-      if (!data) return;
-      showModal(data.tag, data.title, data.text, function() {
-        prefillSubject("Registration / Inquiry: " + data.title);
-      });
-    }
-
-    function openDateModal(title, dateStr) {
-      showModal("Event Date", title, "Date: " + dateStr + "\n\nWould you like more details or wish to reserve your place? Fill out the form below.", function() {
-        prefillSubject("Interest in event: " + title + " (" + dateStr + ")");
-      });
-    }
-
-    function openGenericModal(title, text) {
-      showModal("Information", title, text, function() {
-        prefillSubject("Inquiry: " + title);
-      });
-    }
-
-    // New Function for Cancellation Policy
     function openCancellationModal() {
       const policyHTML = `
         <p>At Daniela Torp, I value your time and appreciate the trust you place in my work. Every session and workshop requires time, preparation and care. To ensure a respectful and professional experience for everyone, I kindly ask all clients to familiarise themselves with the following cancellation policy.</p>
@@ -1846,13 +1743,15 @@
       document.body.style.overflow = 'auto';
     }
 
-    function prefillSubject(subject) {
-      const subInput = document.getElementById('formSubject');
-      if (subInput) {
-        subInput.value = subject;
-        document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
-        subInput.focus();
-      }
+    function openGenericModal(title, text) {
+      showModal("Information", title, text, function() {
+        const subInput = document.getElementById('formSubject');
+        if (subInput) {
+          subInput.value = "Inquiry: " + title;
+          document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+          subInput.focus();
+        }
+      });
     }
 
     document.addEventListener('keydown', function(e) {
@@ -1860,9 +1759,38 @@
     });
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwiptZDdNVNSavoyJeHCvoc7XxOSTG0yg_K5Z-Si81Up_4CSBo5AJUUOuMYLNh2eT3h/exec';
+    const formLoadTime = Date.now();
 
     async function handleFormSubmit(e) {
       e.preventDefault();
+      
+      const honeypot = document.getElementById('honeypot').value;
+      if (honeypot) {
+        fakeSuccess();
+        return;
+      }
+
+      const submitTime = Date.now();
+      const timeElapsed = (submitTime - formLoadTime) / 1000;
+      if (timeElapsed < 3) {
+        fakeSuccess();
+        return;
+      }
+
+      const name = document.getElementById('formName').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const subject = document.getElementById('formSubject').value.trim();
+      const message = document.getElementById('formMessage').value.trim();
+      
+      const urlPattern = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+      const linksInMessage = message.match(urlPattern);
+      
+      if (urlPattern.test(name) || (linksInMessage && linksInMessage.length > 1)) {
+         document.getElementById('errorBox').innerText = "Please remove links from your message (max 1 link allowed).";
+         document.getElementById('errorBox').style.display = 'block';
+         return;
+      }
+
       const sendBtn = document.getElementById('sendSubmitBtn') || document.querySelector('.send');
       const originalText = sendBtn ? sendBtn.innerHTML : 'Submit ➜';
 
@@ -1870,43 +1798,45 @@
         sendBtn.disabled = true;
         sendBtn.innerHTML = 'Sending...';
       }
+      
+      document.getElementById('errorBox').style.display = 'none';
 
-      const name = document.getElementById('formName').value.trim();
-      const email = document.getElementById('formEmail').value.trim();
-      const subject = document.getElementById('formSubject') ? document.getElementById('formSubject').value.trim() : '';
-      const message = document.getElementById('formMessage').value.trim();
+      const formattedMessage = subject ? `[Subject: ${subject}]
 
-      const formattedMessage = subject ? `[Subject: ${subject}]\n\n${message}` : message;
+${message}` : message;
 
       const payload = {
         type: 'contact',
         name: name,
         email: email,
         subject: subject,
-        message: formattedMessage
+        message: formattedMessage,
+        source_website: 'danielatorp.com',
+        source_language: 'en'
       };
 
       try {
         await fetch(SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         });
-
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('successBox').style.display = 'block';
-        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        fakeSuccess();
       } catch (err) {
-        console.error('Error submitting form:', err);
-        alert('An error occurred while sending your message. Please try again.');
+        document.getElementById('errorBox').innerText = "An error occurred. Please try again.";
+        document.getElementById('errorBox').style.display = 'block';
         if (sendBtn) {
           sendBtn.disabled = false;
           sendBtn.innerHTML = originalText;
         }
       }
+    }
+    
+    function fakeSuccess() {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('successBox').style.display = 'block';
+        document.getElementById('successBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwrA4qfZdmzOWaRdbIgtDqL0VO5NpURvNBU-5GdnmJ__3cBPbK4Hy-b5vkn1P0FJo0F/exec?api=json";
@@ -1915,22 +1845,31 @@
     fetch(WEB_APP_URL)
       .then(response => response.json())
       .then(data => {
-        const langData = data[PAGE_LANG] || data["NO"];
+        const langData = data[PAGE_LANG];
         const listContainer = document.getElementById('dynamic-dates-list');
         
         if (langData && Array.isArray(langData) && langData.length > 0 && listContainer) {
           listContainer.innerHTML = "";
           
-          langData.forEach(dateText => {
-            if (dateText.trim() === "") return; 
+          langData.forEach(item => {
+            let btnText = typeof item === 'string' ? item : item.text;
+            let btnUrl = typeof item === 'string' ? "" : item.url;
+
+            if (!btnText || btnText.trim() === "") return; 
             
             const div = document.createElement('div');
             const btn = document.createElement('button');
             btn.type = "button";
-            btn.innerText = dateText;
+            btn.innerText = btnText;
             
             btn.onclick = function() {
-              openGenericModal("Event Inquiry", "Would you like more information or to register for this event?\n\n" + dateText);
+              if (btnUrl) {
+                window.location.href = btnUrl;
+              } else {
+                openGenericModal("Event Inquiry", "Would you like more information or to register for this event?
+
+" + btnText);
+              }
             };
             
             div.appendChild(btn);
