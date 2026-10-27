@@ -5,3 +5,4 @@ compatibility_date = "2026-10-26"
 [vars]
 SITE_URL = "https://danielatorp.com"
 ALLOWED_ORIGIN = "https://danielatorp.com"
+GOOGLE_REGISTRATION_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwwjC1hSaKCMWEkkKLt9jYt6w-JTIFfh6TQ2ef_VlZUun9_gjmSiiJ_t86mjaaMHmw/exec"
