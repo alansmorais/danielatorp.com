@@ -1,5 +1,5 @@
 name = "danielatorp-com-stripe-checkout"
-main = "src/index.ts"
+main = "src/index.js"
 compatibility_date = "2026-10-26"
 
 [vars]
