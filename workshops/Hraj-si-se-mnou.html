@@ -927,7 +927,7 @@ ${message}` : message;
       const name = (document.getElementById('formName')?.value || '').trim();
       const email = (document.getElementById('formEmail')?.value || '').trim();
       const button = document.getElementById('stripePayBtn');
-      if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (!name || email.indexOf('@') <= 0 || email.lastIndexOf('.') <= email.indexOf('@') + 1) {
         alert('Please enter your name and a valid email address before continuing to payment.');
         return;
       }
