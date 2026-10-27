@@ -1,32 +1,31 @@
 # English-site Stripe Checkout Worker
 
-Dedicated Stripe Checkout Worker for `https://danielatorp.com`. It does not change the existing website contact form or the Czech/Norwegian Workers.
+Dedicated Stripe Checkout Worker for `https://danielatorp.com`. It does not replace or alter the website's existing contact form, links, descriptions, or the Czech/Norwegian Workers.
 
-## Secrets required in Cloudflare
+## Cloudflare configuration
 
-Set these as Worker secrets (never commit secret values):
+The Worker is deployed as:
 
-- `STRIPE_SECRET_KEY` — the Stripe secret key for the intended English-site merchant/account; use test mode first.
-- `STRIPE_WEBHOOK_SECRET` — signing secret for the Stripe webhook.
-- `GOOGLE_REGISTRATION_WEBHOOK_URL` — a dedicated registration receiver URL, not the website's existing contact-form endpoint.
-- `GOOGLE_REGISTRATION_SHARED_SECRET` — the matching receiver secret.
+`https://danielatorp-com-stripe-checkout.alanpkmorais.workers.dev`
 
-## Deploy and configure
+The non-secret variables are in `wrangler.toml`: `SITE_URL`, `ALLOWED_ORIGIN`, and `GOOGLE_REGISTRATION_WEBHOOK_URL`. The registration URL currently points to the paid-registration receiver already used by the Norwegian Worker.
 
-From this directory:
+Set these as Worker secrets in Cloudflare (never commit secret values):
 
-```sh
-npx wrangler secret put STRIPE_SECRET_KEY
-npx wrangler secret put STRIPE_WEBHOOK_SECRET
-npx wrangler secret put GOOGLE_REGISTRATION_WEBHOOK_URL
-npx wrangler secret put GOOGLE_REGISTRATION_SHARED_SECRET
-npx wrangler deploy
-```
+- `STRIPE_SECRET_KEY` — the secret key for the Stripe merchant account that should receive payments from the English site; use test mode first.
+- `STRIPE_WEBHOOK_SECRET` — the signing secret for this Worker’s own Stripe webhook endpoint.
+- `GOOGLE_REGISTRATION_SHARED_SECRET` — the same shared secret used by the configured registration receiver.
 
-In Stripe test mode, add a webhook to `https://danielatorp-com-stripe-checkout.<your-workers-subdomain>.workers.dev/api/webhook` and subscribe to `checkout.session.completed`.
+## Stripe webhook
 
-## Checkout
+In Stripe test mode, add an endpoint at:
 
-The Worker owns the allowlisted workshop IDs and amounts in NOK øre, using the prices currently displayed on the English website. It records the participant details in Stripe metadata and forwards only verified paid checkout sessions to the dedicated registration receiver. Test successful, cancelled, declined, and webhook retry scenarios before live mode.
+`https://danielatorp-com-stripe-checkout.alanpkmorais.workers.dev/api/webhook`
 
-The front end calls `POST /api/create-checkout-session` with `workshopId`, `participantName`, and `participantEmail`. The Worker sets the amount server-side; the browser cannot set the price.
+Subscribe to `checkout.session.completed`, then save the endpoint's signing secret as `STRIPE_WEBHOOK_SECRET`. The signing secret is unique to this webhook endpoint; do not copy the Norwegian webhook signing secret.
+
+## Checkout and prices
+
+The Worker owns the allowlisted workshop IDs and amounts in NOK øre, matching the prices currently displayed on the English website. The browser cannot set the price. The frontend calls `POST /api/create-checkout-session` with `workshopId`, `participantName`, and `participantEmail`.
+
+The Worker deliberately returns a configuration error until all Stripe and registration secrets are present, preventing checkout from taking payment before paid registrations can be recorded. Test successful, cancelled, declined, and webhook retry scenarios in test mode before enabling live payments.
