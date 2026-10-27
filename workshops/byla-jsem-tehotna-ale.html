@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>I Was Pregnant, But … – Daniela Torp</title>
-  <link rel="icon" href="https://www.danielatorp.cz/wp-content/uploads/2020/02/cropped-favicona-32x32.png" sizes="32x32">
-  <link rel="icon" href="https://www.danielatorp.cz/wp-content/uploads/2020/02/cropped-favicona-192x192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="https://www.danielatorp.cz/wp-content/uploads/2020/02/cropped-favicona-180x180.png">
+  <link rel="icon" href="../images/cropped-favicona-32x32.png" sizes="32x32">
+  <link rel="icon" href="../images/cropped-favicona-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="../images/cropped-favicona-180x180.png">
 
   <style>
         .lang-switcher {
@@ -636,6 +636,9 @@
       .form-bottom { flex-direction: column; align-items: stretch; }
       .send { margin-top: 10px; }
     }
+  
+    .lang-switcher { flex-wrap: wrap; }
+    .lang-switcher a { display: inline-flex; align-items: center; gap: 3px; }
   </style>
 </head>
 <body>
@@ -644,7 +647,7 @@
     <header>
     <div class="wrap">
       <a href="../index.html">
-        <img class="logo" src="https://www.danielatorp.cz/wp-content/uploads/2020/02/logo_perem_bez_pozadi%CC%81.png" alt="Daniela Torp">
+        <img class="logo" src="../images/logo_perem_bez_pozadí.png" alt="Daniela Torp">
       </a>
       
       <nav class="nav">
@@ -679,10 +682,10 @@
         <a href="#kontakt">Contact</a>
 
         <!-- Dual-Language Toggle Switcher -->
-        <div class="lang-switcher">
-          <a href="../../workshops/byla-jsem-tehotna-ale.html" class="lang-btn">🇳🇴 NO</a>
-          <span>|</span>
-          <button type="button" class="lang-btn active">🇬🇧 EN</button>
+        <div class="lang-switcher" aria-label="Language selection">
+          <a href="https://danielatorp.no/workshops/byla-jsem-tehotna-ale.html" class="lang-btn" hreflang="no" lang="no" aria-label="Norsk">🇳🇴 NO</a>
+          <a href="https://www.danielatorp.cz/workshops/byla-jsem-tehotna-ale.html" class="lang-btn" hreflang="cs" lang="cs" aria-label="Čeština">🇨🇿 CZ</a>
+          <a href="https://danielatorp.com/workshops/byla-jsem-tehotna-ale.html" class="lang-btn active" hreflang="en" lang="en" aria-label="English" aria-current="page">🇬🇧 EN</a>
         </div>
       </nav>
 
