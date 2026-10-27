@@ -100,7 +100,7 @@ export default {
 
     if (url.pathname !== '/api/create-checkout-session' || request.method !== 'POST') return new Response('Not found', { status: 404 });
     if (!originAllowed) return json({ error: 'Origin is not allowed.' }, 403, allowedOrigin);
-    if (!env.STRIPE_SECRET_KEY || !env.SITE_URL) return json({ error: 'Online payments are not configured yet. Please contact Daniela.' }, 503, allowedOrigin);
+    if (!env.STRIPE_SECRET_KEY || !env.STRIPE_WEBHOOK_SECRET || !env.GOOGLE_REGISTRATION_WEBHOOK_URL || !env.GOOGLE_REGISTRATION_SHARED_SECRET || !env.SITE_URL) return json({ error: 'Online payments are not configured yet. Please contact Daniela.' }, 503, allowedOrigin);
 
     let body;
     try { body = await request.json(); } catch { return json({ error: 'Invalid request.' }, 400, allowedOrigin); }
