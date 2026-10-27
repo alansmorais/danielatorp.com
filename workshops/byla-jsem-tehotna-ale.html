@@ -779,6 +779,7 @@
           </div>
         </div>
         <button class="send" id="sendBtn" type="submit">Send message ➜</button>
+        <button class="send" id="stripePayBtn" type="button" onclick="startStripeCheckout('i-was-pregnant-but')">Pay securely with Stripe</button>
       </div>
     </form>
 
@@ -925,6 +926,34 @@ ${message}` : message;
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeModalDirect();
     });
+  
+    const STRIPE_WORKER_URL = 'https://danielatorp-com-stripe-checkout.alanpkmorais.workers.dev';
+
+    async function startStripeCheckout(workshopId) {
+      const name = (document.getElementById('formName')?.value || '').trim();
+      const email = (document.getElementById('formEmail')?.value || '').trim();
+      const button = document.getElementById('stripePayBtn');
+      if (!name || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+        alert('Please enter your name and a valid email address before continuing to payment.');
+        return;
+      }
+      const originalText = button ? button.textContent : 'Pay securely with Stripe';
+      if (button) { button.disabled = true; button.textContent = 'Connecting to Stripe...'; }
+      try {
+        const response = await fetch(STRIPE_WORKER_URL + '/api/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ workshopId, participantName: name, participantEmail: email })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.url) throw new Error(result.error || 'Stripe checkout could not be started. Please try again later.');
+        window.location.assign(result.url);
+      } catch (error) {
+        alert(error && error.message ? error.message : 'Unable to connect to Stripe. Please try again later.');
+        if (button) { button.disabled = false; button.textContent = originalText; }
+      }
+    }
+
   </script>
 </body>
 </html>
