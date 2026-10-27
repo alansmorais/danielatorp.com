@@ -89,6 +89,7 @@ export default {
             customer_email: session.customer_details?.email,
             customer_name: session.customer_details?.name || session.metadata?.participant_name,
             metadata: session.metadata,
+            website_source: session.metadata?.registration_source || session.metadata?.site_url || 'DanielaTorp.com',
             paid_at: new Date().toISOString()
           })
         });
@@ -135,6 +136,7 @@ export default {
     form.set('metadata[participant_email]', email);
     form.set('metadata[site_language]', 'en');
     form.set('metadata[site_url]', env.SITE_URL);
+    form.set('metadata[registration_source]', 'DanielaTorp.com');
 
     const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
