@@ -1,0 +1,7 @@
+name = "danielatorp-com-stripe-checkout"
+main = "src/index.ts"
+compatibility_date = "2026-10-26"
+
+[vars]
+SITE_URL = "https://danielatorp.com"
+ALLOWED_ORIGIN = "https://danielatorp.com"
