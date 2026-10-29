@@ -612,6 +612,15 @@ header img.logo, header .logo { display: block; width: 325px; height: 100px; max
 header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; font-weight: 400; }
 @media (max-width: 900px) { header .wrap { padding-left: 16px; padding-right: 16px; } header img.logo, header .logo { width: 250px; max-width: 48vw; } header .nav { gap: 12px; } }
 
+
+    /* Consistent NO / CZ / EN language flags across all English pages */
+    .language-switcher { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; white-space: nowrap; }
+    .language-link { display: inline-flex; align-items: center; gap: 4px; padding: 4px 6px; border-radius: 4px; color: #777; font-size: 12px; font-weight: 500; text-decoration: none; }
+    .language-link:hover, .language-link.active { color: #ee5a7a; background: #fff0f3; font-weight: 700; }
+    .language-flag { display: inline-flex; width: 22px; height: 16px; flex: 0 0 22px; }
+    .language-flag svg { display: block; width: 22px; height: 16px; }
+    @media (max-width: 900px) { .language-switcher { gap: 3px; margin-left: 4px; } .language-link { padding: 4px 3px; } }
+
 </style>
 </head>
 <body>
@@ -655,10 +664,10 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
         <a href="#kontakt">Contact</a>
 
         <!-- Dual-Language Toggle Switcher -->
-        <div class="lang-switcher">
-          <a href="../../workshops/jen-pro-pary.html" class="lang-btn">🇳🇴 NO</a>
-          <span>|</span>
-          <button type="button" class="lang-btn active">🇬🇧 EN</button>
+        <div class="language-switcher" aria-label="Language selection">
+          <a class="language-link" href="https://danielatorp.no/" hreflang="no" lang="no" aria-label="Norsk"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg></span><span>NO</span></a>
+          <a class="language-link" href="https://www.danielatorp.cz/" hreflang="cs" lang="cs" aria-label="Čeština"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="8" fill="#fff"/><rect y="8" width="22" height="8" fill="#d7141a"/><path d="M0 0L11 8 0 16Z" fill="#11457e"/></svg></span><span>CZ</span></a>
+          <a class="language-link active" href="https://danielatorp.com/" hreflang="en" lang="en" aria-label="English"><span class="language-flag" aria-hidden="true"><svg viewBox="0 0 22 16" role="img"><rect width="22" height="16" fill="#012169"/><path d="M0 0L22 16M22 0L0 16" stroke="#fff" stroke-width="4"/><path d="M0 0L22 16M22 0L0 16" stroke="#c8102e" stroke-width="2"/><path d="M11 0V16M0 8H22" stroke="#fff" stroke-width="6"/><path d="M11 0V16M0 8H22" stroke="#c8102e" stroke-width="3"/></svg></span><span>EN</span></a>
         </div>
       </nav>
 
