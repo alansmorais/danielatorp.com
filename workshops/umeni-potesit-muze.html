@@ -698,7 +698,7 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
     <div class="intro">
       <h1>THE ART OF PLEASING A MAN</h1>
       <p>Open the door to a man's deeper emotional and sensual world</p>
-      <a class="button" href="#kontakt">Register now</a>
+      <a class="button" href="#stripe-registration">Register now</a>
     </div>
   </section>
 
@@ -751,7 +751,19 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
 
   <!-- CONTACT SECTION -->
     <!-- CONTACT SECTION -->
-  <section class="contact" id="kontakt">
+  <section class="contact" id="stripe-registration">
+  <div class="wrap">
+    <h2>Workshop Registration</h2>
+    <p class="contact-intro">Enter your details below to register and continue to secure payment with Stripe.</p>
+    <div class="form" style="display:grid">
+      <div class="field full"><label for="registrationName">Full name <span class="required">*</span></label><input type="text" id="registrationName" autocomplete="name" required maxlength="120" placeholder="Your full name"></div>
+      <div class="field full"><label for="registrationEmail">Email address <span class="required">*</span></label><input type="email" id="registrationEmail" autocomplete="email" required maxlength="254" placeholder="you@example.com"></div>
+      <div class="form-bottom"><span class="notice">Your details will be used for this workshop registration.</span><button class="send" id="stripePayBtn" type="button" onclick="startStripeCheckout()">Continue to secure payment</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontakt">
     <h2>Write to Me</h2>
     <p>Do you have a question about this workshop or want to register? I am here for you.</p>
     
@@ -782,7 +794,6 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
           </div>
         </div>
         <button class="send" id="sendBtn" type="submit">Send message ➜</button>
-        <button class="send" id="stripePayBtn" type="button" onclick="startStripeCheckout('art-of-pleasing-a-man')">Pay securely with Stripe</button>
       </div>
     </form>
 
@@ -932,9 +943,9 @@ ${message}` : message;
   
     const STRIPE_WORKER_URL = 'https://danielatorp-no-stripe-checkout.alanpkmorais.workers.dev';
 
-    async function startStripeCheckout(workshopId) {
-      const name = (document.getElementById('formName')?.value || '').trim();
-      const email = (document.getElementById('formEmail')?.value || '').trim();
+    async function startStripeCheckout() {
+      const name = (document.getElementById('registrationName')?.value || '').trim();
+      const email = (document.getElementById('registrationEmail')?.value || '').trim();
       const button = document.getElementById('stripePayBtn');
       if (!name || email.indexOf('@') <= 0 || email.lastIndexOf('.') <= email.indexOf('@') + 1) {
         alert('Please enter your name and a valid email address before continuing to payment.');
@@ -946,7 +957,7 @@ ${message}` : message;
         const response = await fetch(STRIPE_WORKER_URL + '/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ workshopId, participantName: name, participantEmail: email })
+          body: JSON.stringify({ workshopId: 'art-of-pleasing-a-man', participantName: name, participantEmail: email })
         });
         const result = await response.json().catch(() => ({}));
         if (!response.ok || !result.url) throw new Error(result.error || 'Stripe checkout could not be started. Please try again later.');
