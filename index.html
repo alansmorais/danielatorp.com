@@ -1220,7 +1220,16 @@
         gap: 32px;
       }
     }
-  </style>
+  
+/* Shared header alignment with danielatorp.no and danielatorp.cz */
+header { min-height: 100px; background: rgba(255,255,255,.98); border-bottom: 1px solid rgba(0,0,0,.05); }
+header .wrap { width: 100%; max-width: 1344px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; display: flex; align-items: center; justify-content: space-between; }
+header .logo-link { display: inline-flex; align-items: center; height: 100px; margin-right: auto; flex: 0 0 auto; }
+header img.logo, header .logo { display: block; width: 325px; height: 100px; max-width: 36vw; object-fit: contain; flex-shrink: 0; }
+header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; font-weight: 400; }
+@media (max-width: 900px) { header .wrap { padding-left: 16px; padding-right: 16px; } header img.logo, header .logo { width: 250px; max-width: 48vw; } header .nav { gap: 12px; } }
+
+</style>
 
   <link rel="alternate" hreflang="no" href="https://danielatorp.no/">
   <link rel="alternate" hreflang="cs" href="https://www.danielatorp.cz/">
