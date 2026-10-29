@@ -648,6 +648,18 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
     .language-flag svg { display: block; width: 22px; height: 16px; }
     @media (max-width: 900px) { .language-switcher { gap: 3px; margin-left: 4px; } .language-link { padding: 4px 3px; } }
 
+
+/* Stripe registration modal — deliberately separate from the contact form */
+#stripe-registration{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.62);padding:20px;overflow:auto;align-items:center;justify-content:center;text-align:left}
+#stripe-registration .wrap{width:min(560px,100%);margin:auto;background:#fff;border-radius:14px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.24);position:relative}
+#stripe-registration h2{font-size:26px;margin:0 42px 8px 0}
+#stripe-registration .contact-intro{margin-bottom:20px}
+#stripe-registration .form{display:grid;grid-template-columns:1fr;gap:16px;max-width:none;margin:20px 0 0}
+#stripe-registration .form-bottom{display:flex;flex-direction:column;align-items:stretch}
+#stripe-registration .send{width:100%}
+#stripe-registration .stripe-modal-close{position:absolute;right:18px;top:12px;border:0;background:transparent;font-size:30px;cursor:pointer;color:#777}
+@media(max-width:560px){#stripe-registration{padding:12px}#stripe-registration .wrap{padding:24px 18px}}
+
 </style>
 </head>
 <body>
@@ -707,7 +719,7 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
     <div class="intro">
       <h1>PLAY WITH ME</h1>
       <p>A three-day transformative journey to the roots of your desires</p>
-      <a class="button" href="#stripe-registration">Register now</a>
+      <a class="button" href="#stripe-registration" onclick="openStripeRegistrationModal(event)">Register now</a>
     </div>
   </section>
 
@@ -762,7 +774,7 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
     <!-- CONTACT SECTION -->
   <section class="contact" id="stripe-registration">
   <div class="wrap">
-    <h2>Workshop Registration</h2>
+    <button type="button" class="stripe-modal-close" aria-label="Close registration" onclick="closeStripeRegistrationModal()">&times;</button><h2>Workshop Registration</h2>
     <p class="contact-intro">Enter your details below to register and continue to secure payment with Stripe.</p>
     <div class="form" style="display:grid">
       <div class="field full"><label for="registrationName">Full name <span class="required">*</span></label><input type="text" id="registrationName" autocomplete="name" required maxlength="120" placeholder="Your full name"></div>
@@ -951,6 +963,19 @@ ${message}` : message;
     });
   
     const STRIPE_WORKER_URL = 'https://danielatorp-no-stripe-checkout.alanpkmorais.workers.dev';
+
+
+    function openStripeRegistrationModal(event){
+      if(event) event.preventDefault();
+      const modal=document.getElementById('stripe-registration');
+      if(modal){modal.style.display='flex';document.body.style.overflow='hidden';}
+    }
+    function closeStripeRegistrationModal(){
+      const modal=document.getElementById('stripe-registration');
+      if(modal){modal.style.display='none';document.body.style.overflow='';}
+    }
+    document.addEventListener('keydown',function(event){if(event.key==='Escape')closeStripeRegistrationModal();});
+    document.addEventListener('click',function(event){const modal=document.getElementById('stripe-registration');if(modal && event.target===modal)closeStripeRegistrationModal();});
 
     async function startStripeCheckout() {
       const name = (document.getElementById('registrationName')?.value || '').trim();
