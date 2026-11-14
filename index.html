@@ -1873,6 +1873,26 @@ ${message}` : message;
             let btnText = typeof item === 'string' ? item : item.text;
             let btnUrl = typeof item === 'string' ? "" : item.url;
 
+            // Keep the live event list in its existing order and location.
+            // If a spreadsheet row has no URL, link known workshop titles to their existing detail pages.
+            if (!btnUrl && btnText) {
+              const eventTitle = btnText.toLowerCase();
+              const eventLinks = [
+                [/trauma workshops|traumaworkshops/, '/workshops/traumaworkshops-ane-daniela/'],
+                [/play with me|hraj si se mnou|lek med meg/, '/workshops/Hraj-si-se-mnou.html'],
+                [/female essence|woman vital essence|zenska esence|kvinneessens/, '/workshops/zenska-esence-no.html'],
+                [/for couples|only for couples|jen pro pary|kunsten å tilfredsstille – for par/, '/workshops/jen-pro-pary.html'],
+                [/pleasing a woman|umeni potesit zenu/, '/workshops/umeni-potesit-zenu.html'],
+                [/pleasing a man|umeni potesit muze/, '/workshops/umeni-potesit-muze.html'],
+                [/pelvic floor|panevniho dna|bekkenbunn/, '/workshops/tajemstvi-panevniho-dna.html'],
+                [/pregnant|tehotna/, '/workshops/byla-jsem-tehotna-ale.html'],
+                [/birth as certainty|porod jako jistota/, '/workshops/porod-jako-jistota.html'],
+                [/mother and daughter|matka a dcera/, '/workshops/matka-a-dcera.html']
+              ];
+              const match = eventLinks.find(([pattern]) => pattern.test(eventTitle));
+              if (match) btnUrl = match[1];
+            }
+
             if (!btnText || btnText.trim() === "") return; 
             
             const div = document.createElement('div');
