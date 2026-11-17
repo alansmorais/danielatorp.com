@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trauma Workshops Ané &amp; Daniela – Daniela Torp</title>
-  <meta name="description" content="Trauma Workshops Ané & Daniela in Oslo, 21–22 November 2026. Two days with Ané and Daniela, NOK 2,850.">
+  <meta name="description" content="Trauma Workshops Ané & Daniela in Oslo, Saturday, 13 March 2027, 10:00–19:00. One day with Ané and Daniela, NOK 1,190.">
   <link rel="icon" href="../../images/logo_perem_bez_pozadi%CC%81.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -45,13 +45,13 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
   <section class="hero">
     <div class="eyebrow">Upcoming workshop · Oslo</div>
     <h1>Trauma Workshops Ané &amp; Daniela</h1>
-    <p>A two-day workshop exploring trauma, relationships and practical approaches in a respectful, supportive learning environment.</p>
+    <p>A one-day workshop exploring trauma, relationships and practical approaches in a respectful, supportive learning environment.</p>
     <a class="button" href="#registration">Register and pay</a>
   </section>
   <main><div class="wrap grid">
     <section class="panel">
       <h2>About the workshop</h2>
-      <p>Join Ané and Daniela for two days of learning and reflection around trauma and relationships. The workshop combines relevant knowledge with practical demonstrations and exercises in a respectful learning environment.</p>
+      <p>Join Ané and Daniela for one day of learning and reflection around trauma and relationships. The workshop combines relevant knowledge with practical demonstrations and exercises in a respectful learning environment.</p>
       <p>It is intended for both personal and professional participants who want to explore these themes and learn in a guided setting.</p>
       <h3>What to bring</h3>
       <p>Please bring comfortable clothes, a notebook and a pen.</p>
@@ -61,18 +61,15 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
     <aside class="panel">
       <h2>Practical information</h2>
       <ul class="facts">
-        <li><strong>Dates</strong>Saturday, 21 November 2026 · 10:00–18:00<br>Sunday, 22 November 2026 · 10:00–15:00</li>
+        <li><strong>Date &amp; time</strong>Saturday, 13 March 2027 · 10:00–19:00</li>
         <li><strong>Venue</strong>Prindsen Yoga &amp; Therapy<br>Storgata 36C, Oslo, Norway</li>
-        <li><strong>Price</strong>NOK 2,850</li>
-        <li><strong>Deposit</strong>NOK 1,425 (50%)</li>
+        <li><strong>Price</strong>NOK 1,190</li>
       </ul>
-      <div class="notice">Choose full payment or the 50% deposit below. Your registration and payment will be handled securely by Stripe.</div>
+      <div class="notice">Your registration and payment will be handled securely by Stripe.</div>
       <h3 id="registration">Registration and payment</h3>
       <form id="checkout-form">
         <label for="participant-name">Full name</label><input id="participant-name" name="participantName" autocomplete="name" required maxlength="120">
         <label for="participant-email">Email address</label><input id="participant-email" name="participantEmail" type="email" autocomplete="email" required maxlength="254">
-        <label for="payment-option">Payment amount</label>
-        <select id="payment-option" name="priceOption"><option value="standard">Full payment — NOK 2,850</option><option value="deposit">50% deposit — NOK 1,425</option></select>
         <button class="button" id="checkout-button" type="submit">Continue to secure payment</button>
         <p class="message" id="checkout-message" role="status" aria-live="polite"></p>
       </form>
@@ -94,7 +91,7 @@ header .nav { display: flex; align-items: center; gap: 21px; font-size: 14px; fo
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             workshopId: 'trauma-workshops-ane-daniela',
-            priceOption: document.getElementById('payment-option').value,
+            priceOption: 'standard',
             participantName: document.getElementById('participant-name').value.trim(),
             participantEmail: document.getElementById('participant-email').value.trim()
           })
